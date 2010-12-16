@@ -124,10 +124,11 @@ or the design we need to implement. But the core functionality is always the
 same. In other words: The input field and its behavior is stable, the eye-candy 
 around is not.
 
-Its what the user of YAFOWIL can change with ease. At factory time, when the
-widget is requested from the factory, additional configurations can be added by
-passing a colon separated list of names, i.e ``label:textarea`` or 
-``myproject.field:label:textarea`` and so on. Thus we can chain blueprints!
+It's what the user of YAFOWIL can change with ease. We call this
+``factory chain``. At factory time, when the widget is requested from the 
+factory, additional configurations can be added by passing a colon separated 
+list of names, i.e ``label:textarea`` or ``myproject.field:label:textarea`` 
+and so on. Thus we can chain blueprints!
 
 Extractors in this chained blueprints are executed from right to left while all 
 others are executes left to right.  
@@ -139,8 +140,8 @@ If theres one special rare use-case not worth to write a generic widget for, its
 possible to create a custom blueprint. Its a 4-tuple with chains of extractors, 
 renderers, preprocessors and builders. Each chain contains callables as 
 explained above. To tell the factory about usage of a custom blueprint, use the
-asterisk-prefix like: ``field:label:*mycustom:textarea``. Next the factory takes 
-an keyword-argument custom expecting a dict with key ``mycustom`` and a 4-tuple
-of chains.   
+asterisk-prefix like ``field:label:*mycustom:textarea`` in the factory chain.
+Next the factory takes an keyword-argument ``custom`` expecting a dict with key
+``mycustom`` and a 4-tuple of chains.   
 
 Custom blueprints are great for easily injecting validating extractors. 
