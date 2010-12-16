@@ -5,12 +5,12 @@ import sys, os
 
 version = '1.1'
 shortdesc = \
-'Documenation of YAFOWIL - Yet Another Form Widget Lib'
+'Documentation of YAFOWIL - Yet Another Form Widget Library'
 longdesc = ""
 
 tests_require = ['interlude']
 
-setup(name='yafowil.documentaion',
+setup(name='yafowil.documentation',
       version=version,
       description=shortdesc,
       long_description=longdesc,
@@ -21,7 +21,7 @@ setup(name='yafowil.documentaion',
             'Programming Language :: Python',
             'Topic :: Software Development',
       ],
-      keywords='html input widgets form compound array',
+      keywords='html input widgets form compound',
       author='BlueDynamics Alliance',
       author_email='dev@bluedynamics.com',
       url=u'https://github.com/bluedynamics/yafowil',
@@ -32,10 +32,16 @@ setup(name='yafowil.documentaion',
       include_package_data=True,
       zip_safe=True,
       install_requires=[
-          'setuptools',
-          'yafowil',
-          # add-on widgets to document
-          'yafowil.widget.dynatree',
+        'setuptools',
+        'sphinx',
+        'yafowil',
+         # add-on widgets to document
+        'yafowil.widget.richtext',
+        'yafowil.widget.datetime',   
+        'yafowil.widget.dict',
+        'yafowil.widget.autocomplete',
+        'yafowil.widget.dynatree',
+          
       ],
       tests_require=tests_require,
       test_suite="yafowil.tests.test_suite",

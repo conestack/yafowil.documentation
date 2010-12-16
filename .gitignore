@@ -16,5 +16,4 @@ var
 *#*
 .mr.developer.cfg
 devsrc
-docs/Makefile
-docs/make.bat
+docs

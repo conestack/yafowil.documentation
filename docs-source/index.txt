@@ -17,6 +17,7 @@ Contents:
    
    helloworld 
    architecture
+   widgets
 
 Indices and tables
 ==================
