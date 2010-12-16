@@ -26,7 +26,7 @@ class WidgetDoc(Directive):
         # set a title:
         sec.append(nodes.subtitle(text=widgetname))
         # fetch main documentation
-        maindoc = factory.document.get(widgetname, None)        
+        maindoc = factory.doc['widget'].get(widgetname, None)        
         if maindoc is not None:            
             sec.append(self._rest2node(maindoc))
         else:
@@ -55,7 +55,7 @@ class WidgetDoc(Directive):
         sec.append(rub)
         dl = nodes.definition_list()
         rub.append(dl)
-        for prop in sorted([_ for _ in factory.document 
+        for prop in sorted([_ for _ in factory.doc['props'] 
                            if _.startswith('%s.' % widgetname)]):
             dl.append(self._doc_property(prop))
                                
@@ -82,7 +82,7 @@ class WidgetDoc(Directive):
     def _doc_property(self, wpname):
         dl = nodes.definition_list_item()
         dl.append(nodes.term(text=wpname.split('.')[1]))
-        propdoc = factory.document[wpname]
+        propdoc = factory.doc['props'][wpname]
         dd = self._rest2node(propdoc, nodes.definition)
         dl.append(dd)
         return dl
