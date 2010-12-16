@@ -1,4 +1,4 @@
-# Copyright 2009, BlueDynamics Alliance - http://bluedynamics.com
+# Copyright 2009-2010, BlueDynamics Alliance - http://bluedynamics.com
 
 from setuptools import setup, find_packages
 import sys, os
@@ -34,7 +34,8 @@ setup(name='yafowil.documentaion',
       install_requires=[
           'setuptools',
           'yafowil',
-          'yafowil.widget.autocomplete',
+          # add-on widgets to document
+          'yafowil.widget.dynatree',
       ],
       tests_require=tests_require,
       test_suite="yafowil.tests.test_suite",
