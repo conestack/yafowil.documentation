@@ -32,15 +32,52 @@ class WidgetDoc(Directive):
         else:
             sec.append(nodes.paragraph(
                 text='This widget is currently undocumented.'))
+        
         # build table of callables used
+        rub = nodes.rubric(text='Chains')
+        sec.append(rub)
+        table= """
+        +------------+-----------+---------------+----------+
+        | extractors | renderers | preprocessors | builders |
+        +============+===========+===============+==========+
+        | replace    | replace   | replace       | replace  |
+        +------------+-----------+---------------+----------+
+        """   
+        table = self._rest2node(table)        
+        rub.append(table)
+        entries = table.children[0].children[0].children[5].children[0]
+        for idx in range(0,4):
+            entries[idx].children = []
+            entries[idx].append(self._doc_chain(widgetname, idx))      
+
         # document properties
+        rub = nodes.rubric(text='Properties')
+        sec.append(rub)
         dl = nodes.definition_list()
-        sec.append(dl)        
+        rub.append(dl)
         for prop in sorted([_ for _ in factory.document 
                            if _.startswith('%s.' % widgetname)]):
             dl.append(self._doc_property(prop))
                                
         return sec
+    
+    def _doc_chain(self, widgetname, chainidx):
+        ol = nodes.enumerated_list()
+        chain = factory._factories[widgetname][chainidx]
+        exist = False
+        for el in chain:
+            exist = True
+            li = nodes.list_item()
+            if hasattr(el, 'func_name'):
+                # function
+                li.append(nodes.paragraph(text=el.func_name))
+            else:
+                # class             
+                li.append(nodes.paragraph(text=el.__class__.__name__))
+            ol.append(li)
+        if exist:
+            return ol
+        return nodes.paragraph(text="-/-")
     
     def _doc_property(self, wpname):
         dl = nodes.definition_list_item()
