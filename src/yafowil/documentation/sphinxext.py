@@ -1,73 +1,60 @@
-# -*- coding: utf-8 -*-
 from docutils import nodes
-from docutils.utils import new_document
-from sphinx.ext.autodoc import AutoDirective
-from sphinx.ext.autodoc import FunctionDocumenter
+from docutils.statemachine import ViewList
+from sphinx.util.compat import Directive
+from sphinx.util.docstrings import prepare_docstring
+from sphinx.util.nodes import nested_parse_with_titles
 
 import yafowil.loader
+import yafowil.widget.autocomplete
+import yafowil.widget.richtext
+import yafowil.widget.datetime
+import yafowil.widget.dict
+import yafowil.widget.dynatree
+from yafowil.base import factory
 
-class WidgetDoc(AutoDirective):
-
-    has_content = True
-    required_arguments = 0
-
+class WidgetDoc(Directive):
+    
     def run(self):
-        print "I'am running away!"
-        return []
-        
-    def notrun(self):
-        self.load_agx_config()
-        agx_defs = self.read_agx()
-        ret = list()
-        old_name = self.name
-        self.name = 'autofunction'
-        for transform in agx_defs:
-            for generator in transform['generators']:
-                sec = nodes.section()
-                sec['ids'].append(generator['name'])
-                text = "%s" % generator['name'].replace('.', ' - ')
-                gen = nodes.subtitle(text=text)
-                sec.append(gen)
-                ret.append(sec)
-                
-                description = generator['description']
-                if description:
-                    desc = nodes.paragraph(text=description)
-                    sec.append(desc)
-                
-                for handler in generator['handler']:
-                    name = handler['name']
-                    self.arguments = [handler['package_path']]
-                    doc = AutoDirective.run(self)
-                    sec += doc
-                    body = doc[1].children[-1]
-                    position = len(doc[1].children[-1]) - 2
-                    
-                    dl = nodes.definition_list()
-                    body.insert(position, dl)
-                    
-                    iname = name[:name.find('.')]
-                    dl.append(self._definition_item('Transform', iname))
-                    
-                    iname = name[name.find('.') + 1:name.rfind('.')]
-                    dl.append(self._definition_item('Generator', iname))
-                    
-                    scope = handler['scope']
-                    if scope is not None:
-                        modulename = scope['class'].__module__
-                        classname = scope['class'].__name__
-                        iname = "%s.%s" % (modulename, classname)
-                        dl.append(self._definition_item('Scope', iname))
-                    
-                    iname = handler['order']
-                    dl.append(self._definition_item('Order', iname))
-        self.name = old_name
-        return ret
-
-    def _definition_item(self, term, classifier):
-        item = nodes.definition_list_item()
-        term = nodes.term(text=term)
-        item.append(term)
-        classifier = nodes.classifier(text=classifier)
-        item.append(classifier)
-        return item
+        result = []
+        for key in sorted(factory._factories.keys()):
+            result.append(self._doc_widget(key))
+        return result        
+    
+    def _doc_widget(self, widgetname):
+        sec = nodes.section()
+        sec['ids'].append(widgetname)
+        # set a title:
+        sec.append(nodes.subtitle(text=widgetname))
+        # fetch main documentation
+        maindoc = factory.document.get(widgetname, None)        
+        if maindoc is not None:            
+            sec.append(self._rest2node(maindoc))
+        else:
+            sec.append(nodes.paragraph(
+                text='This widget is currently undocumented.'))
+        # build table of callables used
+        # document properties
+        dl = nodes.definition_list()
+        sec.append(dl)        
+        for prop in sorted([_ for _ in factory.document 
+                           if _.startswith('%s.' % widgetname)]):
+            dl.append(self._doc_property(prop))
+                               
+        return sec
+    
+    def _doc_property(self, wpname):
+        dl = nodes.definition_list_item()
+        dl.append(nodes.term(text=wpname.split('.')[1]))
+        propdoc = factory.document[wpname]
+        dd = self._rest2node(propdoc, nodes.definition)
+        dl.append(dd)
+        return dl
+    
+    def _rest2node(self, rest, container=None):     
+        vl = ViewList(prepare_docstring(rest))
+        if container is None:
+            node = nodes.container()
+        else:
+            node = container()
+        nested_parse_with_titles(self.state, vl, node)        
+        return node
