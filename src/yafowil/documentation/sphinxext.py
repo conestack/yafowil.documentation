@@ -109,9 +109,11 @@ class WidgetDoc(Directive):
         dd.append(nodes.paragraph(text=defaulttext))
         doc = factory.doc['props'].get(wpname, 
                                        factory.doc['props'].get(prop, _marker))
-        if doc is _marker:
-            doc = '(not documented)'
-        dd.append(self._rest2node(doc))
+        if doc is not _marker:
+            dd.append(self._rest2node(doc))
+        else:
+            # this does not log. bullshit. no idea how to make sphinx log.         
+            self.warning("YAFOWIL property '%s' is not documented!" % wpname)
         return dl
     
     def _rest2node(self, rest, container=None):     
