@@ -19,10 +19,4 @@ Contents:
    architecture
    widgets
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
