@@ -1,7 +1,6 @@
-===========================
-Minimal Hello World Example
-===========================
-
+==========================================
+Minimal Hello World Example Webapplication
+==========================================
 
 This buildout uses ``WebOb`` to help creating a minimal WSGI 
 application. 
