@@ -12,6 +12,8 @@ import yafowil.widget.dict
 import yafowil.widget.dynatree
 from yafowil.base import factory
 
+_marker = list()
+
 class WidgetDoc(Directive):
     
     def run(self):
@@ -19,6 +21,16 @@ class WidgetDoc(Directive):
         for key in sorted(factory._factories.keys()):
             result.append(self._doc_widget(key))
         return result        
+    
+    def _managed_props_of(self, widgetname):
+        props = set([_[len(widgetname):] for _ in factory.doc['props'] 
+                     if _.startswith('%s.' % widgetname)])
+        for chainidx in range(0,4):
+            chain = factory._factories[widgetname][chainidx]
+            for func in chain:
+                mprops = getattr(func, '__yafowil_managed_props__', [])
+                props.update(['%s.%s' % (widgetname, _) for _ in mprops])
+        return sorted(props)
     
     def _doc_widget(self, widgetname):
         sec = nodes.section()
@@ -55,8 +67,8 @@ class WidgetDoc(Directive):
         sec.append(rub)
         dl = nodes.definition_list()
         rub.append(dl)
-        for prop in sorted([_ for _ in factory.doc['props'] 
-                           if _.startswith('%s.' % widgetname)]):
+        
+        for prop in self._managed_props_of(widgetname):
             dl.append(self._doc_property(prop))
                                
         return sec
@@ -80,11 +92,26 @@ class WidgetDoc(Directive):
         return nodes.paragraph(text="-/-")
     
     def _doc_property(self, wpname):
+        widget, prop =  wpname.split('.')
         dl = nodes.definition_list_item()
-        dl.append(nodes.term(text=wpname.split('.')[1]))
-        propdoc = factory.doc['props'][wpname]
-        dd = self._rest2node(propdoc, nodes.definition)
+        default = factory.defaults.get(wpname, 
+                                       factory.defaults.get(prop, _marker))
+        defaulttext = 'required (no default)'
+        if default is not _marker:
+            defaulttext = 'default: %s' % repr(default)
+        else:
+            default = factory.defaults.get(prop, _marker)
+            if default is not _marker:
+                defaulttext = 'default (global): %s ' % default
+        dl.append(nodes.term(text=prop))
+        dd = nodes.definition()
         dl.append(dd)
+        dd.append(nodes.paragraph(text=defaulttext))
+        doc = factory.doc['props'].get(wpname, 
+                                       factory.doc['props'].get(prop, _marker))
+        if doc is _marker:
+            doc = '(not documented)'
+        dd.append(self._rest2node(doc))
         return dl
     
     def _rest2node(self, rest, container=None):     

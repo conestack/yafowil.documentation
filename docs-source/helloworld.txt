@@ -28,7 +28,6 @@ Then add there a ``buildout.cfg`` containing::
     node          = git git://github.com/bluedynamics/node.git
     yafowil       = git git://github.com/bluedynamics/yafowil.git
     yafowil.webob = git git://github.com/bluedynamics/yafowil.webob.git
-    zodict        = git git://github.com/bluedynamics/zodict.git
     
     [helloworld]
     recipe = zc.recipe.egg:scripts

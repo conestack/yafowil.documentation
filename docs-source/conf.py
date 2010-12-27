@@ -173,7 +173,7 @@ htmlhelp_basename = 'YAFOWILdoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'YAFOWIL.tex', u'YAFOWIL Documentation',
-   u'Jens W. Klein', 'manual'),
+   u'Jens W. Klein et al', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
