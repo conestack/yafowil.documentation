@@ -57,20 +57,27 @@ class WidgetDoc(Directive):
         """   
         table = self._rest2node(table)        
         rub.append(table)
-        entries = table.children[0].children[0].children[5].children[0]
+        row = table.children[0].children[0].children[5].children[0]
         for idx in range(0,4):
-            entries[idx].children = []
-            entries[idx].append(self._doc_chain(widgetname, idx))      
+            row[idx].children = []
+            row[idx].append(self._doc_chain(widgetname, idx))      
 
         # document properties
         rub = nodes.rubric(text='Properties')
         sec.append(rub)
-        dl = nodes.definition_list()
-        rub.append(dl)
-        
+        table= """
+        +----------+---------+-------------+
+        | property | default | description |
+        +==========+=========+=============+
+        | replace  | replace | replace     |
+        +----------+---------+-------------+
+        """   
+        table = self._rest2node(table)              
+        table.children[0].children[0].children[4].children = []
+        rub.append(table)
         for prop in self._managed_props_of(widgetname):
-            dl.append(self._doc_property(prop))
-                               
+            table.children[0].children[0].children[4].append(
+                                                       self._doc_property(prop))
         return sec
     
     def _doc_chain(self, widgetname, chainidx):
@@ -93,28 +100,39 @@ class WidgetDoc(Directive):
     
     def _doc_property(self, wpname):
         widget, prop =  wpname.split('.')
-        dl = nodes.definition_list_item()
-        default = factory.defaults.get(wpname, 
-                                       factory.defaults.get(prop, _marker))
-        defaulttext = 'required (no default)'
+        table= """
+        +----------+---------+-------------+
+        | property | default | description |
+        +==========+=========+=============+
+        | replace  | replace | replace     |
+        +----------+---------+-------------+
+        """   
+        table = self._rest2node(table)      
+        row = table.children[0].children[0].children[4].children[0]
+        row[0].children = []
+        row[1].children = []
+        row[2].children = []
+        row[0].append(nodes.paragraph(text=prop))      
+        
+        default = factory.defaults.get(wpname, _marker)
+        defaulttext = '(not set)'
         if default is not _marker:
-            defaulttext = 'default: %s' % repr(default)
+            defaulttext = repr(default)
         else:
             default = factory.defaults.get(prop, _marker)
             if default is not _marker:
-                defaulttext = 'default (global): %s ' % default
-        dl.append(nodes.term(text=prop))
-        dd = nodes.definition()
-        dl.append(dd)
-        dd.append(nodes.paragraph(text=defaulttext))
+                defaulttext = '%s (global)' % repr(default)
+        row[1].append(nodes.paragraph(text=defaulttext))
+        
         doc = factory.doc['props'].get(wpname, 
                                        factory.doc['props'].get(prop, _marker))
         if doc is not _marker:
-            dd.append(self._rest2node(doc))
+            row[2].append(self._rest2node(doc))
         else:
+            row[2].append(nodes.paragraph('(not documented)'))
             # this does not log. bullshit. no idea how to make sphinx log.         
             self.warning("YAFOWIL property '%s' is not documented!" % wpname)
-        return dl
+        return row
     
     def _rest2node(self, rest, container=None):     
         vl = ViewList(prepare_docstring(rest))
