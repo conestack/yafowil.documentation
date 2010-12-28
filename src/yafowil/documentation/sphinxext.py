@@ -23,7 +23,7 @@ class WidgetDoc(Directive):
         return result        
     
     def _managed_props_of(self, widgetname):
-        props = set([_[len(widgetname):] for _ in factory.doc['props'] 
+        props = set([_ for _ in factory.doc['props'] 
                      if _.startswith('%s.' % widgetname)])
         for chainidx in range(0,4):
             chain = factory._factories[widgetname][chainidx]
@@ -114,15 +114,16 @@ class WidgetDoc(Directive):
         row[2].children = []
         row[0].append(nodes.paragraph(text=prop))      
         
-        default = factory.defaults.get(wpname, _marker)
-        defaulttext = '(not set)'
+        default = factory.defaults.get(wpname, _marker)        
         if default is not _marker:
-            defaulttext = repr(default)
+            row[1].append(nodes.literal(text=repr(default)))
         else:
             default = factory.defaults.get(prop, _marker)
             if default is not _marker:
-                defaulttext = '%s (global)' % repr(default)
-        row[1].append(nodes.paragraph(text=defaulttext))
+                row[1].append(nodes.literal(text=repr(default)))
+                row[1].append(nodes.emphasis(text=' global'))
+            else:
+                row[1].append(nodes.emphasis(text='required/ not set'))                
         
         doc = factory.doc['props'].get(wpname, 
                                        factory.doc['props'].get(prop, _marker))
