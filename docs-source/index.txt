@@ -12,6 +12,8 @@ in Python space.
 YAFOWIL offers html-form creation and modification at runtime. Its light-weight  
 and provides an extensible, reusable set of form widgets, independent from any 
 web-framework, but easy to use in your web-framework.
+   
+
 
 Contents:
 

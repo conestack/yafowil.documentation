@@ -5,34 +5,31 @@ Minimal Hello World Example Webapplication
 This buildout uses ``WebOb`` to help creating a minimal WSGI 
 application. 
 
-First we need to create a minimal structure::
+Create a minimal filesystem structure::
 
     cd /PATH/TO/EXAMPLE
     mkdir --parents src/helloworld
     touch src/helloworld/__init__.py
     wget http://python-distribute.org/bootstrap.py
      
-Then add there a ``buildout.cfg`` containing::     
+Adding a file ``buildout.cfg`` containing::     
 
     [buildout]
     parts = helloworld
-    develop = .
-    
+    develop = .    
     extensions = mr.developer
     sources-dir = ${buildout:directory}/devsrc
     always-checkout = force
     auto-checkout = *
     
     [sources]
-    node          = git git://github.com/bluedynamics/node.git
-    yafowil       = git git://github.com/bluedynamics/yafowil.git
-    yafowil.webob = git git://github.com/bluedynamics/yafowil.webob.git
+    node = git git://github.com/bluedynamics/node.git
     
     [helloworld]
     recipe = zc.recipe.egg:scripts
     egg = helloworld
     
-Then add a ``setup.py``::
+Adding a file ``setup.py``::
 
     from setuptools import setup, find_packages
     setup(name='helloworld',
@@ -45,7 +42,8 @@ Then add a ``setup.py``::
           """ 
     )    
     
-And add a minimal web-application ``src/helloworld/run.py``::
+Adding a minimal web-application ``src/helloworld/run.py`` including the 
+YAFOWIL form and a dumb filesystem based storage::
 
     from yafowil import loader
     import yafowil.webob
@@ -95,13 +93,12 @@ And add a minimal web-application ``src/helloworld/run.py``::
         server = make_server(address, port, application)
         server.serve_forever()        
 
-Now bootstrap buildout, run buildout and run the application. You need to have 
-git installed (for now).
+Next needed: bootstrapping buildout, running buildout and running the 
+application. ``git`` has to be installed (for now).
 ::
 
     python2.6 bootstrap.py
     ./bin/buildout
     ./bin/helloworld
     
-Point your browser to ``http://localhost:8080/`` and use it.
- 
+Pointing the browser to `<http://localhost:8080/>`_ shows the application.
