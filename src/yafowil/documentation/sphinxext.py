@@ -11,6 +11,7 @@ import yafowil.widget.datetime
 import yafowil.widget.dict
 import yafowil.widget.dynatree
 from yafowil.base import factory
+from yafowil.utils import UNSET
 
 _marker = list()
 
@@ -19,6 +20,8 @@ class WidgetDoc(Directive):
     def run(self):
         result = []
         for key in sorted(factory._factories.keys()):
+            if factory.doc['widget'].get(key, None) is UNSET:
+                continue
             result.append(self._doc_widget(key))
         return result        
     
