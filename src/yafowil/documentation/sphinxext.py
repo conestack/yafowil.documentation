@@ -52,16 +52,16 @@ class WidgetDoc(Directive):
         rub = nodes.rubric(text='Chains')
         sec.append(rub)
         table= """
-        +------------+-----------+---------------+----------+
-        | extractors | renderers | preprocessors | builders |
-        +============+===========+===============+==========+
-        | replace    | replace   | replace       | replace  |
-        +------------+-----------+---------------+----------+
-        """   
+        +------------+----------------+---------------+----------+-------------------+
+        | extractors | edit_renderers | preprocessors | builders | display_renderers |
+        +============+================+===============+==========+===================+
+        | replace    | replace        | replace       | replace  | replace           |
+        +------------+----------------+---------------+----------+-------------------+
+        """
         table = self._rest2node(table)        
         rub.append(table)
         row = table.children[0].children[0].children[5].children[0]
-        for idx in range(0,4):
+        for idx in range(0,5):
             row[idx].children = []
             row[idx].append(self._doc_chain(widgetname, idx))      
 

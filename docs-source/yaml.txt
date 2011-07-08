@@ -1,0 +1,4 @@
+Describe YAFOWIL forms with YAML
+================================
+
+.. includedoc:: yafowil.yaml:/SPHINX.txt
