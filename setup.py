@@ -36,6 +36,7 @@ setup(name='yafowil.documentation',
         'sphinx',
         'collective.sphinx.includedoc',
         'yafowil',
+        'yafowil.yaml',
          # add-on widgets to document
         'yafowil.widget.richtext',
         'yafowil.widget.datetime',   
