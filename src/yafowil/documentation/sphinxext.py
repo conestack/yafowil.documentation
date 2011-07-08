@@ -53,14 +53,14 @@ class WidgetDoc(Directive):
         sec.append(rub)
         table= """
         +------------+----------------+---------------+----------+-------------------+
-        | extractors | edit_renderers | preprocessors | builders | display_renderers |
+        | extractors | edit renderers | preprocessors | builders | display renderers |
         +============+================+===============+==========+===================+
         | replace    | replace        | replace       | replace  | replace           |
         +------------+----------------+---------------+----------+-------------------+
         """
         table = self._rest2node(table)        
         rub.append(table)
-        row = table.children[0].children[0].children[5].children[0]
+        row = table.children[0].children[0].children[6].children[0]
         for idx in range(0,5):
             row[idx].children = []
             row[idx].append(self._doc_chain(widgetname, idx))      
