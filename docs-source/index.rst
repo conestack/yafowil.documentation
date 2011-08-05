@@ -6,13 +6,14 @@
 YAFOWIL documentation
 =====================
 
-This is **Yet Another Form WIdget Library** (XHTML). There are plenty of 'em out 
-in Python space.  
+This is **Yet Another Form WIdget Library** (XHTML).
 
-YAFOWIL offers html-form creation and modification at runtime. Its light-weight  
-and provides an extensible, reusable set of form widgets, independent from any 
+YAFOWIL offers html-form creation and modification at runtime. Its light-weight
+and provides an extensible, reusable set of form widgets, independent from any
 web-framework, but easy to use in your web-framework.
-   
+
+YAFOWIL is framework independent and is all about widgets and configuration.
+It does not fight with storage.
 
 
 Contents:
