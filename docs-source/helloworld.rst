@@ -2,8 +2,8 @@
 Minimal Hello World Example Webapplication
 ==========================================
 
-This buildout uses ``WebOb`` to help creating a minimal WSGI 
-application. 
+This buildout uses ``WebOb`` to help creating a minimal WSGI
+application.
 
 Create a minimal filesystem structure::
 
@@ -35,7 +35,7 @@ Adding a file ``setup.py``::
           """ 
     )    
     
-Adding a minimal web-application ``src/helloworld/run.py`` including the 
+Adding a minimal web-application ``src/helloworld/run.py`` including the
 YAFOWIL form and a dumb filesystem based storage::
 
     from yafowil import loader
@@ -86,12 +86,12 @@ YAFOWIL form and a dumb filesystem based storage::
         server = make_server(address, port, application)
         server.serve_forever()        
 
-Next needed: bootstrapping buildout, running buildout and running the 
-application. ``git`` has to be installed (for now).
-::
+Next needed: bootstrapping buildout, running buildout and running the
+application.
+::::::::::::
 
     python2.6 bootstrap.py
     ./bin/buildout
     ./bin/helloworld
-    
+
 Pointing the browser to `<http://localhost:8080/>`_ shows the application.
