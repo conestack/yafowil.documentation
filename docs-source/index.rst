@@ -6,7 +6,10 @@
 YAFOWIL documentation
 =====================
 
-This is **Yet Another Form WIdget Library** (XHTML).
+
+**Yet Another Form WIdget Library** (XHTML).
+
+    `Callables Everywhere`
 
 YAFOWIL offers html-form creation and modification at runtime. Its light-weight
 and provides an extensible, reusable set of form widgets, independent from any
@@ -25,6 +28,7 @@ Contents:
    helloworld 
    architecture
    yaml
+   integrations
    widgets
 
 
