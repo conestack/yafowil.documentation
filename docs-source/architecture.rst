@@ -27,17 +27,12 @@ yafowil.* (and if you think you need to you didn't understand its architecture).
 Callables are used for every extensible aspect of YAFOWIL. They are bundled
 and passed - as blueprints - to a factory.
 
-State at Runtime
-----------------
+Widget
+------
 
-While one cycle runs (request to response), the state of the widget is kept in
-a runtime data object. It collects all information like value, request, errors
-happened, and the rendered widget.
+A widget is a combination of blueprints (see below) and properties.
 
-The widget
-----------
-
-The widget class is generic.
+The widget class is generic:
 
 - You never need to instanciate it direct. The factory is the only place where
   this happens.
@@ -47,16 +42,21 @@ The widget class is generic.
 Only at creation time of Widgets you need to use its dict-like api. This is the
 case if you create compounds of widgets, i.e. a form or a fieldset.
 
-The Factory contains blueprints
--------------------------------
+Runtime Data
+------------
 
-The factory contains blueprints, the generic plan, of widgets registered by
-name.
+While one cycle runs (request to response), the state of the widget is kept in
+a runtime data object. It collects all information like value, request, errors
+happened, and the rendered html of a widget in the context of the current
+request.
 
-parts of blueprint
-------------------
+Blueprint
+---------
 
-The plan consists of five chains of callables. Each chain has different
+A blueprint is a part of a widget, i.e. an bare html input field, a bare label
+and so on.
+
+A blueprints consists of different chains of callables. Each chain has different
 responsibilities. Chains are executed left-to-right.
 
 callable: extractor
@@ -125,7 +125,15 @@ chain #5: display_renderers
     Display renderers are chained. The second renderer in the chain can access
     the rendered output of the first and so on.
 
-combining blueprints
+Factory
+-------
+
+The factory contains blueprints - generic plans - for parts of a widget.
+It is responsible to create widgets out of a chained combination of blueprints
+and add widget specific properties.
+
+
+Combining Blueprints
 --------------------
 
 Usually we have some common widgets, i.e a pure textarea, and then we need
@@ -144,7 +152,7 @@ and so on. Thus we can chain blueprints!
 Extractors in this chained blueprints are executed from right to left while all
 others are executes left to right.
 
-custom blueprint
+Custom Blueprint
 ----------------
 
 If theres one special rare use-case not worth to write a generic widget for, its
@@ -162,3 +170,7 @@ Controller
 
 The controller is responsible for form processing (extraction and validation),
 delegation of actions and form rendering (including error handling).
+
+Controller is initialized with form and request and the starts immediatly the
+processing. The ``rendered`` instance attribute contains the rendered form,
+attribute ``data`` contains the extracted runtime data tree.
