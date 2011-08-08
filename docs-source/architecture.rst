@@ -156,12 +156,13 @@ Custom Blueprint
 ----------------
 
 If theres one special rare use-case not worth to write a generic widget for, its
-possible to create a custom blueprint. Its a 4-tuple with chains of extractors,
-renderers, preprocessors and builders. Each chain contains callables as
-explained above. To tell the factory about usage of a custom blueprint, use the
-asterisk-prefix like ``field:label:*mycustom:textarea`` in the factory chain.
-Next the factory takes an keyword-argument ``custom`` expecting a dict with key
-``mycustom`` and a 4-tuple of chains.
+possible to create a custom blueprint. Its a 5-tuple with chains of extractors,
+edit renderers, preprocessors, builders and display renderers. Each chain 
+contains callables as explained above. To tell the factory about usage of a 
+custom blueprint, use the asterisk-prefix like 
+``field:label:*mycustom:textarea`` in the factory chain. Next the factory 
+takes an keyword-argument ``custom`` expecting a dict with key ``mycustom`` 
+and a 5-tuple of chains.
 
 Custom blueprints are great for easily injecting validating extractors.
 
