@@ -29,3 +29,10 @@ Setting a dependency to the package in code, i.e. in the custom eggs
 ``setup.py`` or in ``buildout.cfg`` - whatever is choosed -, is needed.
 
 Then ``import yafowil.zope2`` after the ``yafowil.loader`` and its done.
+
+Usage within Plone
+------------------
+
+This works like Zope 2 usage. The
+`YAFOWIL tutorial at plone.org <http://plone.org/documentation/kb/build-a-custom-search-form-with-yafowil>`_
+explains how to build a custom search form using YAFOWIL.
