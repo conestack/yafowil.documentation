@@ -19,8 +19,8 @@ class WidgetDoc(Directive):
     
     def run(self):
         result = []
-        for key in sorted(factory._factories.keys()):
-            if factory.doc['widget'].get(key, None) is UNSET:
+        for key in sorted(factory._blueprints.keys()):
+            if factory.doc['blueprint'].get(key, None) is UNSET:
                 continue
             result.append(self._doc_widget(key))
         return result        
@@ -29,7 +29,7 @@ class WidgetDoc(Directive):
         props = set([_ for _ in factory.doc['props'] 
                      if _.startswith('%s.' % widgetname)])
         for chainidx in range(0,4):
-            chain = factory._factories[widgetname][chainidx]
+            chain = factory._blueprints[widgetname][chainidx]
             for func in chain:
                 mprops = getattr(func, '__yafowil_managed_props__', [])
                 props.update(['%s.%s' % (widgetname, _) for _ in mprops])
@@ -41,7 +41,7 @@ class WidgetDoc(Directive):
         # set a title:
         sec.append(nodes.subtitle(text=widgetname))
         # fetch main documentation
-        maindoc = factory.doc['widget'].get(widgetname, None)        
+        maindoc = factory.doc['blueprint'].get(widgetname, None)        
         if maindoc is not None:            
             sec.append(self._rest2node(maindoc))
         else:
@@ -85,7 +85,7 @@ class WidgetDoc(Directive):
     
     def _doc_chain(self, widgetname, chainidx):
         ol = nodes.enumerated_list()
-        chain = factory._factories[widgetname][chainidx]
+        chain = factory._blueprints[widgetname][chainidx]
         exist = False
         for el in chain:
             exist = True

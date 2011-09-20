@@ -1,5 +1,0 @@
-=======
-Widgets
-=======
-
-.. yafowilwidgets::

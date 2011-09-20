@@ -29,6 +29,6 @@ Contents:
    architecture
    yaml
    integrations
-   widgets
+   blueprints
 
 
