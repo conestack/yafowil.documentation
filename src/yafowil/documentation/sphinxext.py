@@ -171,6 +171,6 @@ class PlanDoc(YDirective):
         
         for plan, blueprints in sorted(factory._plans.items()):       
             rows[0].append(nodes.paragraph(text=plan))          
-            rows[1].append(nodes.paragraph(text=str(blueprints)))          
+            rows[1].append(nodes.paragraph(text=':'.join(blueprints)))          
         return table
         
