@@ -40,6 +40,7 @@ setup(name='yafowil.documentation',
          # add-on widgets to document
         'yafowil.widget.richtext',
         'yafowil.widget.datetime',   
+        'yafowil.widget.array',
         'yafowil.widget.dict',
         'yafowil.widget.autocomplete',
         'yafowil.widget.dynatree',
