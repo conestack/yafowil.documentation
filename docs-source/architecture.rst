@@ -152,16 +152,23 @@ and so on. Thus we can chain blueprints!
 Extractors in this chained blueprints are executed from right to left while all
 others are executes left to right.
 
+Plans: Predefined Combined Blueprints
+-------------------------------------
+
+For the lazy people we provide plans. Plans are prefixed by ``#`` and expand to
+a factory chain of blueprints. Expansion happens at chain-lookup time before
+the widget is built.
+
 Custom Blueprint
 ----------------
 
 If theres one special rare use-case not worth to write a generic widget for, its
 possible to create a custom blueprint. Its a 5-tuple with chains of extractors,
-edit renderers, preprocessors, builders and display renderers. Each chain 
-contains callables as explained above. To tell the factory about usage of a 
-custom blueprint, use the asterisk-prefix like 
-``field:label:*mycustom:textarea`` in the factory chain. Next the factory 
-takes an keyword-argument ``custom`` expecting a dict with key ``mycustom`` 
+edit renderers, preprocessors, builders and display renderers. Each chain
+contains callables as explained above. To tell the factory about usage of a
+custom blueprint, use the asterisk-prefix like
+``field:label:*mycustom:textarea`` in the factory chain. Next the factory
+takes an keyword-argument ``custom`` expecting a dict with key ``mycustom``
 and a 5-tuple of chains.
 
 Custom blueprints are great for easily injecting validating extractors.
@@ -175,3 +182,13 @@ delegation of actions and form rendering (including error handling).
 Controller is initialized with form and request and the starts immediatly the
 processing. The ``rendered`` instance attribute contains the rendered form,
 attribute ``data`` contains the extracted runtime data tree.
+
+Validation
+----------
+
+Unless most form frameworks YAFOWIL does not make a difference between
+extraction of a value from the HTTP-request and validation. both happens in one
+chain. If an extraction step fails it raises a ``yafowil.base.ExtractionError``.
+Thhis special Python Exception carries a human readable message and the
+information if this error shall abort the extraction chain or go on. In either
+case the form has errors.

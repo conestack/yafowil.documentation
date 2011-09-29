@@ -1,9 +1,9 @@
-==========
-Blueprints
-==========
+=====================
+Reference: Blueprints
+=====================
 
 This page contains available blueprints registered in the factory. This list is
-auto-generated and contains documentation of the follwoing packages:
+auto-generated and contains documentation of the following packages:
 
 - yafowil (core package)
 - yafowil.widget.autocomplete
