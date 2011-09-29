@@ -8,6 +8,7 @@ import yafowil.loader
 import yafowil.widget.autocomplete
 import yafowil.widget.richtext
 import yafowil.widget.datetime
+import yafowil.widget.array
 import yafowil.widget.dict
 import yafowil.widget.dynatree
 from yafowil.base import factory
