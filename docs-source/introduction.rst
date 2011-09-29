@@ -12,7 +12,7 @@ Dependencies
 ============
 
 YAFOWIL aims to have no dependencies to any framework. It utilizes the `node
-<https://github.com/bluedynamics/node>`_
+<http://pypi.python.org/pypi/node>`_
 package. It also does not know about data-storage, but offers you a hook to add
 your handler.
 
@@ -112,7 +112,7 @@ There are also a bunch of add-ons available, usally in the namespace
 ``yafowil.widget.*``.
 
 Create a widget
-:::::::::::::::
+===============
 
 Request factory creating a widget instance. I.e. by calling
 :: 
@@ -133,7 +133,7 @@ For convience blueprints can be organised in plans. I.e.::
 expands to ``field:label:widget:text``. See chapter plans for details.
 
 Organize widgets in a tree
-::::::::::::::::::::::::::
+==========================
 
 Compounds are build dict-like (form, fieldsets, etc)
 
@@ -168,7 +168,7 @@ a compound (form, fieldset, etc) containing child widgets or leafs::
 
 
 Add custom behaviour
-::::::::::::::::::::
+====================
 
 You can inject custom behaviour by marking a part of the widget name chain with
 the asterisk ``*`` character. Behaviours are one or a combination of a
@@ -207,7 +207,7 @@ the asterisk ``*`` character. Behaviours are one or a combination of a
     ... )
     
 Invariants
-::::::::::
+==========
 
 Invariants are implemented as extractions on compounds. Usally they are put as
 custom blueprints with only one extractor on the ``form`` root element itself.
@@ -244,7 +244,7 @@ both or none::
     
     
 Add own blueprints
-::::::::::::::::::    
+==================
 
 If behaviour is more general and you need it more than once you can register it
 in the factory::
@@ -261,7 +261,7 @@ for easy later access::
     ... )
 
 Using Plans
-:::::::::::
+===========
 
 Plans are a sets of blueprints. Plans are an abbreviation or shortcuts
 to build commonly used combinations of blueprints using the factory.
