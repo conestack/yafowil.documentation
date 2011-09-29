@@ -15,7 +15,18 @@ from yafowil.utils import UNSET
 
 _marker = list()
 
-class WidgetDoc(Directive):
+class YDirective(Directive):
+
+    def _rest2node(self, rest, container=None):     
+        vl = ViewList(prepare_docstring(rest))
+        if container is None:
+            node = nodes.container()
+        else:
+            node = container()
+        nested_parse_with_titles(self.state, vl, node)        
+        return node
+
+class WidgetDoc(YDirective):
     
     def run(self):
         result = []
@@ -137,12 +148,29 @@ class WidgetDoc(Directive):
             # this does not log. bullshit. no idea how to make sphinx log.         
             self.warning("YAFOWIL property '%s' is not documented!" % wpname)
         return row
-    
-    def _rest2node(self, rest, container=None):     
-        vl = ViewList(prepare_docstring(rest))
-        if container is None:
-            node = nodes.container()
-        else:
-            node = container()
-        nested_parse_with_titles(self.state, vl, node)        
-        return node
+        
+class PlanDoc(YDirective):    
+
+    def run(self):
+        result = []
+        result.append(self._doc_plans())
+        return result        
+
+    def _doc_plans(self):
+        table= """
+        +------+------------+
+        | plan | blueprints |
+        +======+============+
+        | repl | replace    |
+        +------+------------+
+        """   
+        table = self._rest2node(table)      
+        rows = table.children[0].children[0].children[3].children[0]
+        rows[0].children = []
+        rows[1].children = []
+        
+        for plan, blueprints in sorted(factory._plans.items()):       
+            rows[0].append(nodes.paragraph(text=plan))          
+            rows[1].append(nodes.paragraph(text=str(blueprints)))          
+        return table
+        

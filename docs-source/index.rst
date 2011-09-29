@@ -30,5 +30,6 @@ Contents:
    yaml
    integrations
    blueprints
+   plans
 
 
