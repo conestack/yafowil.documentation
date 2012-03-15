@@ -26,6 +26,7 @@ Integration packages such as `yafowil.zope2
 <https://pypi.python.org/pypi/yafowil.webob>`_ are providing
 necessary hooks to specific frameworks.
 
+
 Example
 =======
 
@@ -36,8 +37,7 @@ works like so::
     >>> from yafowil.base import factory
     >>> from yafowil.controller import Controller
 
-Create a form.
-::::::::::::::
+Create a form.::
 
     >>> form = factory(
     ...     'form',
@@ -68,19 +68,27 @@ Create a form.
     ...     }
     ... )
 
-Render empty form.
-::::::::::::::::::
+Render empty form by calling the form object::
 
-    >>> form()
-    u'<form action="http://www.domain.tld/someform"
-    enctype="multipart/form-data" id="form-myform" method="post"><label
-    for="input-myform-someinput">Your Text</label><input
-    id="input-myform-someinput" name="myform.someinput" type="text"
-    /><input id="input-myform-submit" name="action.myform.submit"
-    type="submit" value="submit" /></form>'
+    >>> rendered = form()
 
-Get form data out of request (request is expected dict-like).
-:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+This results in::
+
+    <form action="http://www.domain.tld/someform"
+          enctype="multipart/form-data"
+          id="form-myform"
+          method="post">
+        <label for="input-myform-someinput">Your Text</label>
+        <input id="input-myform-someinput"
+               name="myform.someinput"
+               type="text"/>
+        <input id="input-myform-submit"
+               name="action.myform.submit"
+               type="submit"
+               value="submit" />
+    </form>
+
+Get form data out of request (request is expected dict-like).::
 
     >>> request = {
     ...     'myform.someinput': 'Hello World',
@@ -92,6 +100,7 @@ Get form data out of request (request is expected dict-like).
       <RuntimeData myform.someinput, value=None, extracted='Hello World',
       attrs={'input_field_type': 'text'} at ...>
       <RuntimeData myform.submit, value=None, extracted=<UNSET> at ...>
+
 
 Basic functions
 ===============
@@ -111,34 +120,34 @@ and some more.
 There are also a bunch of add-ons available, usally in the namespace
 ``yafowil.widget.*``.
 
+
 Create a widget
 ===============
 
-Request factory creating a widget instance. I.e. by calling
-:: 
+Request factory creating a widget instance. I.e. by calling:: 
 
-    widget = factory('text')
+    >>> widget = factory('text')
 
-where ``text`` is the blueprint registration name.
+where ``text`` is the blueprint registration name.::
 
-    widget = factory('field:label:text')
+    >>> widget = factory('field:label:text')
 
 This causes the widget to use the registered renderers, extractors, etc of the
 blueprints ``field``, ``label`` and ``text`` in order.
 
 For convience blueprints can be organised in plans. I.e.::
 
-    widget = factory('#stringfield')
+    >>> widget = factory('#stringfield')
     
 expands to ``field:label:widget:text``. See chapter plans for details.
+
 
 Organize widgets in a tree
 ==========================
 
-Compounds are build dict-like (form, fieldsets, etc)
-
-A form or part of a form is organized as a tree of widgets. Thus, a widget is
-a compound (form, fieldset, etc) containing child widgets or leafs::
+Forms, fieldsets and other compounds are organized as a tree of widgets.
+Thus, a widget is either a compound (containing children) or a leaf widget.
+For building this trees, the dict like API is used.::
 
     >>> form = factory(
     ...     'form',
@@ -205,65 +214,71 @@ the asterisk ``*`` character. Behaviours are one or a combination of a
     ...         'myvalidation': ([myvalidator],[],[],[],[]),
     ...     }
     ... )
-    
+
+
 Invariants
 ==========
 
 Invariants are implemented as extractions on compounds. Usally they are put as
 custom blueprints with only one extractor on the ``form`` root element itself.
 
-Here an short example (extension of the ``hello world`` example) for a custom
+Here is a short example (extension of the ``hello world`` example) for a custom
 invariant extractor which checks if one or the other field is filled, but never
 both or none::
     
-    from yafowil.base import ExtractionError
-    # ... see helloworld example whats missing here
+    >>> from yafowil.base import ExtractionError
+    >>> # ... see helloworld example whats missing here
 
-    def myinvariant_extractor(widget, data):
-        if not (bool(data['hello']) != bool(data['world']):
-            error = ExtractionError('provide hello or world, not both or none')
-            data['hello'].error.append(error)
-            data['world'].error.append(error)
-        return data.extracted
+    >>> def myinvariant_extractor(widget, data):
+    ...     if not (bool(data['hello']) != bool(data['world']):
+    ...         error = ExtractionError('provide hello or world, not both or none')
+    ...         data['hello'].error.append(error)
+    ...         data['world'].error.append(error)
+    ...     return data.extracted
         
-    def application(environ, start_response): 
-        # ... see helloworld example whats missing here
-        #
-        form = factory(u'*myinvariant:form', name='helloworld', 
-            props={'action': url},
-            custom={'myinvariant': ([myinvariant_extractor], [], [], [], [])
-            )
-        form['hello'] = factory('field:label:error:text', props={
-            'label': 'Enter some text here',
-            'value': ''})
-        form['world'] = factory('field:label:error:text', props={
-            'label': 'OR Enter some text here',
-            'value': ''})
-        # ... see helloworld example whats missing here
+    >>> def application(environ, start_response): 
+    ...     # ... see helloworld example whats missing here
+    ...     form = factory(u'*myinvariant:form', name='helloworld', 
+    ...         props={'action': url},
+    ...         custom={'myinvariant': ([myinvariant_extractor], [], [], [], [])
+    ...         )
+    ...     form['hello'] = factory('field:label:error:text', props={
+    ...         'label': 'Enter some text here',
+    ...         'value': ''})
+    ...     form['world'] = factory('field:label:error:text', props={
+    ...         'label': 'OR Enter some text here',
+    ...         'value': ''})
+    ...     # ... see helloworld example whats missing here
 
-    
     
 Add own blueprints
 ==================
 
-If behaviour is more general and you need it more than once you can register it
-in the factory::
+If behaviour (rendering, extracting, etc...) is more general and you need it
+more than once you can register it as blueprint in the factory::
 
-    >>> factory.register('mybehaviour', [myvalidator], [])
+    >>> factory.register(
+    ...     'myblueprint', 
+    ...     extractors=[myvalidator], 
+    ...     edit_renderers=[],
+    ...     display_renderers=[],
+    ...     preprocessors=[],
+    ...     builders=[])
 
-for easy later access::
+and use it now as blueprint when calling the factory::
 
     >>> widget = factory(
-    ...     'field:label:mybehaviour:text',
+    ...     'field:label:myblueprint:text',
     ...     props={
     ...         'label': 'Inner Field',
     ...     },
     ... )
 
+
 Using Plans
 ===========
 
-Plans are a sets of blueprints. Plans are an abbreviation or shortcuts
+Plans are a named sets of blueprints. Plans are an abbreviation or shortcuts
 to build commonly used combinations of blueprints using the factory.
 
 To indicate a plan the prefix ``#`` is used. I.e. ``#stringfield`` is
@@ -273,10 +288,12 @@ Plans can be combined with other registered blueprints and custom blueprints
 too, i.e. ``*myvalidatingextractor:#numberfieldfield`` expands to
 ``*myvalidatingextractor:field:label:error:text``.
 
-It is possible to register own plans to the factory, i.e. like so::
+It is possible to register own plans to the factory, like so::
 
     >>> from yafowil.base import factory
-    >>> factory.register_plan('divstringfield', 'field:label:error:div:text')
+    >>> factory.register_plan(
+    ...     'divstringfield',
+    ...     'field:label:error:div:text')
     >>> mywidget = factory('#divstringfield')
-    
+
 Its also possible to overwrite already registered plans.
