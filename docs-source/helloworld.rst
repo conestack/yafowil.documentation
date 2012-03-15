@@ -12,7 +12,7 @@ Create a minimal filesystem structure::
     touch src/helloworld/__init__.py
     wget http://python-distribute.org/bootstrap.py
      
-Adding a file ``buildout.cfg`` containing::     
+Add file ``buildout.cfg`` containing::     
 
     [buildout]
     parts = helloworld
@@ -22,7 +22,7 @@ Adding a file ``buildout.cfg`` containing::
     recipe = zc.recipe.egg:scripts
     egg = helloworld
     
-Adding a file ``setup.py``::
+Add file ``setup.py``::
 
     from setuptools import setup, find_packages
     setup(name='helloworld',
@@ -35,8 +35,8 @@ Adding a file ``setup.py``::
           """ 
     )    
     
-Adding a minimal web-application ``src/helloworld/run.py`` including the
-YAFOWIL form and a dumb filesystem based storage::
+Add ``src/helloworld/run.py`` including a minimal web application, the YAFOWIL
+form and a dumb filesystem based storage::
 
     from yafowil import loader
     import yafowil.webob
@@ -86,9 +86,7 @@ YAFOWIL form and a dumb filesystem based storage::
         server = make_server(address, port, application)
         server.serve_forever()        
 
-Next needed: bootstrapping buildout, running buildout and running the
-application.
-::::::::::::
+Now bootstrap and run buildout, and start the application.::
 
     python2.6 bootstrap.py
     ./bin/buildout
