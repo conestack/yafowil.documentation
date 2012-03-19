@@ -93,3 +93,6 @@ Now bootstrap and run buildout, and start the application.::
     ./bin/helloworld
 
 Pointing the browser to `<http://localhost:8080/>`_ shows the application.
+
+The ``full working example code <https://github.com/bluedynamics/yafowil-example-helloworld>``_
+is at github available.
