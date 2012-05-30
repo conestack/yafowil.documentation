@@ -42,6 +42,7 @@ setup(name='yafowil.documentation',
         'yafowil.widget.datetime',   
         'yafowil.widget.array',
         'yafowil.widget.dict',
+        'yafowil.widget.image',
         'yafowil.widget.autocomplete',
         'yafowil.widget.dynatree',
           
