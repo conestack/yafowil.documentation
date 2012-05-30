@@ -6,7 +6,7 @@ This page contains available blueprints registered in the factory. This list is
 auto-generated and contains documentation of the following packages:
 
 - yafowil (core package)
-- yafoeil.widget.array
+- yafowil.widget.array
 - yafowil.widget.autocomplete
 - yafowil.widget.datetime
 - yafowil.widget.dict
