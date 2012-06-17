@@ -42,6 +42,9 @@ The widget class is generic:
 Only at creation time of Widgets you need to use its dict-like api. This is the
 case if you create compounds of widgets, i.e. a form or a fieldset.
 
+To set the property of a specific blueprint of the widget, you can prefix it
+with it's name. E.g. 'label.title' instead of just writing 'title'.
+
 Runtime Data
 ------------
 
