@@ -2,8 +2,9 @@
 Reference: Blueprints
 =====================
 
-This page contains available blueprints registered in the factory. This list is
-auto-generated and contains documentation of the following packages:
+This page contains documentation for available blueprints registered in the
+factory. This list is auto-generated and contains documentation of the
+following packages:
 
 - yafowil (core package)
 - yafowil.widget.array

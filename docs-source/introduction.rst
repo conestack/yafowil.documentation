@@ -21,10 +21,11 @@ YAFOWIL is intentionally written framework-independent. By just feeding it with
 configuration it can be used and extended in most of existing python web
 frameworks. Zope, Pyramid and Django are hot candidates.
 
-Integration packages such as `yafowil.zope2
-<http://pypi.python.org/pypi/yafowil.zope2>`_ or `yafowil.webob
-<https://pypi.python.org/pypi/yafowil.webob>`_ are providing
-necessary hooks to specific frameworks.
+The integration packages `yafowil.plone
+<http://pypi.python.org/pypi/yafowil.plone>`_, `yafowil.webob
+<http://pypi.python.org/pypi/yafowil.webob>`_ and  `yafowil.werkzeug
+<http://pypi.python.org/pypi/yafowil.werkzeug>`_ are providing
+necessary hooks to this specific frameworks.
 
 
 Example
@@ -37,7 +38,7 @@ works like so::
     >>> from yafowil.base import factory
     >>> from yafowil.controller import Controller
 
-Create a form.::
+Produce a form.::
 
     >>> form = factory(
     ...     'form',
@@ -115,27 +116,30 @@ YAFOWIL provides widgets for all HTML standard inputs, Such as:
 - hidden
 - submit
 
-and some more.
+etc...
 
 There are also a bunch of add-ons available, usally in the namespace
 ``yafowil.widget.*``.
 
 
-Create a widget
-===============
+Produce a widget
+================
 
-Request factory creating a widget instance. I.e. by calling:: 
+Yafowil uses a factory for creating widget instances. I.e. by calling:: 
 
     >>> widget = factory('text')
 
-where ``text`` is the blueprint registration name.::
+a text input widget is produced, where ``text`` is the blueprint registration
+name.
+
+Blueprints can be chained by colon separated blueprint names or given as list::
 
     >>> widget = factory('field:label:text')
 
-This causes the widget to use the registered renderers, extractors, etc of the
-blueprints ``field``, ``label`` and ``text`` in order.
+This causes the created widget to use the registered renderers, extractors,
+etc of the blueprints ``field``, ``label`` and ``text`` in order.
 
-For convience blueprints can be organised in plans. I.e.::
+Blueprint chains can be organised in so called plans. I.e.::
 
     >>> widget = factory('#stringfield')
     
@@ -146,8 +150,10 @@ Organize widgets in a tree
 ==========================
 
 Forms, fieldsets and other compounds are organized as a tree of widgets.
-Thus, a widget is either a compound (containing children) or a leaf widget.
-For building this trees, the dict like API is used.::
+Thus, a widget is either a compound node (containing children) or a leaf node 
+in this tree.
+
+For building widget trees, the dict like API is used.::
 
     >>> form = factory(
     ...     'form',
@@ -179,7 +185,7 @@ For building this trees, the dict like API is used.::
 Add custom behaviour
 ====================
 
-You can inject custom behaviour by marking a part of the widget name chain with
+You can inject custom behaviour by marking a part of the blueprint chain with
 the asterisk ``*`` character. Behaviours are one or a combination of a
 
 ``extractor``
@@ -219,23 +225,23 @@ the asterisk ``*`` character. Behaviours are one or a combination of a
 Invariants
 ==========
 
-Invariants are implemented as extractions on compounds. Usally they are put as
-custom blueprints with only one extractor on the ``form`` root element itself.
+Invariants are implemented as extractors on compounds. Usally they are put as
+custom blueprint with one extractor on some parent of the elements to validate.
 
 Here is a short example (extension of the ``hello world`` example) for a custom
 invariant extractor which checks if one or the other field is filled, but never
 both or none::
-    
+
     >>> from yafowil.base import ExtractionError
     >>> # ... see helloworld example whats missing here
-
+    
     >>> def myinvariant_extractor(widget, data):
     ...     if not (bool(data['hello']) != bool(data['world']):
     ...         error = ExtractionError('provide hello or world, not both or none')
     ...         data['hello'].error.append(error)
     ...         data['world'].error.append(error)
     ...     return data.extracted
-        
+    
     >>> def application(environ, start_response): 
     ...     # ... see helloworld example whats missing here
     ...     form = factory(u'*myinvariant:form', name='helloworld', 
@@ -251,8 +257,8 @@ both or none::
     ...     # ... see helloworld example whats missing here
 
     
-Add own blueprints
-==================
+Providing blueprints
+====================
 
 If behaviour (rendering, extracting, etc...) is more general and you need it
 more than once you can register it as blueprint in the factory::
@@ -265,7 +271,7 @@ more than once you can register it as blueprint in the factory::
     ...     preprocessors=[],
     ...     builders=[])
 
-and use it now as blueprint when calling the factory::
+and use it now as regular blueprint when calling the factory::
 
     >>> widget = factory(
     ...     'field:label:myblueprint:text',
@@ -278,17 +284,17 @@ and use it now as blueprint when calling the factory::
 Using Plans
 ===========
 
-Plans are a named sets of blueprints. Plans are an abbreviation or shortcuts
+Plans are a named chains of blueprints. Plans are an abbreviation or shortcuts
 to build commonly used combinations of blueprints using the factory.
 
 To indicate a plan the prefix ``#`` is used. I.e. ``#stringfield`` is
 registered as a plan and expands to ``field:label:error:text``.
 
-Plans can be combined with other registered blueprints and custom blueprints
-too, i.e. ``*myvalidatingextractor:#numberfieldfield`` expands to
+Plans can be combined with other plans, registered blueprints or custom
+blueprints, i.e. ``*myvalidatingextractor:#numberfieldfield`` expands to
 ``*myvalidatingextractor:field:label:error:text``.
 
-It is possible to register own plans to the factory, like so::
+It is possible to register own plans to the factory::
 
     >>> from yafowil.base import factory
     >>> factory.register_plan(

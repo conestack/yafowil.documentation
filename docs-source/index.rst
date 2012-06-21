@@ -3,20 +3,27 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-YAFOWIL documentation
-=====================
+YAFOWIL - Declarative Forms - Documentation
+===========================================
 
 
 **Yet Another Form WIdget Library** (XHTML).
 
     `Callables Everywhere`
 
-YAFOWIL offers html form creation and modification at runtime. It is lightweight
-and provides an extensible, reusable set of form widgets, independent of any
-web-framework, but easy to use in your web framework.
 
-YAFOWIL is framework independent and is all about widgets and configuration.
-It does not fight with storage.
+Characteristics
+---------------
+
+- YAFOWIL offers HTML form creation and modification at runtime.
+
+- YAFOWIL is all about declarative configuration of form widgets.
+
+- YAFOWIL is lightweight and provides an extensible, reusable set of blueprints.
+
+- YAFOWIL is framework independent. 
+
+- YAFOWIL does NOT fight with storage.
 
 
 Contents:
@@ -31,5 +38,6 @@ Contents:
    integrations
    blueprints
    plans
+   extend
 
 
