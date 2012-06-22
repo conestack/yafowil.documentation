@@ -94,7 +94,7 @@ pygments_style = 'sphinx'
 
 sys.path.append(os.path.abspath('_themes'))
 html_theme_path = ['_themes']
-html_theme = 'bootstrap'
+html_theme = 'bootstrap_with_navtree'
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.

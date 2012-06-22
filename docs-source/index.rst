@@ -3,17 +3,14 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-YAFOWIL - Declarative Forms - Documentation
-===========================================
+
+.. image:: _static/yafowil.png
 
 
-**Yet Another Form WIdget Library** (XHTML).
+Callables Everywhere
+====================
 
-    `Callables Everywhere`
-
-
-Characteristics
----------------
+- YAFOWIL **Yet Another Form Widget Library (XHTML)**
 
 - YAFOWIL offers HTML form creation and modification at runtime.
 
@@ -26,7 +23,8 @@ Characteristics
 - YAFOWIL does NOT fight with storage.
 
 
-Contents:
+Contents
+--------
 
 .. toctree::
    :maxdepth: 2
@@ -39,5 +37,3 @@ Contents:
    blueprints
    plans
    extend
-
-

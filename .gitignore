@@ -18,3 +18,5 @@ var
 devsrc
 docs
 .settings
+sphinx-bootstrap-theme
+docs-source/_themes/bootstrap-dev
