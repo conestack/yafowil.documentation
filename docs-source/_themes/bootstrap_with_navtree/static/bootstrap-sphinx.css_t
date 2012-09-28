@@ -14,6 +14,10 @@ body {
   text-shadow: #777 2px 2px 3px;
 }
 
+#reference-blueprints .container {
+    width: auto;
+}
+
 {%- block sidebarlogo %}
   {%- if logo %}
 .navbar h3 a, .navbar .brand {

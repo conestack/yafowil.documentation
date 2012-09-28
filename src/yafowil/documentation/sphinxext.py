@@ -170,7 +170,7 @@ class PlanDoc(YDirective):
         rows[0].children = []
         rows[1].children = []
         
-        for plan, blueprints in sorted(factory._plans.items()):       
+        for plan, blueprints in sorted(factory._macros.items()):
             rows[0].append(nodes.paragraph(text=plan))          
             rows[1].append(nodes.paragraph(text=':'.join(blueprints)))          
         return table
