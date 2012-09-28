@@ -21,11 +21,12 @@ Callables Everywhere
 
 If you work with YAFOWIL for the first time it probably feels a bit different 
 compared to other multiple class inheriting, schema based forms. Instead YAFOWIL 
-uses simple callables in several places. You never need to inherit any class from
-yafowil.* (and if you think you need to you don't understand its architecture).
+uses simple callables at several places. You never need to inherit any class
+from yafowil.* (and if you think you need to you don't understand its 
+architecture).
 
 Callables are used for every extensible aspect of YAFOWIL. They are bundled
-and passed - as blueprints - to a factory.
+as blueprints and used via the factory.
 
 Widget
 ------
@@ -42,7 +43,7 @@ The widget class is generic:
 Only at creation time of a widget you need to use its dict-like api. This is the
 case if you create compounds of widgets, i.e. a form or a fieldset.
 
-To set the property of a specific blueprint of the widget, you can prefix it
+To address a property specific to a blueprint of the widget, you can prefix it
 with it's name. E.g. 'label.title' instead of just writing 'title'.
 
 Runtime Data
@@ -141,17 +142,16 @@ Combining Blueprints - Chaining
 
 Usually we have some common widgets, e.g. a pure textarea, and then we need
 some label, description, display encountered errors, maybe a table cell or an
-encapsulating div and so on. And it can be very different depending on the 
-framework used
-or the design we need to implement. But the core functionality is always the
-same. In other words: The input field and its behavior is stable, the eye-candy
-around it is not.
+encapsulating div and so on. And it can be very different depending on the
+framework used or the design we need to implement. But the core functionality
+is always the same. In other words: The input field and its behavior is stable,
+the eye-candy around it is not.
 
 This is what the user of YAFOWIL can change with ease. We call this
 ``factory chain``. At factory time, when the widget is requested from the
 factory, additional configurations can be added by passing a colon separated
 list of names, like ``label:textarea`` or ``myproject.field:label:textarea``
-and so on. Thus we can chain blueprints!
+and so on. Thus we can chain blueprints.
 
 Extractors in these chained blueprints are executed from right to left while all
 others are executed left to right.
@@ -159,23 +159,44 @@ others are executed left to right.
 Plans: Predefined Combined Blueprints
 -------------------------------------
 
-For the lazy people we provide plans. Plans are prefixed by ``#`` and expand to
-a factory chain of blueprints. Expansion happens at chain-lookup time before
+For the lazy people plans are provided. Plans are prefixed by ``#`` and expand
+to a factory chain of blueprints. Expansion happens at chain-lookup time before
 the widget is built.
 
 Custom Blueprint
 ----------------
 
-In case of special rare use-cases not worth to write a generic widget for, it's
-possible to create a custom blueprint. Its a 5-tuple with chains of extractors,
-edit renderers, preprocessors, builders and display renderers. Each chain
-contains callables as explained above. To tell the factory about usage of a
-custom blueprint, use the asterisk-prefix like
+In case of use-cases not worth to write a generic widget for, it's possible to
+create custom blueprints. Custom blueprints are passed to the factory either as
+5-tuple containing chains of extractors, edit renderers, preprocessors, builders
+and display renderers, or as dictionary containing the chains at keys
+'extractors', 'edit_renderers', 'preprocessors', 'builders' and
+'display_renderers'. Each chain contains callables as explained above. To tell
+the factory about usage of a custom blueprint, use the asterisk-prefix like
 ``field:label:*mycustom:textarea`` in the factory chain. Next the factory
 takes an keyword-argument ``custom`` expecting a dict with key ``mycustom``
-and a 5-tuple of chains.
+and a custom blueprint as explained above.
 
-.. # XXX how about a nice example?
+**Example:**
+
+Create custom callbacks::
+
+    >>> def special_renderer(widget, data):
+    ...     return u'<SPECIAL>%s</SPECIAL>' % data.rendered
+
+    >>> def special_extractor(widget, data):
+    ...     return data.extracted + ['extracted special']
+
+Inject as dict::
+
+    >>> widget = factory('outer:*special:inner', custom={
+    ...     'special': {'extractors': [special_extractor], 
+    ...                 'edit_renderers': [special_renderer]}})
+
+Inject as list::
+
+    >>> widget = factory('outer:*special:inner', custom={
+    ...    'special': ([special_extractor], [special_renderer], [], [], [])})
 
 Custom blueprints are great for easily injecting validating extractors.
 
@@ -186,9 +207,9 @@ The controller is responsible for form processing (extraction and validation),
 delegation of actions and form rendering (including error handling).
 
 The controller is initialized with a form and request object and immediately 
-starts the processing. 
-The ``rendered`` instance attribute contains the rendered form,
-while the attribute ``data`` contains the extracted runtime data tree.
+starts the processing. The ``rendered`` instance attribute contains the
+rendered form, while the attribute ``data`` contains the extracted runtime data
+tree.
 
 Validation
 ----------
