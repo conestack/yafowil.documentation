@@ -2,11 +2,11 @@
 Introduction
 ============
 
-It's all just about rendering widgets and extracting the data returned from the
-browser per widget.
+It's all about rendering form widgets and extracting/validating the data send
+by the browser per widget.
 
-YAFOWIL widgets are just configuration. YAFOWIL provides a factory where you can
-fetch your widgets instances from. Or you register your own.
+YAFOWIL widgets are just configuration. YAFOWIL provides a factory which can
+produce widget instances from blueprints, or blueprints can be registered.
 
 Dependencies
 ============
@@ -40,19 +40,10 @@ works like so::
 
 Produce a form.::
 
-    >>> form = factory(
-    ...     'form',
-    ...     name='myform',
-    ...     props={
-    ...         'action': 'http://www.domain.tld/someform',
-    ...     }
-    ... )
-    >>> form['someinput'] = factory(
-    ...     'label:text',
-    ...     props={
-    ...         'label': 'Your Text',
-    ...     }
-    ... )
+    >>> form = factory('form', name='myform', props={
+    ...     'action': 'http://www.domain.tld/someform'})
+    >>> form['someinput'] = factory('label:text', props={
+    ...     'label': 'Your Text'})
 
     >>> def formaction(widget, data):
     ...     data.printtree()
@@ -60,14 +51,10 @@ Produce a form.::
     >>> def formnext(request):
     ...     return 'http://www.domain.tld/result'
 
-    >>> form['submit'] = factory(
-    ...     'submit',
-    ...     props={
-    ...         'handler': formaction,
-    ...         'next': formnext,
-    ...         'action': True,
-    ...     }
-    ... )
+    >>> form['submit'] = factory('submit', props={
+    ...     'handler': formaction,
+    ...     'next': formnext,
+    ...     'action': True})
 
 Render empty form by calling the form object::
 
@@ -91,10 +78,8 @@ This results in::
 
 Get form data out of request (request is expected dict-like).::
 
-    >>> request = {
-    ...     'myform.someinput': 'Hello World',
-    ...     'action.myform.submit': 'submit',
-    ... }
+    >>> request = {'myform.someinput': 'Hello World',
+    ...            'action.myform.submit': 'submit'}
     >>> controller = Controller(form, request)
     >>> controller.data
     <RuntimeData myform, value=None, extracted=None at ...>
@@ -103,10 +88,10 @@ Get form data out of request (request is expected dict-like).::
       <RuntimeData myform.submit, value=None, extracted=<UNSET> at ...>
 
 
-Basic functions
-===============
+Basic blueprints
+================
 
-YAFOWIL provides widgets for all HTML standard inputs, Such as:
+YAFOWIL provides blueprints for all HTML standard inputs, such as:
 
 - text (inluding email, number, url, ...)
 - textarea
@@ -116,10 +101,12 @@ YAFOWIL provides widgets for all HTML standard inputs, Such as:
 - hidden
 - submit
 
-etc...
+and many more...
 
 There are also a bunch of add-ons available, usally in the namespace
 ``yafowil.widget.*``.
+
+See blueprints reference to get a complete overview of blueprints.
 
 
 Produce a widget
@@ -129,17 +116,16 @@ Yafowil uses a factory for creating widget instances. I.e. by calling::
 
     >>> widget = factory('text')
 
-a text input widget is produced, where ``text`` is the blueprint registration
-name.
+a text input widget is produced from blueprint ``text``.
 
-Blueprints can be chained by colon separated blueprint names or given as list::
+Blueprints can be chained by colon separated names or given as list::
 
     >>> widget = factory('field:label:text')
 
 This causes the created widget to use the registered renderers, extractors,
 etc of the blueprints ``field``, ``label`` and ``text`` in order.
 
-Blueprint chains can be organised in so called plans. I.e.::
+Blueprint chains can be organised as plans. I.e.::
 
     >>> widget = factory('#stringfield')
     
@@ -155,55 +141,39 @@ in this tree.
 
 For building widget trees, the dict like API is used.::
 
-    >>> form = factory(
-    ...     'form',
-    ...     'UNIQUENAME',
-    ...     props={
-    ...         'action': 'someurl',
-    ...     },
-    ... )
-    >>> form['somefield'] = factory(
-    ...     'field:label:text',
-    ...     props={
-    ...         'label': 'Some Field',
-    ...     },
-    ... )
-    >>> form['somefieldset'] = factory(
-    ...     'fieldset',
-    ...     props={
-    ...         'legend': 'A Fieldset',
-    ...     },
-    ... )
-    >>> form['somefieldset']['innerfield'] = factory(
-    ...     'field:label:text',
-    ...     props={
-    ...         'label': 'Inner Field',
-    ...     },
-    ... )
+    >>> form = factory('form', 'UNIQUENAME', props={
+    ...     'action': 'someurl'})
+    >>> form['somefield'] = factory('field:label:text', props={
+    ...     'label': 'Some Field'})
+    >>> form['somefieldset'] = factory('fieldset', props={
+    ...     'legend': 'A Fieldset'})
+    >>> form['somefieldset']['innerfield'] = factory('field:label:text', props={
+    ...     'label': 'Inner Field'})
 
 
 Add custom behaviour
 ====================
 
-You can inject custom behaviour by marking a part of the blueprint chain with
-the asterisk ``*`` character. Behaviours are one or a combination of a
+It's possible to inject custom behaviour by marking a part of the blueprint
+chain with the asterisk ``*`` character. Behaviours are one or a combination
+of a
 
 ``extractor``
-    extracts, validates and/or converts form-data from the request
+    extracts, validates and/or converts form-data from the request.
 
 ``edit_renderer``
-    build the markup for editing
+    build the markup for editing.
 
-``preprocessor``
-    Generic hook to prepare runtime-data. Runs once per runtime-data instance
-    before extractors or renderers are running.
+``display_renderer``
+    build the markup for display only.
 
 ``builder``
     Generic hook called once at factory time of the widget. Here i.e. subwidgets
     can be created.
 
-``display_renderer``
-    build the markup for display only
+``preprocessor``
+    Generic hook to prepare runtime-data. Runs once per runtime-data instance
+    before extractors or renderers are running.
 
 ::
 
@@ -211,15 +181,10 @@ the asterisk ``*`` character. Behaviours are one or a combination of a
     ...    # validate the data, raise ExtractionError if somethings wrong
     ...    return data.extracted
          
-    >>> widget = factory(
-    ...     'field:label:*myvalidation:text',
-    ...     props={
-    ...         'label': 'Inner Field',
-    ...     },
+    >>> widget = factory('field:label:*myvalidation:text', props={
+    ...     'label': 'Inner Field'},
     ...     custom: {
-    ...         'myvalidation': ([myvalidator],[],[],[],[]),
-    ...     }
-    ... )
+    ...         'myvalidation': ([myvalidator],[],[],[],[])})
 
 
 Invariants
@@ -237,7 +202,8 @@ both or none::
     
     >>> def myinvariant_extractor(widget, data):
     ...     if not (bool(data['hello']) != bool(data['world']):
-    ...         error = ExtractionError('provide hello or world, not both or none')
+    ...         error = ExtractionError(
+    ...             'provide hello or world, not both or none')
     ...         data['hello'].error.append(error)
     ...         data['world'].error.append(error)
     ...     return data.extracted
@@ -256,12 +222,12 @@ both or none::
     ...         'value': ''})
     ...     # ... see helloworld example whats missing here
 
-    
+
 Providing blueprints
 ====================
 
-If behaviour (rendering, extracting, etc...) is more general and you need it
-more than once you can register it as blueprint in the factory::
+If a behaviour (rendering, extracting, etc...) is more general and needed
+more than once, it can be registered as blueprint in the factory::
 
     >>> factory.register(
     ...     'myblueprint', 
@@ -271,17 +237,13 @@ more than once you can register it as blueprint in the factory::
     ...     preprocessors=[],
     ...     builders=[])
 
-and use it now as regular blueprint when calling the factory::
+and then uses as regular blueprint when calling the factory::
 
-    >>> widget = factory(
-    ...     'field:label:myblueprint:text',
-    ...     props={
-    ...         'label': 'Inner Field',
-    ...     },
-    ... )
+    >>> widget = factory('field:label:myblueprint:text', props={
+    ...     'label': 'Inner Field'})
 
 
-Using Plans
+Using plans
 ===========
 
 Plans are a named chains of blueprints. Plans are an abbreviation or shortcuts
