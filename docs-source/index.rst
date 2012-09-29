@@ -35,5 +35,3 @@ Contents
    yaml
    integrations
    blueprints
-   plans
-   extend

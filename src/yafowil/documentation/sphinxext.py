@@ -14,7 +14,9 @@ import yafowil.widget.dynatree
 from yafowil.base import factory
 from yafowil.utils import UNSET
 
+
 _marker = list()
+
 
 class YDirective(Directive):
 
@@ -26,6 +28,7 @@ class YDirective(Directive):
             node = container()
         nested_parse_with_titles(self.state, vl, node)        
         return node
+
 
 class WidgetDoc(YDirective):
     
@@ -149,7 +152,8 @@ class WidgetDoc(YDirective):
             # this does not log. bullshit. no idea how to make sphinx log.         
             self.warning("YAFOWIL property '%s' is not documented!" % wpname)
         return row
-        
+
+ 
 class PlanDoc(YDirective):    
 
     def run(self):
@@ -174,4 +178,3 @@ class PlanDoc(YDirective):
             rows[0].append(nodes.paragraph(text=plan))          
             rows[1].append(nodes.paragraph(text=':'.join(blueprints)))          
         return table
-        
