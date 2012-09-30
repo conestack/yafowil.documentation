@@ -2,37 +2,47 @@
 Introduction
 ============
 
-It's all about rendering form widgets and extracting/validating the data send
+YAFOWIL targets rendering form widgets and extracting/validating the data send
 by the browser per widget.
 
-YAFOWIL widgets are just configuration. YAFOWIL provides a factory which can
+YAFOWIL widgets are just configuration. It provides a factory which can
 produce widget instances from blueprints, or blueprints can be registered.
 
-Dependencies
-============
-
-YAFOWIL aims to have no dependencies to any framework. It utilizes the `node
-<http://pypi.python.org/pypi/node>`_
-package. It also does not know about data-storage, but offers you a hook to add
-your handler.
+Motivation
+==========
 
 Tired of inventing widgets again and again after switching the Python framework
 YAFOWIL is intentionally written framework-independent. By just feeding it with
 configuration it can be used and extended in most of existing python web
-frameworks. Zope, Pyramid and Django are hot candidates.
+frameworks. Zope, Pyramid, Django and Flask are hot candidates.
 
-The integration packages `yafowil.plone
-<http://pypi.python.org/pypi/yafowil.plone>`_, `yafowil.webob
-<http://pypi.python.org/pypi/yafowil.webob>`_ and  `yafowil.werkzeug
-<http://pypi.python.org/pypi/yafowil.werkzeug>`_ are providing
-necessary hooks to this specific frameworks.
+Another common problem with form libs is a non-unique look and feel of the
+available widget collection. YAFOWIL tries to provide some useful addon widgets
+which tries to take care of a unified user experience.
 
+Dependencies
+============
+
+YAFOWIL aims to have no dependencies to any web framework. It utilizes the
+`node <http://pypi.python.org/pypi/node>`_
+package. YAFOWIL does not know about data-storage, but offers a hook to add
+processing callback handler function.
+
+Integrations
+============
+
+Framework integration packages:
+
+* `yafowil.plone <http://pypi.python.org/pypi/yafowil.plone>`_
+* `yafowil.webob <http://pypi.python.org/pypi/yafowil.webob>`_
+* `yafowil.werkzeug <http://pypi.python.org/pypi/yafowil.werkzeug>`_
+* `yafowil.bootstrap <http://pypi.python.org/pypi/yafowil.werkzeug>`_
 
 Example
 =======
 
-For the impatient, code says more than 1000 words: A very simple example form
-works like so::
+For the impatient, code says more than 1000 words: A simple example form works
+like so::
 
     >>> import yafowil.loader
     >>> from yafowil.base import factory
@@ -76,7 +86,7 @@ This results in::
                value="submit" />
     </form>
 
-Get form data out of request (request is expected dict-like).::
+Get form data from of request (request is expected dict-like)::
 
     >>> request = {'myform.someinput': 'Hello World',
     ...            'action.myform.submit': 'submit'}
@@ -87,27 +97,14 @@ Get form data out of request (request is expected dict-like).::
       attrs={'input_field_type': 'text'} at ...>
       <RuntimeData myform.submit, value=None, extracted=<UNSET> at ...>
 
+Provided blueprints
+===================
 
-Basic blueprints
-================
-
-YAFOWIL provides blueprints for all HTML standard inputs, such as:
-
-- text (inluding email, number, url, ...)
-- textarea
-- checkbox and radio
-- selects (single, multiple)
-- file
-- hidden
-- submit
-
-and many more...
-
-There are also a bunch of add-ons available, usally in the namespace
-``yafowil.widget.*``.
+YAFOWIL provides blueprints for all HTML standard inputs, lots of helper
+blueprints for buidling complex widgets and a bunch of add-ons available,
+usally in the namespace ``yafowil.widget.*``.
 
 See blueprints reference to get a complete overview of blueprints.
-
 
 Produce a widget
 ================
@@ -131,7 +128,6 @@ Blueprint chains can be organised as plans. I.e.::
     
 expands to ``field:label:widget:text``. See chapter plans for details.
 
-
 Organize widgets in a tree
 ==========================
 
@@ -149,7 +145,6 @@ For building widget trees, the dict like API is used.::
     ...     'legend': 'A Fieldset'})
     >>> form['somefieldset']['innerfield'] = factory('field:label:text', props={
     ...     'label': 'Inner Field'})
-
 
 Add custom behaviour
 ====================
@@ -186,7 +181,6 @@ of a
     ...     custom: {
     ...         'myvalidation': ([myvalidator],[],[],[],[])})
 
-
 Invariants
 ==========
 
@@ -222,7 +216,6 @@ both or none::
     ...         'value': ''})
     ...     # ... see helloworld example whats missing here
 
-
 Providing blueprints
 ====================
 
@@ -241,7 +234,6 @@ and then uses as regular blueprint when calling the factory::
 
     >>> widget = factory('field:label:myblueprint:text', props={
     ...     'label': 'Inner Field'})
-
 
 Using plans
 ===========
