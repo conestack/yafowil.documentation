@@ -122,11 +122,11 @@ Blueprints can be chained by colon separated names or given as list::
 This causes the created widget to use the registered renderers, extractors,
 etc of the blueprints ``field``, ``label`` and ``text`` in order.
 
-Blueprint chains can be organised as plans. I.e.::
+Blueprint chains can be organised using as macros (details below). I.e.::
 
-    >>> widget = factory('#stringfield')
+    >>> widget = factory('#field:text')
     
-expands to ``field:label:widget:text``. See chapter plans for details.
+expands to ``field:label:error:text``. See chapter plans for details.
 
 Organize widgets in a tree
 ==========================
