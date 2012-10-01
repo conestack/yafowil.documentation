@@ -126,7 +126,7 @@ Blueprint chains can be organised using as macros (details below). I.e.::
 
     >>> widget = factory('#field:text')
     
-expands to ``field:label:error:text``. See chapter plans for details.
+expands to ``field:label:error:text``.
 
 Organize widgets in a tree
 ==========================

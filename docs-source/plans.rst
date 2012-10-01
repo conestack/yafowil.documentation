@@ -1,9 +1,9 @@
-================
-Reference: Plans
-================
+=================
+Reference: Macros
+=================
 
-The following plans are pre-registered. The table is auto-generated and so it
-shows all registation from the installed packages when the documentation was
+The following macros are pre-registered. The table is auto-generated and so it
+shows all registrations from the installed packages when the documentation was
 generated.
 
 
