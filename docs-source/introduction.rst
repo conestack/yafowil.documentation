@@ -132,7 +132,7 @@ Organize widgets in a tree
 ==========================
 
 Forms, fieldsets and other compounds are organized as a tree of widgets.
-Thus, a widget is either a compound node (containing children) or a leaf node 
+Thus, a widget is either a compound node (containing children) or a leaf node
 in this tree.
 
 For building widget trees, the dict like API is used.::
@@ -235,25 +235,25 @@ and then uses as regular blueprint when calling the factory::
     >>> widget = factory('field:label:myblueprint:text', props={
     ...     'label': 'Inner Field'})
 
-Using plans
-===========
+Using Macros
+============
 
-Plans are a named chains of blueprints. Plans are an abbreviation or shortcuts
+Macros are a named chains of blueprints. Macros are an abbreviation or shortcuts
 to build commonly used combinations of blueprints using the factory.
 
-To indicate a plan the prefix ``#`` is used. I.e. ``#stringfield`` is
-registered as a plan and expands to ``field:label:error:text``.
+To indicate a plan the prefix ``#`` is used. I.e. ``#field`` is
+registered as a plan and expands to ``field:label:error``.
 
-Plans can be combined with other plans, registered blueprints or custom
-blueprints, i.e. ``*myvalidatingextractor:#numberfieldfield`` expands to
-``*myvalidatingextractor:field:label:error:text``.
+Macros can be combined with other macros, blueprints or custom
+blueprints, i.e. ``#field:*myvalidatingextractor:textarea`` expands to
+``field:label:error:*myvalidatingextractor:text``.
 
-It is possible to register own plans to the factory::
+It is possible to register own macros in the factory::
 
     >>> from yafowil.base import factory
-    >>> factory.register_plan(
-    ...     'divstringfield',
-    ...     'field:label:error:div:text')
-    >>> mywidget = factory('#divstringfield')
+    >>> factory.register_macro(
+    ...     'myfield',
+    ...     'field:label:error:div')
+    >>> mywidget = factory('#myfield')
 
-Its also possible to overwrite already registered plans.
+Its also possible to overwrite already registered macros.

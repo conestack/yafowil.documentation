@@ -19,16 +19,18 @@ YAFOWIL is based on a set of core ideas:
 Callables everywhere
 --------------------
 
-If you work with YAFOWIL for the first time it probably feels a bit different 
-compared to other multiple class inheriting, schema based forms. Instead YAFOWIL 
-uses simple callables at several places. You never need to inherit any class
-from yafowil.* (and if you think you need to you don't understand its 
-architecture).
+If you work with YAFOWIL for the first time it probably feels a bit different
+compared to other multiple class inheriting, schema based forms.
+
+Instead YAFOWIL uses simple callables at several places. You never need to
+inherit any class from yafowil.* (and if you think you need to you don't
+understand its architecture and should ask us to improve this documentation).
 
 Callables are used for every extensible aspect of YAFOWIL. They are bundled
 as blueprints and used via the factory.
 
-Explanation: Callables are simple functions oder instances of a class with a ``__call__`` method.
+Explanation: Callables are simple functions oder instances of a class with a
+``__call__`` method.
 
 Widget
 ------
@@ -37,127 +39,68 @@ A YAFOWIL form consists of a tree of widgets. Everything you would probably
 call a "Field" in other form libraries is a widget instance. Widgets can have
 children. Thus, also fieldsets and even the form root itself is a widget.
 
-The behavior of a widget is defined by blueprints and properties as shown below
-in the referring sections.
+The behavior of a widget is defined by a series of blueprints and properties
+as shown below in the referring sections.
 
-The widget class is generic:
-
-- It's never instanciated directly. The factory is the only place where this
-  happens.
-- Except some rare cases you never touch it further. The controller does the
-  handling.
+The widget class is generic! It's never instanciated directly. The factory is
+the only place where this happens.
 
 At creation time of widgets you need to use it's dict-like API for creating
 compounds of widgets like a form or a fieldset.
 
+**Attention possible confusion**:
+
+- *Widgets* are build from a chain of blueprints in *existing*
+  *libraries/addons*  and are configured using properties,
+- *Blueprints* are chains of extractors, renderers, preprocessors and builders
+  (see below),
+- *average YAFOWIL user* does *not need to create blueprints*, she just use
+  them,
+- *advanced YAFOWIL users* planning to develop own widgets will need to write
+  own blueprints.
+
+
 Runtime data
 ------------
 
-While one cycle runs (request to response), the state of the widget is kept in
-a runtime data object. It collects all information like values, request, errors
+While one request to response cycle runs, widgets state is kept in a runtime
+data instance. It collects all information like values, request, errors
 happened, and the rendered html of a widget in the context of the current
 request.
 
-Blueprint
----------
 
-A blueprint is a construction guide for providing different behaviors on a
-widget, like rendering a HTML input field, or extracting, validating or
-converting data received from the request.
+Controller
+----------
 
-This behaviors are organized as chains of callables. The behavior of the
-callables itself is controlled by the properties passed to the factory. Each
-chain has different responsibilities. Chains are executed left-to-right.
+The controller is responsible for form processing (extraction and validation),
+delegation of actions and form rendering (including error handling).
 
-Extractor chain
-~~~~~~~~~~~~~~~
+The controller is initialized with a form and request object and immediately
+starts the processing. The ``rendered`` instance attribute contains the
+rendered form, while the attribute ``data`` contains the extracted runtime data
+tree.
 
-An extractor is responsible to get, convert and validate the data of the
-current widget in the context of the request. It is a callable expecting the
-widget instance and the runtime data (holding the request, errors and values)
-as parameters.
 
-**Userstory**
-    An Integer Field consists of the pure extractor which results in a string.
-    Next extractor in the chain is responsible to convert it to an integer.
-    If it fails an extraction error is raised, otherwise the converted value is
-    returned. If only positive integers are allowed we can add a validating
-    extractor to the chain and so on.
+Validation
+----------
 
-Edit renderer chain
-~~~~~~~~~~~~~~~~~~~
+Unlike most form frameworks YAFOWIL does not make a difference between
+extraction of a value from the HTTP-request and validation. Both happens in one
+processing step. If an extraction step fails it raises a
+``yafowil.base.ExtractionError``. This special Python Exception carries a human
+readable message and the information if this error shall abort the extraction
+chain or not. In either case the form has errors.
 
-The edit_renderer is responsible to create form output (text, unicode)
-ready to be passed to the response. It is a callable expecting the widget
-instance and runtime data (after extraction chain has been executed) as
-parameters. It can utilize any templating language if desired. YAFOWIL has no
-preferences nor does it support any specific templating language out of the
-box. All internal rendering in YAFOWIL happens in pure python.
 
-The edit renderer chain is executed if mode of widget is 'edit'.
+Factory
+-------
 
-**Userstory**
-    A simple HTML text input field should be rendered with a referring label,
-    an error if happened at extraction time and a wrapper element with some
-    CSS class set. The downstream renderer in the chain can access the
-    rendered output of the preceding and so on. Thus a pure html ``<input ..>``
-    markup rendered by one callable can be wrapped with a label rendered by
-    another callable, and so on.
+Basics
+~~~~~~
 
-Preprocessor chain
-~~~~~~~~~~~~~~~~~~
-
-The preprocessor chain is executed once per cycle (request to response)
-directly after runtime data was created. A preprocessor callable can be used to
-hook up framework specific requirements and gets widget and runtime data as
-parameters.
-
-**Userstory**:
-    YAFOWIL expects the request to be a dict like object providing parameters
-    via ``get`` and ``__getitem__``. Further i18n support should be available
-    via ``zope.i18n``. A framework integration package now provides one
-    preprocessor function wrapping the request if needed, and another hooking
-    up the i18n message factory and the translate function.
-
-Builder chain
-~~~~~~~~~~~~~
-
-A builder is a callable responsible to automatically populate a widget
-with child widgets. It expects the widget and the factory itself as
-parameters. The builder chain is executed at at the time when the factory is
-called to produce a widget right after the parent widget is created and
-configured.
-
-**Userstory**
-    A blueprint is written for a complex widget, and luckily there are lots of
-    other blueprints already out there providing several behaviors needed.
-    If complex blueprint should render i.e. a table containing two fields, a
-    builder callable is registered which builds the table containing the 2
-    input fields by using the dict like widget API and calling the factory for
-    creating it's children.
-
-Display renderer chain
-~~~~~~~~~~~~~~~~~~~~~~
-
-The display_renderer is responsible to create view output (text, unicode)
-ready to be passed to the response.
-
-The display renderer chain is executed if mode of widget is 'display'. Like
-edit_renderer, it is a callable expecting the widget instance and runtime data
-(after extraction chain has been executed) as parameters.
-
-**Userstory**
-    A form is created for a complex dataset where different groups of users have
-    different access permissions whether to edit or view a dataset value, or
-    even to see it at all. The mode property of the widget controlls if the
-    rendering chain, and which rendering chain gets executed.
-
-Factory basics
---------------
-
-The factory knows of the available blueprints and is used to construct the
-widget instances. To construct a widget the factory gets called with the
-blueprint name as first parameter::
+The factory knows of the available blueprints and is respsonsible to construct
+and configure widget instances. To construct a widget the factory gets called
+with the blueprint name as first parameter::
 
     >>> from yafowil.base import factory
     >>> widget = factory('text', ...)
@@ -180,7 +123,7 @@ Child widget names are set transparent using the child ``key``::
     >>> form['field_1'] = factory('text')
 
 Combining blueprints - the factory chain
-----------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Usually we have some common widgets, e.g. a pure textarea, and then we need
 some label, description, display encountered errors, maybe a table cell or an
@@ -202,7 +145,7 @@ factory like so::
     ...     'help': 'Helptext for field 1',
     ...     'required': 'Field 1 must not be empty'})
 
-This causes the callable chains of each blueprint beeing executed in order. 
+This causes the callable chains of each blueprint beeing executed in order.
 Extractors are executed from right to left while all others are executed left
 to right.
 
@@ -220,7 +163,7 @@ only instead of effecting all blueprints::
     ...     'required': 'Field 1 must not be empty'})
 
 Macros - predefined factory chains
-----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 For the lazy people macros are provided. Macros expand to a factory chain of
 blueprints. Expansion happens at chain-lookup time before the widget is built.
@@ -240,7 +183,7 @@ with ``#``::
     >>> textfield = factory('#field:text')
 
 Custom blueprints
------------------
+~~~~~~~~~~~~~~~~~
 
 For usecases where it's not worth to write a generic widget for, it's possible
 to inject custom blueprints.
@@ -248,7 +191,8 @@ to inject custom blueprints.
 Custom blueprints are passed to the factory either as 5-tuple containing chains
 of extractors, edit renderers, preprocessors, builders and display renderers,
 or as dictionary containing the chains at keys 'extractors', 'edit_renderers',
-'preprocessors', 'builders' and 'display_renderers'.
+'preprocessors', 'builders' and 'display_renderers'. Please read the section
+about blueprints below to get a deeper understanding of what happens.
 
 Each chain contains callables as explained above. To tell the factory about
 usage of a custom blueprint, use the asterisk-prefix in the factory chain,
@@ -282,23 +226,106 @@ Inject as list::
 
 Custom blueprints are great for easily injecting validation extractors.
 
-Controller
+
+Blueprints
 ----------
 
-The controller is responsible for form processing (extraction and validation),
-delegation of actions and form rendering (including error handling).
+Blueprints are a construction guides providing different behaviors on a
+widget: i.e. rendering a HTML input field, or extracting and validating input
+data or converting data received from the request.
 
-The controller is initialized with a form and request object and immediately 
-starts the processing. The ``rendered`` instance attribute contains the
-rendered form, while the attribute ``data`` contains the extracted runtime data
-tree.
+This behaviors are organized as chains of callables. The behavior of the
+callables itself is controlled by properties. Each chain has different
+responsibilities. Chains are executed left-to-right.
 
-Validation
-----------
+Extractor chain
+~~~~~~~~~~~~~~~
 
-Unlike most form frameworks YAFOWIL does not make a difference between
-extraction of a value from the HTTP-request and validation. both happens in one
-chain. If an extraction step fails it raises a ``yafowil.base.ExtractionError``.
-This special Python Exception carries a human readable message and the
-information if this error shall abort the extraction chain or not. In either
-case the form has errors.
+Extractors are responsible to get, convert and validate the data of the
+current widget in the context of the current request. An extarctor is a
+callable expecting a widget instance and a runtime data instance as parameters.
+
+**Userstory**
+    An integer field consists of a first extractor getting the value from the
+    request paramter matching the widget name. This results in a string.
+    Next extractor in chain is responsible to convert the string to an integer.
+    If it fails an extraction error is raised. Otherwise the converted value is
+    returned. If only positive integers are allowed a validating extractor is
+    added to the chain. If its not positive an ExtractionError is raised,
+    otherwise the value is returned unmodified.
+
+Edit renderer chain
+~~~~~~~~~~~~~~~~~~~
+
+Edit renderers are responsible to create html form output (unicode-strings)
+ready to be passed to the response. It is a callable expecting a widget
+instance and a runtime data instance as parameters. At this point the runtime
+data instance already passed the extraction chain and contains
+information about extracted values and errors. Edit renderers may utilize any
+templating language if desired. YAFOWIL has no preferences nor does it support
+any specific templating language out of the box. All internal rendering in
+YAFOWIL happens in pure python.
+
+The edit renderer chain is executed if mode of widget is 'edit'.
+
+**Userstory**
+    An file input field has to be rendered with checkboxes to indicate deletion
+    of the file. The file input itself is a renderer and the checkboxes are
+    another renderer. First renderer in chain creates a pure html ``<input ..>``
+    tag for the file upload. Next renderer creates some checkboxes with labels.
+    It has access to the string-output of the first renderer as part of
+    runtime-data. So some ``<checkbox ..>`` tags can be prepended, wrapped
+    around or appended to the previous rendered ``<input ..>``. Both renderers
+    are reusable and may be used in other contexts, i.e. in an image blueprint
+    context.
+
+Display renderer chain
+~~~~~~~~~~~~~~~~~~~~~~
+
+Display renderers are responsible to create html view output (unicode-strings)
+ready to be passed to the response.
+
+The display renderer chain is executed if mode of widget is 'display'. Like
+edit renderers it is a callable expecting widget and runtime data as parameters
+Like the edit renderer it is executed after extraction.
+
+It is possible to mix edit and display renderers in one widget tree, each
+widget can have it own mode.
+
+**Userstory**
+    A form is created for a complex dataset where different groups of users have
+    different access permissions whether to edit or view a dataset value, or
+    even to see it at all. The mode property of the widget controlls if the
+    rendering chain, and which rendering chain gets executed.
+
+Preprocessor chain
+~~~~~~~~~~~~~~~~~~
+
+The preprocessor chain is executed once per request to response cycle
+directly after runtime data was created and before extraction happens.
+A preprocessor callable can be used to hook up framework specific requirements
+and gets widget and runtime data as parameters. There are global preprocessors
+running on every widget and widget specific pre-processors. Later are executed
+after the global preprocessors.
+
+**Userstory**:
+    YAFOWIL expects the request to be a dict like object providing parameters
+    via ``get`` and ``__getitem__``. Further i18n support should be available
+    i.e. via ``zope.i18n``. A framework integration package now provides one
+    global preprocessor function wrapping the request if needed, and another
+    hooking up the i18n message factory and the translate function.
+
+Builder chain
+~~~~~~~~~~~~~
+
+This chain of callables is called only once right after the widget was created
+in the factory. A common use-case is to automatically populate a widget with
+child widgets. It expects widget and factory as parameters.
+
+**Userstory**
+    A blueprint is written for a complex widget, and luckily there are lots of
+    other blueprints already out there providing several behaviors needed.
+    If complex blueprint should render i.e. a table containing two fields, a
+    builder callable is registered which builds the table containing the 2
+    input fields by using the dict like widget API and calling the factory for
+    creating it's children.
