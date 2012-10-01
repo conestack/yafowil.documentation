@@ -43,7 +43,7 @@ class WidgetDoc(YDirective):
     def _managed_props_of(self, widgetname):
         props = set([_ for _ in factory.doc['props'] 
                      if _.startswith('%s.' % widgetname)])
-        for chainidx in range(0,4):
+        for chainidx in range(0,5):
             chain = factory._blueprints[widgetname][chainidx]
             for func in chain:
                 mprops = getattr(func, '__yafowil_managed_props__', [])
