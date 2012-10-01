@@ -28,6 +28,8 @@ architecture).
 Callables are used for every extensible aspect of YAFOWIL. They are bundled
 as blueprints and used via the factory.
 
+Explanation: Callables are simple functions oder instances of a class with a ``__call__`` method.
+
 Widget
 ------
 
