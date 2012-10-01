@@ -6,6 +6,7 @@
 
 .. image:: _static/yafowil.png
 
+Visit our `YAFOWIL DEMO <http://demo.yafowil.info>`_ SITE!
 
 Callables Everywhere
 ====================
@@ -18,7 +19,7 @@ Callables Everywhere
 
 - YAFOWIL is lightweight and provides an extensible, reusable set of blueprints.
 
-- YAFOWIL is framework independent. 
+- YAFOWIL is framework independent.
 
 - YAFOWIL does NOT fight with storage.
 
