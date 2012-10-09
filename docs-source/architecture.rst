@@ -227,6 +227,7 @@ Inject as list::
 Custom blueprints are great for easily injecting validation extractors.
 
 
+
 Blueprints
 ----------
 

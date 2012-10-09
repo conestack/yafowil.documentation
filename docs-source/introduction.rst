@@ -6,7 +6,13 @@ YAFOWIL targets rendering form widgets and extracting/validating the data send
 by the browser per widget.
 
 YAFOWIL widgets are just configuration. It provides a factory which can
-produce widget instances from blueprints, or blueprints can be registered.
+produce widget instances from blueprints.
+
+There is a library of existing blueprints ready to be extended on demand.
+
+YAFOWIL provides blueprints for all HTML standard inputs, lots of helper
+blueprints for buidling complex widgets and a bunch of add-ons (usally in
+namespace ``yafowil.widget.*``).
 
 Motivation
 ==========
@@ -14,7 +20,8 @@ Motivation
 Tired of inventing widgets again and again after switching the Python framework
 YAFOWIL is intentionally written framework-independent. By just feeding it with
 configuration it can be used and extended in most of existing python web
-frameworks. Zope, Pyramid, Django and Flask are hot candidates.
+frameworks. Zope, Pyramid, Django, Flask, CherryPy and similar are
+candidates.
 
 Another common problem with form libs is a non-unique look and feel of the
 available widget collection. YAFOWIL tries to provide some useful addon widgets
@@ -26,17 +33,19 @@ Dependencies
 YAFOWIL aims to have no dependencies to any web framework. It utilizes the
 `node <http://pypi.python.org/pypi/node>`_
 package. YAFOWIL does not know about data-storage, but offers a hook to add
-processing callback handler function.
+processing callback handler functions.
 
 Integrations
 ============
 
-Framework integration packages:
+YAFOWIL currently integrates with the following packages:
 
 * `yafowil.plone <http://pypi.python.org/pypi/yafowil.plone>`_
 * `yafowil.webob <http://pypi.python.org/pypi/yafowil.webob>`_
 * `yafowil.werkzeug <http://pypi.python.org/pypi/yafowil.werkzeug>`_
 * `yafowil.bootstrap <http://pypi.python.org/pypi/yafowil.werkzeug>`_
+
+For details read the chapter ``integrations``.
 
 Example
 =======
@@ -52,6 +61,7 @@ Produce a form.::
 
     >>> form = factory('form', name='myform', props={
     ...     'action': 'http://www.domain.tld/someform'})
+    
     >>> form['someinput'] = factory('label:text', props={
     ...     'label': 'Your Text'})
 
@@ -97,45 +107,46 @@ Get form data from of request (request is expected dict-like)::
       attrs={'input_field_type': 'text'} at ...>
       <RuntimeData myform.submit, value=None, extracted=<UNSET> at ...>
 
-Provided blueprints
-===================
+Creating a widget
+=================
 
-YAFOWIL provides blueprints for all HTML standard inputs, lots of helper
-blueprints for buidling complex widgets and a bunch of add-ons available,
-usally in the namespace ``yafowil.widget.*``.
+A widget is an instance of a blueprint created by the factory. Factory is a
+singleton and operates also as a registry for blueprints.
 
-See blueprints reference to get a complete overview of blueprints.
-
-Produce a widget
-================
-
-Yafowil uses a factory for creating widget instances. I.e. by calling:: 
+By calling the factory a widget is created, here a naked text input field from
+the blueprint ``text``:: 
 
     >>> widget = factory('text')
-
-a text input widget is produced from blueprint ``text``.
 
 Blueprints can be chained by colon separated names or given as list::
 
     >>> widget = factory('field:label:text')
 
-This causes the created widget to use the registered renderers, extractors,
-etc of the blueprints ``field``, ``label`` and ``text`` in order.
+This causes the created widget to chain the registered renderers, extractors,
+and other parts of the blueprints ``field``, ``label`` and ``text`` in order.
 
-Blueprint chains can be organised using as macros (details below). I.e.::
+Blueprint chains can be organised using as macros to reduce the complexity of
+factory calls (details below). I.e.::
 
     >>> widget = factory('#field:text')
     
-expands to ``field:label:error:text``.
+expands the macro ``#field`` to ``field:label:error`` and appends ``:text`` so
+the result is ``field:label:error:text``.
 
-Organize widgets in a tree
-==========================
 
-Forms, fieldsets and other compounds are organized as a tree of widgets.
+Widgets are Organized as a Tree
+===============================
+
+Any HTML form can be visualized as a tree: The ``<form>`` is the root,
+``<input>`` elements are its children. Also a ``<fieldset>`` grouping a bunch of
+``<input>`` is a compound with children. In YAFOWIL the form is organized as a
+tree which is like a ordered python ``dict`` with each value a dict again. Widget
+instances are ``dict-like`` objects.
+
 Thus, a widget is either a compound node (containing children) or a leaf node
 in this tree.
 
-For building widget trees, the dict like API is used.::
+Building widget trees is as simple as using python dicts::
 
     >>> form = factory('form', 'UNIQUENAME', props={
     ...     'action': 'someurl'})
@@ -146,8 +157,92 @@ For building widget trees, the dict like API is used.::
     >>> form['somefieldset']['innerfield'] = factory('field:label:text', props={
     ...     'label': 'Inner Field'})
 
-Add custom behaviour
+Rendering Mode
+==============
+
+The way a widget is rendered is controlled by the mode. Every widget may given
+a ``mode`` keyword argument to the factory as a string or a callable accepting
+two parameters  ``widget`` and ``data``returning a string.
+
+These modes are supported:
+
+``edit``
+    Default classic mode, editing of form is possible. Rendering follows the
+    registered ``edit_renderers``.
+
+``display``
+    No form elements are rendered, just the data as defined by registerd
+    ``display_renders``.
+
+``skip``
+    Renders just an empty string.
+
+
+Validation
+==========
+
+In YAFOWIL validation and extraction happens at the same time. Extraction means
+to get a meaningful value out of the request. Validation means to check
+constraints, i.e if a number is positive or an e-mail-adress is valid.
+
+Invariants
+==========
+
+Invariants are implemented as extractors on compounds. Usally they are put as
+a custom blueprint (see below) with one extractor on some parent of the elements
+to validate.
+
+Here is a short example (extension of the ``hello world`` example) for a custom
+invariant extractor which checks if one or the other field is filled, but never
+both or none (XOR)::
+
+    >>> from yafowil.base import ExtractionError
+    >>> # ... see helloworld example whats missing here
+    
+    >>> def myinvariant_extractor(widget, data):
+    ...     if not (bool(data['hello']) != bool(data['world']):
+    ...         error = ExtractionError(
+    ...             'provide hello or world, not both or none')
+    ...         data['hello'].error.append(error)
+    ...         data['world'].error.append(error)
+    ...     return data.extracted
+    
+    >>> def application(environ, start_response): 
+    ...     # ... see helloworld example whats missing here
+    ...     form = factory(u'*myinvariant:form', name='helloworld', 
+    ...         props={'action': url},
+    ...         custom={'myinvariant': dict(extractors=[myinvariant_extractor])}
+    ...         )
+    ...     form['hello'] = factory('field:label:error:text', props={
+    ...         'label': 'Enter some text here',
+    ...         'value': ''})
+    ...     form['world'] = factory('field:label:error:text', props={
+    ...         'label': 'OR Enter some text here',
+    ...         'value': ''})
+    ...     # ... see helloworld example whats missing here
+
+Providing blueprints
 ====================
+
+General behaviours (rendering, extracting, etc...) can be registered as
+blueprint in the factory::
+
+    >>> factory.register(
+    ...     'myblueprint', 
+    ...     extractors=[myvalidator], 
+    ...     edit_renderers=[],
+    ...     display_renderers=[],
+    ...     preprocessors=[],
+    ...     builders=[])
+
+and then used as regular blueprint when calling the factory::
+
+    >>> widget = factory('field:label:myblueprint:text', props={
+    ...     'label': 'Inner Field'})
+
+
+Adding custom behaviour
+=======================
 
 It's possible to inject custom behaviour by marking a part of the blueprint
 chain with the asterisk ``*`` character. Behaviours are one or a combination
@@ -179,81 +274,5 @@ of a
     >>> widget = factory('field:label:*myvalidation:text', props={
     ...     'label': 'Inner Field'},
     ...     custom: {
-    ...         'myvalidation': ([myvalidator],[],[],[],[])})
-
-Invariants
-==========
-
-Invariants are implemented as extractors on compounds. Usally they are put as
-custom blueprint with one extractor on some parent of the elements to validate.
-
-Here is a short example (extension of the ``hello world`` example) for a custom
-invariant extractor which checks if one or the other field is filled, but never
-both or none::
-
-    >>> from yafowil.base import ExtractionError
-    >>> # ... see helloworld example whats missing here
-    
-    >>> def myinvariant_extractor(widget, data):
-    ...     if not (bool(data['hello']) != bool(data['world']):
-    ...         error = ExtractionError(
-    ...             'provide hello or world, not both or none')
-    ...         data['hello'].error.append(error)
-    ...         data['world'].error.append(error)
-    ...     return data.extracted
-    
-    >>> def application(environ, start_response): 
-    ...     # ... see helloworld example whats missing here
-    ...     form = factory(u'*myinvariant:form', name='helloworld', 
-    ...         props={'action': url},
-    ...         custom={'myinvariant': ([myinvariant_extractor], [], [], [], [])
-    ...         )
-    ...     form['hello'] = factory('field:label:error:text', props={
-    ...         'label': 'Enter some text here',
-    ...         'value': ''})
-    ...     form['world'] = factory('field:label:error:text', props={
-    ...         'label': 'OR Enter some text here',
-    ...         'value': ''})
-    ...     # ... see helloworld example whats missing here
-
-Providing blueprints
-====================
-
-If a behaviour (rendering, extracting, etc...) is more general and needed
-more than once, it can be registered as blueprint in the factory::
-
-    >>> factory.register(
-    ...     'myblueprint', 
-    ...     extractors=[myvalidator], 
-    ...     edit_renderers=[],
-    ...     display_renderers=[],
-    ...     preprocessors=[],
-    ...     builders=[])
-
-and then uses as regular blueprint when calling the factory::
-
-    >>> widget = factory('field:label:myblueprint:text', props={
-    ...     'label': 'Inner Field'})
-
-Using Macros
-============
-
-Macros are a named chains of blueprints. Macros are an abbreviation or shortcuts
-to build commonly used combinations of blueprints using the factory.
-
-To indicate a plan the prefix ``#`` is used. I.e. ``#field`` is
-registered as a plan and expands to ``field:label:error``.
-
-Macros can be combined with other macros, blueprints or custom
-blueprints, i.e. ``#field:*myvalidatingextractor:textarea`` expands to
-``field:label:error:*myvalidatingextractor:text``.
-
-It is possible to register own macros in the factory::
-
-    >>> from yafowil.base import factory
-    >>> factory.register_macro(
-    ...     'myfield',
-    ...     'field:label:error:div')
-    >>> mywidget = factory('#myfield')
-
-Its also possible to overwrite already registered macros.
+    ...         'myvalidation': dict(extractor=[myvalidator])
+    ... )}
