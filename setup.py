@@ -3,10 +3,10 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '1.2beta1'
+version = '2.0'
 shortdesc = \
 'Documentation of YAFOWIL - Yet Another Form Widget Library'
-longdesc = ""
+longdesc = "See http://docs.yafowil.info"
 
 tests_require = ['interlude']
 
@@ -46,7 +46,6 @@ setup(name='yafowil.documentation',
         'yafowil.widget.image',
         'yafowil.widget.autocomplete',
         'yafowil.widget.dynatree',
-          
       ],
       tests_require=tests_require,
       test_suite="yafowil.tests.test_suite",
