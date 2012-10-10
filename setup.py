@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 import sys, os
 
-version = '2.0'
+version = '2.0.1'
 shortdesc = \
 'Documentation of YAFOWIL - Yet Another Form Widget Library'
 longdesc = "See http://docs.yafowil.info"
@@ -33,7 +33,8 @@ setup(name='yafowil.documentation',
       zip_safe=True,
       install_requires=[
         'setuptools',
-        'sphinx',
+        'Pillow',
+        'sphinx',     
         'collective.sphinx.includedoc',
         'yafowil',
         'yafowil.yaml',
