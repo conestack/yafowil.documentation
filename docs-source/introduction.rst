@@ -269,6 +269,8 @@ of a
 
     >>> def myvalidator(widget, data):
     ...    # validate the data, raise ExtractionError if somethings wrong
+    ...    if data.extracted != 'something:'
+    ...        raise ExtractionError("only 'something' is allowed as input.")
     ...    return data.extracted
          
     >>> widget = factory('field:label:*myvalidation:text', props={
