@@ -273,8 +273,7 @@ of a
     ...        raise ExtractionError("only 'something' is allowed as input.")
     ...    return data.extracted
          
-    >>> widget = factory('field:label:*myvalidation:text', props={
-    ...     'label': 'Inner Field'},
-    ...     custom: {
-    ...         'myvalidation': dict(extractor=[myvalidator])
-    ... )}
+    >>> widget = factory('field:label:*myvalidation:text', 
+    ...                  props={'label': 'Inner Field'},
+    ...                  custom={'myvalidation': dict(extractor=[myvalidator])}
+    ... )
