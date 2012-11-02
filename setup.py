@@ -1,25 +1,27 @@
-# Copyright 2009-2010, BlueDynamics Alliance - http://bluedynamics.com
+import os
+from setuptools import (
+    setup,
+    find_packages,
+)
 
-from setuptools import setup, find_packages
-import sys, os
 
 version = '2.0.2'
 shortdesc = \
 'Documentation of YAFOWIL - Yet Another Form Widget Library'
 longdesc = "See http://docs.yafowil.info"
-
 tests_require = ['interlude']
+
 
 setup(name='yafowil.documentation',
       version=version,
       description=shortdesc,
       long_description=longdesc,
       classifiers=[
-            'Development Status :: 5 - Production/Stable',
-            'License :: OSI Approved :: Python Software Foundation License',
-            'Operating System :: OS Independent',
-            'Programming Language :: Python',
-            'Topic :: Software Development',
+          'Development Status :: 5 - Production/Stable',
+          'License :: OSI Approved :: Python Software Foundation License',
+          'Operating System :: OS Independent',
+          'Programming Language :: Python',
+          'Topic :: Software Development',
       ],
       keywords='html input widgets form compound',
       author='BlueDynamics Alliance',
@@ -32,25 +34,25 @@ setup(name='yafowil.documentation',
       include_package_data=True,
       zip_safe=True,
       install_requires=[
-        'setuptools',
-        'Pillow',
-        'sphinx',     
-        'collective.sphinx.includedoc',
-        'yafowil',
-        'yafowil.yaml',
-         # add-on widgets to document
-        'yafowil.widget.richtext',
-        'yafowil.widget.wysihtml5',
-        'yafowil.widget.datetime',   
-        'yafowil.widget.array',
-        'yafowil.widget.dict',
-        'yafowil.widget.image',
-        'yafowil.widget.autocomplete',
-        'yafowil.widget.dynatree',
+          'setuptools',
+          'Pillow',
+          'sphinx',     
+          'collective.sphinx.includedoc',
+          'yafowil',
+          'yafowil.yaml',
+           # add-on widgets to document
+          'yafowil.widget.richtext',
+          'yafowil.widget.wysihtml5',
+          'yafowil.widget.datetime',
+          'yafowil.widget.ace',
+          'yafowil.widget.array',
+          'yafowil.widget.dict',
+          'yafowil.widget.image',
+          'yafowil.widget.autocomplete',
+          'yafowil.widget.dynatree',
       ],
       tests_require=tests_require,
       test_suite="yafowil.tests.test_suite",
       extras_require = dict(
           test=tests_require,
-      ),
-)
+      ))
