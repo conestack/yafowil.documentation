@@ -43,7 +43,7 @@ YAFOWIL currently integrates with the following packages:
 * `yafowil.plone <http://pypi.python.org/pypi/yafowil.plone>`_
 * `yafowil.webob <http://pypi.python.org/pypi/yafowil.webob>`_
 * `yafowil.werkzeug <http://pypi.python.org/pypi/yafowil.werkzeug>`_
-* `yafowil.bootstrap <http://pypi.python.org/pypi/yafowil.werkzeug>`_
+* `yafowil.bootstrap <http://pypi.python.org/pypi/yafowil.bootstrap>`_
 
 For details read the chapter ``integrations``.
 

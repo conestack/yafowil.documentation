@@ -34,7 +34,8 @@ Package ``yafowil.plone`` handles integration for Zope 2 and Plone.
 In ``portal_setup`` or in site-setup ``add-ons`` install YAFOWIL.
 
 The example
-`YAFOWIL tutorial at plone.org <http://plone.org/documentation/kb/build-a-custom-search-form-with-yafowil>`_
+`YAFOWIL tutorial at plone.org 
+<http://plone.org/documentation/kb/build-a-custom-search-form-with-yafowil>`_
 explains how to build a custom search form using YAFOWIL.
 
 
@@ -43,3 +44,10 @@ Werkzeug based frameworks
 
 The package ``yafowil.werkzeug`` provides binding to ``Werkzeug`` based
 frameworks, such as ``Flask`` or ``tipfy``.
+
+
+Boostrap Styles
+---------------
+
+The package ``yafowil.bootstrap`` ships with twitter bootstrap resources and
+provides common widget configuration in order of a pretty look and feel.
