@@ -5,7 +5,7 @@ from setuptools import (
 )
 
 
-version = '2.0.2'
+version = '2.0.3'
 shortdesc = \
 'Documentation of YAFOWIL - Yet Another Form Widget Library'
 longdesc = "See http://docs.yafowil.info"
