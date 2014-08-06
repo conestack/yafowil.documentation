@@ -9,7 +9,6 @@ version = '2.0.3'
 shortdesc = \
 'Documentation of YAFOWIL - Yet Another Form Widget Library'
 longdesc = "See http://docs.yafowil.info"
-tests_require = ['interlude']
 
 
 setup(name='yafowil.documentation',
@@ -40,7 +39,8 @@ setup(name='yafowil.documentation',
           'collective.sphinx.includedoc',
           'yafowil',
           'yafowil.yaml',
-           # add-on widgets to document
+          # add-on widgets to document
+          #'yafowil.widget.alohaeditor',
           'yafowil.widget.ace',
           'yafowil.widget.array',
           'yafowil.widget.autocomplete',
@@ -49,14 +49,11 @@ setup(name='yafowil.documentation',
           'yafowil.widget.dict',
           'yafowil.widget.dynatree',
           'yafowil.widget.image',
+          'yafowil.widget.location',
           'yafowil.widget.multiselect',
+          'yafowil.widget.recaptcha',
           'yafowil.widget.richtext',
           'yafowil.widget.select2',
           'yafowil.widget.slider',
           'yafowil.widget.wysihtml5',
-      ],
-      tests_require=tests_require,
-      test_suite="yafowil.tests.test_suite",
-      extras_require = dict(
-          test=tests_require,
-      ))
+      ])
