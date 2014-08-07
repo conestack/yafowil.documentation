@@ -333,3 +333,61 @@ of a
             'myvalidation': dict(extractor=[myvalidator]),
         }
     )
+
+
+Delivering resources
+--------------------
+
+YAFOWIL addon widgets are shipped with related Javascript and Stylesheet
+resources. These resources are registered to the factory with additional
+information like delivery order and resources group.
+
+To help the integrator delivering these resources through the used web
+framework, the helper object ``yafowil.resources.YafowilResources`` is supposed
+to be used.
+
+The function ``configure_resource_directory`` should be overwritten on deriving
+class which is responsible to make the given physical resource directory
+somehow available to the web.
+
+The object can be instanciated with ``js_skip`` and ``css_skip`` keyword
+arguments, which contain iterable resource group names to skip when calculating
+resources. This is useful if basic or dependency resources are already shipped
+in another way.
+
+The following example shows how to integrate YAFOWIL resources in a
+`pyramid <http://www.pylonsproject.org>`_ application.
+
+.. code-block:: python
+
+    from pyramid.static import static_view
+    from yafowil.resources import YafowilResources
+    import mypackage.views
+
+    class Resources(YafowilResources):
+
+       def __init__(self, js_skip=[], css_skip=[], config=None):
+           self.config = config
+           super(Resources, self).__init__(js_skip=js_skip, css_skip=css_skip)
+
+       def configure_resource_directory(self, plugin_name, resourc_edir):
+           # instanciate static view
+           resources_view = static_view(resourc_edir, use_subpath=True)
+           # attach resources view to package
+           view_name = '%s_resources' % plugin_name.replace('.', '_')
+           setattr(mypackage.views, view_name, resources_view)
+           # register view via config
+           view_path = 'mypackage.views.%s' % view_name
+           resource_base = '++resource++%s' % plugin_name
+           self.config.add_view(view_path, name=resource_base)
+           return resource_base
+
+    def includeme(config):
+        # resources object gets instanciated only once
+        resources = Resources(config)
+
+        # sorted JS resources URL's. Supposed to be rendered to HTML
+        resources.js_resources
+
+        # sorted CSS resources URL's. Supposed to be rendered to HTML
+        resources.css_resources
