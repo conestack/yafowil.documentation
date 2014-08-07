@@ -336,7 +336,7 @@ of a
 
 
 Delivering resources
---------------------
+====================
 
 YAFOWIL addon widgets are shipped with related Javascript and Stylesheet
 resources. These resources are registered to the factory with additional
