@@ -1,11 +1,10 @@
-import os
 from setuptools import (
     setup,
     find_packages,
 )
 
 
-version = '2.0.3'
+version = '2.1'
 shortdesc = \
 'Documentation of YAFOWIL - Yet Another Form Widget Library'
 longdesc = "See http://docs.yafowil.info"
@@ -37,6 +36,7 @@ setup(name='yafowil.documentation',
           'Pillow',
           'sphinx',
           'collective.sphinx.includedoc',
+          'sphinx_bootstrap_theme',
           'yafowil',
           'yafowil.yaml',
           # add-on widgets to document
