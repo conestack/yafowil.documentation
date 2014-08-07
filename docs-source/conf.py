@@ -29,7 +29,10 @@ import sphinx_bootstrap_theme
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = []
+extensions = [
+    'yafowil.documentation',
+    'collective.sphinx.includedoc',
+]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -45,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'YAFOWIL Documentation'
-copyright = u'2014, Robert Niederreiter, Jens Klein'
+copyright = u'2014, Robert Niederreiter, Jens Klein, et al'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -105,8 +108,11 @@ html_theme = 'bootstrap'
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    'navbar_fixed_top': 'false',
     'bootstrap_version': '3',
+    'navbar_fixed_top': 'false',
+    'navbar_class': 'navbar navbar-inverse',
+    'navbar_pagenav': False,
+    'source_link_position': 'false',
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
@@ -114,7 +120,7 @@ html_theme_path = sphinx_bootstrap_theme.get_html_theme_path()
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-#html_title = None
+html_title = "YAFOWIL - Yet Another Form Widget Library"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
@@ -201,7 +207,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'YAFOWILDocumentation.tex', u'YAFOWIL Documentation Documentation',
-   u'Robert Niederreiter, Jens Klein', 'manual'),
+   u'Robert Niederreiter, Jens Klein, et al', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -231,7 +237,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'yafowildocumentation', u'YAFOWIL Documentation Documentation',
-     [u'Robert Niederreiter, Jens Klein'], 1)
+     [u'Robert Niederreiter, Jens Klein, et al'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -245,7 +251,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'YAFOWILDocumentation', u'YAFOWIL Documentation Documentation',
-   u'Robert Niederreiter, Jens Klein', 'YAFOWILDocumentation', 'One line description of project.',
+   u'Robert Niederreiter, Jens Klein, et al', 'YAFOWILDocumentation', 'One line description of project.',
    'Miscellaneous'),
 ]
 
