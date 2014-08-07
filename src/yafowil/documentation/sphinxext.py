@@ -55,6 +55,23 @@ class WidgetDoc(YDirective):
             sec.append(nodes.paragraph(
                 text='This widget is currently undocumented.'))
 
+        # document properties
+        rub = nodes.rubric(text='Properties')
+        sec.append(rub)
+        table = """
+        +----------+---------+-------------+
+        | name     | default | description |
+        +==========+=========+=============+
+        | replace  | replace | replace     |
+        +----------+---------+-------------+
+        """
+        table = self._rest2node(table)
+        table.children[0].children[0].children[4].children = []
+        rub.append(table)
+        for prop in self._managed_props_of(widgetname):
+            table.children[0].children[0].children[4].append(
+                                                      self._doc_property(prop))
+
         # build table of callables used
         rub = nodes.rubric(text='Chains')
         sec.append(rub)
@@ -71,23 +88,6 @@ class WidgetDoc(YDirective):
         for col, idx in [(0, 0), (1, 1), (2, 4), (3, 2), (4, 3)]:
             row[col].children = []
             row[col].append(self._doc_chain(widgetname, idx))
-
-        # document properties
-        rub = nodes.rubric(text='Properties')
-        sec.append(rub)
-        table = """
-        +----------+---------+-------------+---------+
-        | property | default | description | used by |
-        +==========+=========+=============+=========+
-        | replace  | replace | replace     | replace |
-        +----------+---------+-------------+---------+
-        """
-        table = self._rest2node(table)
-        table.children[0].children[0].children[5].children = []
-        rub.append(table)
-        for prop in self._managed_props_of(widgetname):
-            table.children[0].children[0].children[5].append(
-                                                      self._doc_property(prop))
         return sec
 
     def _doc_chain(self, widgetname, chainidx):
@@ -109,18 +109,17 @@ class WidgetDoc(YDirective):
     def _doc_property(self, wpname):
         blueprint_name, prop = wpname.split('.')
         table = """
-        +----------+---------+-------------+---------+
-        | property | default | description | used by |
-        +==========+=========+=============+=========+
-        | replace  | replace | replace     | replace |
-        +----------+---------+-------------+---------+
+        +----------+---------+-------------+
+        | name     | default | description |
+        +==========+=========+=============+
+        | replace  | replace | replace     |
+        +----------+---------+-------------+
         """
         table = self._rest2node(table)
-        row = table.children[0].children[0].children[5].children[0]
+        row = table.children[0].children[0].children[4].children[0]
         row[0].children = []
         row[1].children = []
         row[2].children = []
-        row[3].children = []
 
         row[0].append(nodes.paragraph(text=prop))
 
@@ -143,6 +142,7 @@ class WidgetDoc(YDirective):
             row[2].append(nodes.paragraph('(not documented)'))
             # this does not log. bullshit. no idea how to make sphinx log
             print "YAFOWIL property '%s' is not documented!" % wpname
+
         ul = nodes.bullet_list()
         used = []
 
@@ -172,7 +172,11 @@ class WidgetDoc(YDirective):
         if not used:
             print "YAFOWIL property '%s' is not handled by managed props!" % \
                   wpname
-        row[3].append(ul)
+
+        if (len(ul)):
+            row[2].append(nodes.strong(text='Used by:'))
+            row[2].append(ul)
+
         return row
 
 

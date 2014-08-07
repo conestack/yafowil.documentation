@@ -29,3 +29,11 @@
     background-color:#fcf8e3;
     color:#8a6d3b;
 }
+table td strong {
+    padding-top:8px;
+    display:block;
+}
+table td ul {
+    padding-left:1em;
+    margin-bottom:0;
+}
