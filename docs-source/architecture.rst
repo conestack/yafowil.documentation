@@ -100,27 +100,38 @@ Basics
 
 The factory knows of the available blueprints and is respsonsible to construct
 and configure widget instances. To construct a widget the factory gets called
-with the blueprint name as first parameter::
+with the blueprint name as first parameter:
 
-    >>> from yafowil.base import factory
-    >>> widget = factory('text', ...)
+.. code-block:: python
+
+    from yafowil.base import factory
+    widget = factory('text', ...)
 
 The behavior of the callbacks in the different execution chains of the
 blueprint can be configured with the ``props`` dict. See blueprints reference
-for a full list of accepted properties::
+for a full list of accepted properties:
 
-    >>> widget = factory('text', props={
-    ...     'disabled': 'disabled'})
+.. code-block:: python
+
+    widget = factory('text', props={
+        'disabled': 'disabled',
+    })
 
 For the root widget (most probably the form itself), the name attribute must be
-given to the factory::
+given to the factory:
 
-    >>> form = factory('form', name='example_form', props={
-    ...     'action': 'http://www.example.com/process_form'})
+.. code-block:: python
 
-Child widget names are set transparent using the child ``key``::
+    form = factory('form', name='example_form', props={
+        'action': 'http://www.example.com/process_form',
+    })
 
-    >>> form['field_1'] = factory('text')
+Child widget names are set transparent using the child ``key``:
+
+.. code-block:: python
+
+    form['field_1'] = factory('text')
+
 
 Combining blueprints - the factory chain
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -138,12 +149,15 @@ time, the so called ``factory chain``.
 The blueprint chain is used by passing a colon seperated list of blueprint names
 as string to the factory as first argument. I.e. provide a text field inside a
 wrapper div with label, help text and error message if extraction failed, call
-factory like so::
+factory like so:
 
-    >>> form['field_1'] = factory('field:label:error:text', props={
-    ...     'label': 'Field 1',
-    ...     'help': 'Helptext for field 1',
-    ...     'required': 'Field 1 must not be empty'})
+.. code-block:: python
+
+    form['field_1'] = factory('field:label:error:text', props={
+        'label': 'Field 1',
+        'help': 'Helptext for field 1',
+        'required': 'Field 1 must not be empty',
+    })
 
 This causes the callable chains of each blueprint beeing executed in order.
 Extractors are executed from right to left while all others are executed left
@@ -154,13 +168,17 @@ one callable inside the execution chains. To address a property specific to a
 blueprint of the widget, you can prefix it with the blueprint name.
 
 E.g., 'label.class' addresses the 'class' property of the 'label' blueprint
-only instead of effecting all blueprints::
+only instead of effecting all blueprints:
 
-    >>> form['field_1'] = factory('field:label:error:text', props={
-    ...     'label': 'Field 1',
-    ...     'label.class': 'label_css_class'
-    ...     'help': 'Helptext for field 1',
-    ...     'required': 'Field 1 must not be empty'})
+.. code-block:: python
+
+    form['field_1'] = factory('field:label:error:text', props={
+        'label': 'Field 1',
+        'label.class': 'label_css_class'
+        'help': 'Helptext for field 1',
+        'required': 'Field 1 must not be empty',
+    })
+
 
 Macros - predefined factory chains
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -168,19 +186,25 @@ Macros - predefined factory chains
 For the lazy people macros are provided. Macros expand to a factory chain of
 blueprints. Expansion happens at chain-lookup time before the widget is built.
 
-Macros must be registered in the factory and can override property defaults::
+Macros must be registered in the factory and can override property defaults:
 
-    >>> factory.register_macro('field', 'field:label:error', 'props': {
-    ...     'field.class': 'field',
-    ...     'field.error_class': 'error',
-    ...     'error.class': 'fieldErrorBox',
-    ...     'error.render_empty': True,
-    ...     'error.position': 'before'})
+.. code-block:: python
+
+    factory.register_macro('field', 'field:label:error', 'props': {
+        'field.class': 'field',
+        'field.error_class': 'error',
+        'error.class': 'fieldErrorBox',
+        'error.render_empty': True,
+        'error.position': 'before',
+    })
 
 Now the ``field`` macro can be used inside the factory chain by name prefixed
-with ``#``::
+with ``#``:
 
-    >>> textfield = factory('#field:text')
+.. code-block:: python
+
+    textfield = factory('#field:text')
+
 
 Custom blueprints
 ~~~~~~~~~~~~~~~~~
@@ -205,27 +229,36 @@ keyword argument, which is a dict with custom blueprint names as keys
 (``mycustom`` in our example), and the custom blueprint configuration as
 explained above.
 
-Create custom callbacks::
+Create custom callbacks:
 
-    >>> def special_renderer(widget, data):
-    ...     return u'<SPECIAL>%s</SPECIAL>' % data.rendered
+.. code-block:: python
 
-    >>> def special_extractor(widget, data):
-    ...     return data.extracted + ['extracted special']
+    def special_renderer(widget, data):
+        return u'<SPECIAL>%s</SPECIAL>' % data.rendered
 
-Inject as dict::
+    def special_extractor(widget, data):
+        return data.extracted + ['extracted special']
 
-    >>> widget = factory('outer:*special:inner', custom={
-    ...     'special': {'extractors': [special_extractor], 
-    ...                 'edit_renderers': [special_renderer]}})
+Inject as dict:
 
-Inject as list::
+.. code-block:: python
 
-    >>> widget = factory('outer:*special:inner', custom={
-    ...    'special': ([special_extractor], [special_renderer], [], [], [])})
+    widget = factory('outer:*special:inner', custom={
+        'special': {
+            'extractors': [special_extractor], 
+            'edit_renderers': [special_renderer],
+        },
+    })
+
+Inject as list:
+
+.. code-block:: python
+
+    widget = factory('outer:*special:inner', custom={
+        'special': ([special_extractor], [special_renderer], [], [], []),
+    })
 
 Custom blueprints are great for easily injecting validation extractors.
-
 
 
 Blueprints
@@ -238,6 +271,7 @@ data or converting data received from the request.
 This behaviors are organized as chains of callables. The behavior of the
 callables itself is controlled by properties. Each chain has different
 responsibilities. Chains are executed left-to-right.
+
 
 Extractor chain
 ~~~~~~~~~~~~~~~
@@ -254,6 +288,7 @@ callable expecting a widget instance and a runtime data instance as parameters.
     returned. If only positive integers are allowed a validating extractor is
     added to the chain. If its not positive an ExtractionError is raised,
     otherwise the value is returned unmodified.
+
 
 Edit renderer chain
 ~~~~~~~~~~~~~~~~~~~
@@ -280,6 +315,7 @@ The edit renderer chain is executed if mode of widget is 'edit'.
     are reusable and may be used in other contexts, i.e. in an image blueprint
     context.
 
+
 Display renderer chain
 ~~~~~~~~~~~~~~~~~~~~~~
 
@@ -299,6 +335,7 @@ widget can have it own mode.
     even to see it at all. The mode property of the widget controlls if the
     rendering chain, and which rendering chain gets executed.
 
+
 Preprocessor chain
 ~~~~~~~~~~~~~~~~~~
 
@@ -315,6 +352,7 @@ after the global preprocessors.
     i.e. via ``zope.i18n``. A framework integration package now provides one
     global preprocessor function wrapping the request if needed, and another
     hooking up the i18n message factory and the translate function.
+
 
 Builder chain
 ~~~~~~~~~~~~~

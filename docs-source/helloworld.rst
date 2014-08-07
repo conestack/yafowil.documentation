@@ -22,7 +22,9 @@ Add file ``buildout.cfg`` containing::
     recipe = zc.recipe.egg:scripts
     egg = helloworld
     
-Add file ``setup.py``::
+Add file ``setup.py``:
+
+.. code-block:: python
 
     from setuptools import setup, find_packages
     setup(name='helloworld',
@@ -34,33 +36,35 @@ Add file ``setup.py``::
           helloworld = helloworld.run:run    
           """ 
     )    
-    
+
 Add ``src/helloworld/run.py`` including a minimal web application, the YAFOWIL
-form and a dumb filesystem based storage::
+form and a dumb filesystem based storage:
+
+.. code-block:: python
 
     from yafowil import loader
     import yafowil.webob
     from yafowil.base import factory
     from yafowil.controller import Controller
     from webob import Request, Response
-    
+
     address, port = '127.0.0.1', 8080 
     url = 'http://%s:%s/' % (address, port)
-    
+
     def store(widget, data):
         with open('helloworld.txt', 'a') as storage:
             storage.write(data.fetch('helloworld.hello').extracted + '\n')    
-        
+
     def readall():
         try:
             with open('helloworld.txt', 'r') as storage:
                 return reversed(storage.readlines())
         except IOError:
             return ['Empty storage!']
-    
+
     def next(request):
         return url
-    
+
     def application(environ, start_response):
         request = Request(environ)
         response = Response()
@@ -80,7 +84,7 @@ form and a dumb filesystem based storage::
         response.write(controller.rendered)
         response.write('<hr />%s</html></body>' % '<br />'.join(readall()))
         return response(environ, start_response)
-        
+
     def run():
         from wsgiref.simple_server import make_server
         server = make_server(address, port, application)
@@ -94,5 +98,5 @@ Now bootstrap and run buildout, and start the application.::
 
 Pointing the browser to `<http://localhost:8080/>`_ shows the application.
 
-The ``full working example code <https://github.com/bluedynamics/yafowil-example-helloworld>``_
+The `full working example code  <https://github.com/bluedynamics/yafowil-example-helloworld>`_
 is at github available.

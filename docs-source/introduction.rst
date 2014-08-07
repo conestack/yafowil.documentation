@@ -14,6 +14,7 @@ YAFOWIL provides blueprints for all HTML standard inputs, lots of helper
 blueprints for buidling complex widgets and a bunch of add-ons (usally in
 namespace ``yafowil.widget.*``).
 
+
 Motivation
 ==========
 
@@ -27,6 +28,7 @@ Another common problem with form libs is a non-unique look and feel of the
 available widget collection. YAFOWIL tries to provide some useful addon widgets
 which tries to take care of a unified user experience.
 
+
 Dependencies
 ============
 
@@ -34,6 +36,7 @@ YAFOWIL aims to have no dependencies to any web framework. It utilizes the
 `node <http://pypi.python.org/pypi/node>`_
 package. YAFOWIL does not know about data-storage, but offers a hook to add
 processing callback handler functions.
+
 
 Integrations
 ============
@@ -47,40 +50,52 @@ YAFOWIL currently integrates with the following packages:
 
 For details read the chapter ``integrations``.
 
+
 Example
 =======
 
 For the impatient, code says more than 1000 words: A simple example form works
-like so::
+like so:
 
-    >>> import yafowil.loader
-    >>> from yafowil.base import factory
-    >>> from yafowil.controller import Controller
+.. code-block:: python
 
-Produce a form.::
+    import yafowil.loader
+    from yafowil.base import factory
+    from yafowil.controller import Controller
 
-    >>> form = factory('form', name='myform', props={
-    ...     'action': 'http://www.domain.tld/someform'})
+Produce a form.:
+
+.. code-block:: python
+
+    form = factory('form', name='myform', props={
+        'action': 'http://www.domain.tld/someform',
+    })
     
-    >>> form['someinput'] = factory('label:text', props={
-    ...     'label': 'Your Text'})
+    form['someinput'] = factory('label:text', props={
+        'label': 'Your Text',
+    })
 
-    >>> def formaction(widget, data):
-    ...     data.printtree()
+    def formaction(widget, data):
+        data.printtree()
 
-    >>> def formnext(request):
-    ...     return 'http://www.domain.tld/result'
+    def formnext(request):
+        return 'http://www.domain.tld/result'
 
-    >>> form['submit'] = factory('submit', props={
-    ...     'handler': formaction,
-    ...     'next': formnext,
-    ...     'action': True})
+    form['submit'] = factory('submit', props={
+        'handler': formaction,
+        'next': formnext,
+        'action': True,
+    })
 
-Render empty form by calling the form object::
+Render empty form by calling the form object:
 
-    >>> rendered = form()
+.. code-block:: python
 
-This results in::
+    rendered = form()
+
+This results in:
+
+.. code-block:: html
 
     <form action="http://www.domain.tld/someform"
           enctype="multipart/form-data"
@@ -96,16 +111,22 @@ This results in::
                value="submit" />
     </form>
 
-Get form data from of request (request is expected dict-like)::
+Get form data from of request (request is expected dict-like):
 
-    >>> request = {'myform.someinput': 'Hello World',
-    ...            'action.myform.submit': 'submit'}
-    >>> controller = Controller(form, request)
-    >>> controller.data
+.. code-block:: python
+
+    request = {'myform.someinput': 'Hello World',
+               'action.myform.submit': 'submit'}
+    controller = Controller(form, request)
+
+::
+
+    controller.data
     <RuntimeData myform, value=None, extracted=None at ...>
       <RuntimeData myform.someinput, value=None, extracted='Hello World',
       attrs={'input_field_type': 'text'} at ...>
       <RuntimeData myform.submit, value=None, extracted=<UNSET> at ...>
+
 
 Creating a widget
 =================
@@ -114,22 +135,28 @@ A widget is an instance of a blueprint created by the factory. Factory is a
 singleton and operates also as a registry for blueprints.
 
 By calling the factory a widget is created, here a naked text input field from
-the blueprint ``text``:: 
+the blueprint ``text``:
 
-    >>> widget = factory('text')
+.. code-block:: python
 
-Blueprints can be chained by colon separated names or given as list::
+    widget = factory('text')
 
-    >>> widget = factory('field:label:text')
+Blueprints can be chained by colon separated names or given as list:
+
+.. code-block:: python
+
+    widget = factory('field:label:text')
 
 This causes the created widget to chain the registered renderers, extractors,
 and other parts of the blueprints ``field``, ``label`` and ``text`` in order.
 
 Blueprint chains can be organised using as macros to reduce the complexity of
-factory calls (details below). I.e.::
+factory calls (details below). I.e.:
 
-    >>> widget = factory('#field:text')
-    
+.. code-block:: python
+
+    widget = factory('#field:text')
+
 expands the macro ``#field`` to ``field:label:error`` and appends ``:text`` so
 the result is ``field:label:error:text``.
 
@@ -146,16 +173,23 @@ instances are ``dict-like`` objects.
 Thus, a widget is either a compound node (containing children) or a leaf node
 in this tree.
 
-Building widget trees is as simple as using python dicts::
+Building widget trees is as simple as using python dicts:
 
-    >>> form = factory('form', 'UNIQUENAME', props={
-    ...     'action': 'someurl'})
-    >>> form['somefield'] = factory('field:label:text', props={
-    ...     'label': 'Some Field'})
-    >>> form['somefieldset'] = factory('fieldset', props={
-    ...     'legend': 'A Fieldset'})
-    >>> form['somefieldset']['innerfield'] = factory('field:label:text', props={
-    ...     'label': 'Inner Field'})
+.. code-block:: python
+
+    form = factory('form', 'UNIQUENAME', props={
+        'action': 'someurl',
+    })
+    form['somefield'] = factory('field:label:text', props={
+        'label': 'Some Field',
+    })
+    form['somefieldset'] = factory('fieldset', props={
+        'legend': 'A Fieldset',
+    })
+    form['somefieldset']['innerfield'] = factory('field:label:text', props={
+        'label': 'Inner Field',
+    })
+
 
 Rendering Mode
 ==============
@@ -185,6 +219,7 @@ In YAFOWIL validation and extraction happens at the same time. Extraction means
 to get a meaningful value out of the request. Validation means to check
 constraints, i.e if a number is positive or an e-mail-adress is valid.
 
+
 Invariants
 ==========
 
@@ -194,51 +229,67 @@ to validate.
 
 Here is a short example (extension of the ``hello world`` example) for a custom
 invariant extractor which checks if one or the other field is filled, but never
-both or none (XOR)::
+both or none (XOR):
 
-    >>> from yafowil.base import ExtractionError
-    >>> # ... see helloworld example whats missing here
-    
-    >>> def myinvariant_extractor(widget, data):
-    ...     if not (bool(data['hello']) != bool(data['world']):
-    ...         error = ExtractionError(
-    ...             'provide hello or world, not both or none')
-    ...         data['hello'].error.append(error)
-    ...         data['world'].error.append(error)
-    ...     return data.extracted
-    
-    >>> def application(environ, start_response): 
-    ...     # ... see helloworld example whats missing here
-    ...     form = factory(u'*myinvariant:form', name='helloworld', 
-    ...         props={'action': url},
-    ...         custom={'myinvariant': dict(extractors=[myinvariant_extractor])}
-    ...         )
-    ...     form['hello'] = factory('field:label:error:text', props={
-    ...         'label': 'Enter some text here',
-    ...         'value': ''})
-    ...     form['world'] = factory('field:label:error:text', props={
-    ...         'label': 'OR Enter some text here',
-    ...         'value': ''})
-    ...     # ... see helloworld example whats missing here
+.. code-block:: python
+
+    from yafowil.base import ExtractionError
+    # ... see helloworld example whats missing here
+
+    def myinvariant_extractor(widget, data):
+        if not (bool(data['hello']) != bool(data['world']):
+            error = ExtractionError(
+                'provide hello or world, not both or none')
+            data['hello'].error.append(error)
+            data['world'].error.append(error)
+        return data.extracted
+
+    def application(environ, start_response): 
+        # ... see helloworld example whats missing here
+        form = factory(
+            u'*myinvariant:form',
+            name='helloworld', 
+            props={
+                'action': url,
+            },
+            custom={
+                'myinvariant': dict(extractors=[myinvariant_extractor]),
+            }
+        )
+        form['hello'] = factory('field:label:error:text', props={
+            'label': 'Enter some text here',
+            'value': '',
+        })
+        form['world'] = factory('field:label:error:text', props={
+            'label': 'OR Enter some text here',
+            'value': '',
+        })
+        # ... see helloworld example whats missing here
+
 
 Providing blueprints
 ====================
 
 General behaviours (rendering, extracting, etc...) can be registered as
-blueprint in the factory::
+blueprint in the factory:
 
-    >>> factory.register(
-    ...     'myblueprint', 
-    ...     extractors=[myvalidator], 
-    ...     edit_renderers=[],
-    ...     display_renderers=[],
-    ...     preprocessors=[],
-    ...     builders=[])
+.. code-block:: python
 
-and then used as regular blueprint when calling the factory::
+    factory.register(
+        'myblueprint', 
+        extractors=[myvalidator], 
+        edit_renderers=[],
+        display_renderers=[],
+        preprocessors=[],
+        builders=[])
 
-    >>> widget = factory('field:label:myblueprint:text', props={
-    ...     'label': 'Inner Field'})
+and then used as regular blueprint when calling the factory:
+
+.. code-block:: python
+
+    widget = factory('field:label:myblueprint:text', props={
+        'label': 'Inner Field',
+    })
 
 
 Adding custom behaviour
@@ -265,15 +316,20 @@ of a
     Generic hook to prepare runtime-data. Runs once per runtime-data instance
     before extractors or renderers are running.
 
-::
+.. code-block:: python
 
-    >>> def myvalidator(widget, data):
-    ...    # validate the data, raise ExtractionError if somethings wrong
-    ...    if data.extracted != 'something:'
-    ...        raise ExtractionError("only 'something' is allowed as input.")
-    ...    return data.extracted
-         
-    >>> widget = factory('field:label:*myvalidation:text', 
-    ...                  props={'label': 'Inner Field'},
-    ...                  custom={'myvalidation': dict(extractor=[myvalidator])}
-    ... )
+    def myvalidator(widget, data):
+       # validate the data, raise ExtractionError if somethings wrong
+       if data.extracted != 'something:'
+           raise ExtractionError("only 'something' is allowed as input.")
+       return data.extracted
+
+    widget = factory(
+        'field:label:*myvalidation:text', 
+        props={
+            'label': 'Inner Field',
+        },
+        custom={
+            'myvalidation': dict(extractor=[myvalidator]),
+        }
+    )
