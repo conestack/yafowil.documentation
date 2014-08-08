@@ -384,7 +384,7 @@ The following example shows how to integrate YAFOWIL resources in a
 
     def includeme(config):
         # resources object gets instanciated only once
-        resources = Resources(config)
+        resources = Resources(config=config)
 
         # sorted JS resources URL's. Supposed to be rendered to HTML
         resources.js_resources
