@@ -10,6 +10,7 @@
 /.pydevproject.bak
 /.project
 /.settings
+/pip-selfcheck.json
 /buildout.cfg
 /env/
 /dist/
