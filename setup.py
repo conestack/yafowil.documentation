@@ -2,7 +2,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '2.1'
+version = '2.2.dev0'
 shortdesc = \
     'Documentation of YAFOWIL - Yet Another Form Widget Library'
 longdesc = "See http://docs.yafowil.info"

@@ -18,7 +18,7 @@ namespace ``yafowil.widget.*``).
 Motivation
 ==========
 
-Tired of inventing widgets again and again after switching the Python framework
+Tired of inventing widgets again and again when using several Python frameworks
 YAFOWIL is intentionally written framework-independent. By just feeding it with
 configuration it can be used and extended in most of existing python web
 frameworks. Zope, Pyramid, Django, Flask, CherryPy and similar are
@@ -26,7 +26,7 @@ candidates.
 
 Another common problem with form libs is a non-unique look and feel of the
 available widget collection. YAFOWIL tries to provide some useful addon widgets
-which tries to take care of a unified user experience.
+which takes care of a unified user experience.
 
 
 Dependencies
@@ -35,7 +35,8 @@ Dependencies
 YAFOWIL aims to have no dependencies to any web framework. It utilizes the
 `node <http://pypi.python.org/pypi/node>`_
 package. YAFOWIL does not know about data-storage, but offers a hook to add
-processing callback handler functions.
+processing callback handler functions and a mechanism for delegating persitence
+automatically to a certain degree.
 
 
 Integrations
@@ -67,13 +68,18 @@ Produce a form.:
 
 .. code-block:: python
 
-    form = factory('form', name='myform', props={
-        'action': 'http://www.domain.tld/someform',
-    })
-    
-    form['someinput'] = factory('label:text', props={
-        'label': 'Your Text',
-    })
+    form = factory(
+        'form',
+        name='myform',
+        props={
+            'action': 'http://www.domain.tld/someform',
+        })
+
+    form['someinput'] = factory(
+        'label:text',
+        props={
+            'label': 'Your Text',
+        })
 
     def formaction(widget, data):
         data.printtree()
@@ -81,11 +87,13 @@ Produce a form.:
     def formnext(request):
         return 'http://www.domain.tld/result'
 
-    form['submit'] = factory('submit', props={
-        'handler': formaction,
-        'next': formnext,
-        'action': True,
-    })
+    form['submit'] = factory(
+        'submit',
+        props={
+            'handler': formaction,
+            'next': formnext,
+            'action': True,
+        })
 
 Render empty form by calling the form object:
 
@@ -111,21 +119,21 @@ This results in:
                value="submit" />
     </form>
 
-Get form data from of request (request is expected dict-like):
+Process form with request. Request is expected as read mapping (dict-like):
 
 .. code-block:: python
 
-    request = {'myform.someinput': 'Hello World',
-               'action.myform.submit': 'submit'}
+    request = {
+        'myform.someinput': 'Hello World',
+        'action.myform.submit': 'submit'
+    }
     controller = Controller(form, request)
 
-::
+The processing result gets written to ``controller.data``::
+
+.. code-block:: python
 
     controller.data
-    <RuntimeData myform, value=None, extracted=None at ...>
-      <RuntimeData myform.someinput, value=None, extracted='Hello World',
-      attrs={'input_field_type': 'text'} at ...>
-      <RuntimeData myform.submit, value=None, extracted=<UNSET> at ...>
 
 
 Creating a widget
@@ -161,40 +169,53 @@ expands the macro ``#field`` to ``field:label:error`` and appends ``:text`` so
 the result is ``field:label:error:text``.
 
 
-Widgets are Organized as a Tree
-===============================
+Widgets trees
+=============
 
-Any HTML form can be visualized as a tree: The ``<form>`` is the root,
-``<input>`` elements are its children. Also a ``<fieldset>`` grouping a bunch of
-``<input>`` is a compound with children. In YAFOWIL the form is organized as a
-tree which is like a ordered python ``dict`` with each value a dict again. Widget
-instances are ``dict-like`` objects.
+YAFOWIL forms are organized as **widget trees**. The entire form is the
+root widget which contain compound nodes (containing children again) and/or
+leaf nodes. A widget behaves similar to an ordered python dictionary. Compounds
+may represent the entire HTML form or fieldsets, while leaf objects may
+represent the various HTML input fields.
 
-Thus, a widget is either a compound node (containing children) or a leaf node
-in this tree.
-
-Building widget trees is as simple as using python dicts:
+Thus building widget trees looks like:
 
 .. code-block:: python
 
-    form = factory('form', 'UNIQUENAME', props={
-        'action': 'someurl',
-    })
-    form['somefield'] = factory('field:label:text', props={
-        'label': 'Some Field',
-    })
-    form['somefieldset'] = factory('fieldset', props={
-        'legend': 'A Fieldset',
-    })
-    form['somefieldset']['innerfield'] = factory('field:label:text', props={
-        'label': 'Inner Field',
-    })
+    form = factory(
+        'form',
+        name='formname',
+        props={
+            'action': 'someurl',
+        })
+    form['somefield'] = factory(
+        'field:label:text',
+        props={
+            'label': 'Some Field',
+        })
+    form['somefieldset'] = factory(
+        'fieldset',
+        props={
+            'legend': 'A Fieldset',
+        })
+    form['somefieldset']['innerfield'] = factory(
+        'field:label:text',
+        props={
+            'label': 'Inner Field',
+        })
+    form['submit'] = factory(
+        'submit',
+        props={
+            'handler': formaction,
+            'next': formnext,
+            'action': True,
+        })
 
 
 Rendering Mode
 ==============
 
-The way a widget is rendered is controlled by the mode. Every widget may given
+The way a widget is rendered is controlled by it's mode. Every widget may given
 a ``mode`` keyword argument to the factory as a string or a callable accepting
 two parameters  ``widget`` and ``data``returning a string.
 
@@ -212,16 +233,73 @@ These modes are supported:
     Renders just an empty string.
 
 
+Data extraction
+===============
+
+After calling the ``Controller`` we have the form processing result on
+``controller.data`` which is an instance of ``yafowil.base.RuntimeData``.
+Like widgets, runtime data is organized as tree where each runtime data node
+refers to a widget node and provides the extracted value and error(s) occurred
+while extracting data from request.
+
+.. code-block:: python
+
+    request = {
+        'formname.somefield': 'Hello World',
+        'action.formname.submit': 'submit'
+    }
+    controller = Controller(form, request)
+
+    data = controller.data
+
+    value = data.fetch('myform.someinput').extracted
+
+
 Validation
 ==========
 
 In YAFOWIL validation and extraction happens at the same time. Extraction means
 to get a meaningful value out of the request. Validation means to check
-constraints, i.e if a number is positive or an e-mail-adress is valid.
+constraints, i.e if a number is positive or an e-mail-adress is valid. If
+validation fails, ``ExtractionErrors`` are collected on runtime data describing
+what happened.
+
+
+Datatype extraction
+-------------------
+
+There is a set of common blueprints where you can define the ``datatype`` of
+the exracted value. Datatype is either some primitive type like ``int`` or
+``float``, a class object which can be instanciated with the extracted string
+value like ``uuid.UUID``, or a callable expecting the extracted string value
+and converting it to whatever.
+
+.. code-block:: python
+
+    form['somefield'] = factory('field:label:text', props={
+        'label': 'Some Field',
+        'datatype': int
+    })
+
+When providing a ``datatype`` to a widget which is not ``required``, we
+probably want to have a valid ``emptyvalue``, which takes effect if request
+contains an empty string for this widget. The empty value must either be of
+or castable to the defined ``datatype`` or ``UNSET``.
+
+.. code-block:: python
+
+    form['somefield'] = factory('field:label:text', props={
+        'label': 'Some Field',
+        'datatype': int,
+        'emptyvalue': 0
+    })
+
+Blueprints which provide this behavior by default are ``hidden``, ``proxy``,
+``text``, ``lines``, ``select`` and ``number``.
 
 
 Invariants
-==========
+----------
 
 Invariants are implemented as extractors on compounds. Usally they are put as
 a custom blueprint (see below) with one extractor on some parent of the elements
@@ -237,9 +315,10 @@ both or none (XOR):
     # ... see helloworld example whats missing here
 
     def myinvariant_extractor(widget, data):
-        if not (bool(data['hello']) != bool(data['world']):
+        if data['hello'].extacted == data['world'].extracted:
             error = ExtractionError(
-                'provide hello or world, not both or none')
+                'provide hello or world, not both or none'
+            )
             data['hello'].error.append(error)
             data['world'].error.append(error)
         return data.extracted
@@ -253,18 +332,154 @@ both or none (XOR):
                 'action': url,
             },
             custom={
-                'myinvariant': dict(extractors=[myinvariant_extractor]),
-            }
-        )
-        form['hello'] = factory('field:label:error:text', props={
-            'label': 'Enter some text here',
-            'value': '',
-        })
-        form['world'] = factory('field:label:error:text', props={
-            'label': 'OR Enter some text here',
-            'value': '',
-        })
+                'myinvariant': {
+                    'extractors': [myinvariant_extractor]
+                }
+            })
+        form['hello'] = factory(
+            'field:label:error:text',
+            props={
+                'label': 'Enter some text here',
+            })
+        form['world'] = factory(
+            'field:label:error:text',
+            props={
+                'label': 'OR Enter some text here',
+            })
         # ... see helloworld example whats missing here
+
+
+Persistence
+===========
+
+YAFOWIL provides a delegating mechanism for single data model bound forms.
+Processing the extracted form data often requires some additional computing and
+targets several persistent obejcts. In this case we simply implement the submit
+action callback and do what's necessary:
+
+.. code-block:: python
+
+    class Form(obejct):
+
+        def __init__(self, model):
+            self.model = model
+
+        def __call__(self, request):
+            controller = Controller(self.form, request)
+
+        def save(self, widget, data):
+            # HERE IS THE INTERESTING PART
+            self.model.hello = data.fetch('myform.hello').extracted
+            self.model.world = data.fetch('myform.world').extracted
+            # ...
+            transaction.commit()
+
+        form = factory(
+            'form',
+            name='myform',
+            props={
+                'action': 'http://www.domain.tld/someform',
+            })
+        form['hello'] = factory(
+            'field:label:error:text',
+            props={
+                'label': 'Enter hello text here',
+            })
+        form['world'] = factory(
+            'field:label:error:text',
+            props={
+                'label': 'Enter world text here',
+            })
+        form['submit'] = factory(
+            'submit',
+            props={
+                'handler': save,
+                'action': True,
+            })
+
+    form = Form(model)
+    form(request)
+    # ... should have form data peristed to model now
+
+While fetching the value from data and assigning it to model look quite
+reasonable as long as forms are small, this may get annoying when writing more
+and complex forms. If forms refer to a single model, ``data.write`` can be used
+to delegate transferring extracted data to model.
+
+.. code-block:: python
+
+    from yafowil.persistence import attribute_writer
+
+    class Form(obejct):
+
+        # ...
+
+        def save(self, widget, data):
+            # HERE IS THE INTERESTING PART
+            data.write(self.model)
+            transaction.commit()
+
+        form = factory(
+            'form',
+            name='myform',
+            props={
+                'action': 'http://www.domain.tld/someform',
+                'persist_writer': attribute_writer
+            })
+        # ...
+
+    form = Form(model)
+    form(request)
+
+The most common way is to add the ``persist_writer`` property to the entire
+form. ``data.write`` will walk through the data tree and call
+``attribute_writer`` with ``model``, ``target`` and ``value`` arguments for
+each runtime data node with ``persist`` attribute True.
+
+The ``persist`` property indicates widgets to be considered when
+``data.write`` gets called and is given among widget properties at factory
+time.
+
+The ``persist`` property is ``True`` by default on ``hidden``, ``proxy``,
+``text``, ``textarea``, ``lines``, ``password``, ``checkbox``, ``select``,
+``email``, ``url`` and ``number`` blueprints.
+
+The ``model`` received in persisting callback is the model passed to
+``data.write``.
+
+The ``target`` received in persisting callback is an arbitrary python object
+and defaults to the widget respective runtime data ``name``. The target can
+be customized by providing ``persist_target`` on widget properties.
+
+The ``value`` received in persisting callback is the extracted value from
+runtime data.
+
+The writer callback can be customized for each widget via ``persist_writer``
+property.
+
+``data.write`` can be called with ``recurive=False`` keyword argument.
+Persistence only happens on the calling level then.
+
+When setting ``persist`` property ``True`` on compound widgets, make sure
+it's children get ``persist`` set to ``False`` explicitly if used child factoy
+blueprint is persistent by default.
+
+If ``data.write`` gets called on runtime data which contains extration error(s)
+a ``RuntimeError`` is raised.
+
+The following default writer callbacks exists:
+
+* ``yafowil.persistence.attribute_writer``
+    Write ``value`` to ``target`` attribute on ``model``.
+
+* ``yafowil.persistence.write_mapping_writer``
+    Write ``value`` to ``target`` write mapping key on ``model``.
+
+* ``yafowil.persistence.node_attribute_writer``
+    Write ``value`` to ``target`` node.attrs key on ``model``.
+
+In conjunction with ``datatype`` and ``emptyvalue`` we have fancy convenience
+for peristing form data to single models.
 
 
 Providing blueprints
@@ -331,8 +546,7 @@ of a
         },
         custom={
             'myvalidation': dict(extractor=[myvalidator]),
-        }
-    )
+        })
 
 
 Delivering resources
