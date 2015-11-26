@@ -281,6 +281,9 @@ and converting it to whatever.
         'datatype': int
     })
 
+Blueprints which provide ``datatype`` by default are ``hidden``, ``proxy``,
+``text``, ``lines``, ``select`` and ``number``.
+
 When providing a ``datatype`` to a widget which is not ``required``, we
 probably want to have a valid ``emptyvalue``, which takes effect if request
 contains an empty string for this widget. The empty value must either be of
@@ -294,8 +297,9 @@ or castable to the defined ``datatype`` or ``UNSET``.
         'emptyvalue': 0
     })
 
-Blueprints which provide this behavior by default are ``hidden``, ``proxy``,
-``text``, ``lines``, ``select`` and ``number``.
+Blueprints which provide ``emptyvalue`` by default are ``hidden``, ``proxy``,
+``text``, ``textarea``, ``lines``, ``select``, ``file``, ``password``,
+``email``, ``url``, ``search`` and ``number``.
 
 
 Invariants
