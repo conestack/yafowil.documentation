@@ -11,7 +11,9 @@ Create a minimal filesystem structure::
     mkdir --parents src/helloworld
     touch src/helloworld/__init__.py
     wget http://python-distribute.org/bootstrap.py
-     
+
+.. todo:: python-distribute.org doesn't exist any more
+
 Add file ``buildout.cfg`` containing::     
 
     [buildout]
@@ -38,7 +40,7 @@ Add file ``setup.py``:
     )    
 
 Add ``src/helloworld/run.py`` including a minimal web application, the YAFOWIL
-form and a dumb filesystem based storage:
+form and a dumb filesystem-based storage:
 
 .. code-block:: python
 
@@ -98,5 +100,5 @@ Now bootstrap and run buildout, and start the application.::
 
 Pointing the browser to `<http://localhost:8080/>`_ shows the application.
 
-The `full working example code  <https://github.com/bluedynamics/yafowil-example-helloworld>`_
-is at github available.
+The `full working example code <https://github.com/bluedynamics/yafowil-example-helloworld>`_
+is available at github.

@@ -6,21 +6,22 @@ YAFOWIL targets rendering form widgets and extracting/validating the data send
 by the browser per widget.
 
 YAFOWIL widgets are just configuration. It provides a factory which can
-produce widget instances from blueprints.
+produce *widget instances* from *blueprints*.
 
 There is a library of existing blueprints ready to be extended on demand.
 
 YAFOWIL provides blueprints for all HTML standard inputs, lots of helper
-blueprints for buidling complex widgets and a bunch of add-ons (usally in
-namespace ``yafowil.widget.*``).
+blueprints for building complex widgets and a bunch of add-ons (usually in
+the namespace ``yafowil.widget.*``).
 
 
 Motivation
 ==========
 
-Tired of inventing widgets again and again when using several Python frameworks
-YAFOWIL is intentionally written framework-independent. By just feeding it with
-configuration it can be used and extended in most of existing python web
+The YAFOWIL authors use several Python frameworks, and became very tired of 
+inventing widgets again and again. There YAFOWIL was intentionally written to
+be framework-independent. By just feeding it with
+configuration it can be used and extended in most existing python web
 frameworks. Zope, Pyramid, Django, Flask, CherryPy and similar are
 candidates.
 
@@ -32,10 +33,11 @@ which takes care of a unified user experience.
 Dependencies
 ============
 
-YAFOWIL aims to have no dependencies to any web framework. It utilizes the
+YAFOWIL aims to have no dependencies on any web framework. It utilizes the
 `node <http://pypi.python.org/pypi/node>`_
-package. YAFOWIL does not know about data-storage, but offers a hook to add
-processing callback handler functions and a mechanism for delegating persitence
+package which provides a powerful abstraction for lightweight graph data structures.
+YAFOWIL does not know about data-storage, but offers a hook to add
+processing callback handler functions and a mechanism for delegating persistence
 automatically to a certain degree.
 
 
@@ -49,7 +51,7 @@ YAFOWIL currently integrates with the following packages:
 * `yafowil.werkzeug <http://pypi.python.org/pypi/yafowil.werkzeug>`_
 * `yafowil.bootstrap <http://pypi.python.org/pypi/yafowil.bootstrap>`_
 
-For details read the chapter ``integrations``.
+For details read the chapter Integrations_.
 
 
 Example
@@ -64,7 +66,7 @@ like so:
     from yafowil.base import factory
     from yafowil.controller import Controller
 
-Produce a form.:
+Create a form:
 
 .. code-block:: python
 
@@ -95,7 +97,7 @@ Produce a form.:
             'action': True,
         })
 
-Render empty form by calling the form object:
+Render the empty form by calling the form object:
 
 .. code-block:: python
 
@@ -119,7 +121,8 @@ This results in:
                value="submit" />
     </form>
 
-Process form with request. Request is expected as read mapping (dict-like):
+Process the form with a ``request``.
+The request is expected to be a dict-like mapping:
 
 .. code-block:: python
 
@@ -129,7 +132,7 @@ Process form with request. Request is expected as read mapping (dict-like):
     }
     controller = Controller(form, request)
 
-The processing result gets written to ``controller.data``::
+The result of processing gets written to ``controller.data``::
 
 .. code-block:: python
 
@@ -139,33 +142,34 @@ The processing result gets written to ``controller.data``::
 Creating a widget
 =================
 
-A widget is an instance of a blueprint created by the factory. Factory is a
-singleton and operates also as a registry for blueprints.
+A *widget* is an instance of a *blueprint* created by the factory. Factory is a
+singleton and operates as a registry for blueprints.
 
-By calling the factory a widget is created, here a naked text input field from
-the blueprint ``text``:
+By calling the factory, a widget is created; here, a naked text input field from
+the ``text`` blueprint:
 
 .. code-block:: python
 
     widget = factory('text')
 
-Blueprints can be chained by colon separated names or given as list:
+Blueprints can be chained by colon-separated names, or given as a list:
 
 .. code-block:: python
 
     widget = factory('field:label:text')
 
 This causes the created widget to chain the registered renderers, extractors,
-and other parts of the blueprints ``field``, ``label`` and ``text`` in order.
+and other parts of the named blueprints (``field``, ``label`` and ``text``)
+in order.
 
-Blueprint chains can be organised using as macros to reduce the complexity of
-factory calls (details below). I.e.:
+Blueprint chains can be organised using macros to reduce the complexity of
+factory calls (details below). E.g.:
 
 .. code-block:: python
 
-    widget = factory('#field:text')
+    widget = factory('#errorfield:text')
 
-expands the macro ``#field`` to ``field:label:error`` and appends ``:text`` so
+expands the macro ``#errorfield`` to ``field:label:error`` and appends ``:text`` so
 the result is ``field:label:error:text``.
 
 
@@ -173,8 +177,8 @@ Widgets trees
 =============
 
 YAFOWIL forms are organized as **widget trees**. The entire form is the
-root widget which contain compound nodes (containing children again) and/or
-leaf nodes. A widget behaves similar to an ordered python dictionary. Compounds
+root widget which contains compound nodes (which can contain children) and/or
+leaf nodes. A widget behaves similarly to an ordered Python dictionary. Compounds
 may represent the entire HTML form or fieldsets, while leaf objects may
 represent the various HTML input fields.
 
@@ -215,9 +219,9 @@ Thus building widget trees looks like:
 Rendering Mode
 ==============
 
-The way a widget is rendered is controlled by it's mode. Every widget may given
+The way a widget is rendered is controlled by its mode. Every widget may be given
 a ``mode`` keyword argument to the factory as a string or a callable accepting
-two parameters  ``widget`` and ``data``returning a string.
+two parameters (``widget`` and ``data``), and returning a string.
 
 These modes are supported:
 
@@ -226,21 +230,21 @@ These modes are supported:
     registered ``edit_renderers``.
 
 ``display``
-    No form elements are rendered, just the data as defined by registerd
-    ``display_renders``.
+    No form elements are rendered, just the data as defined by registered
+    ``display_renderers``.
 
 ``skip``
-    Renders just an empty string.
+    Renders an empty string.
 
 
 Data extraction
 ===============
 
 After calling the ``Controller`` we have the form processing result on
-``controller.data`` which is an instance of ``yafowil.base.RuntimeData``.
-Like widgets, runtime data is organized as tree where each runtime data node
-refers to a widget node and provides the extracted value and error(s) occurred
-while extracting data from request.
+``controller.data``, which is an instance of ``yafowil.base.RuntimeData``.
+Like widgets, runtime-data is organized as tree where each runtime data node
+refers to a widget node and provides the extracted value and any error(s) that
+occurred while extracting data from the request.
 
 .. code-block:: python
 
@@ -258,10 +262,10 @@ while extracting data from request.
 Validation
 ==========
 
-In YAFOWIL validation and extraction happens at the same time. Extraction means
+In YAFOWIL, validation and extraction happens at the same time. Extraction means
 to get a meaningful value out of the request. Validation means to check
-constraints, i.e if a number is positive or an e-mail-adress is valid. If
-validation fails, ``ExtractionErrors`` are collected on runtime data describing
+constraints, i.e if a number is positive or an email-address is valid. If
+validation fails, ``ExtractionErrors`` are collected on runtime-data describing
 what happened.
 
 
@@ -269,8 +273,8 @@ Datatype extraction
 -------------------
 
 There is a set of common blueprints where you can define the ``datatype`` of
-the exracted value. Datatype is either some primitive type like ``int`` or
-``float``, a class object which can be instanciated with the extracted string
+the extracted value. Datatype is either some primitive type like ``int`` or
+``float``, a class object which can be instantiated with the extracted string
 value like ``uuid.UUID``, or a callable expecting the extracted string value
 and converting it to whatever.
 
@@ -285,7 +289,7 @@ Blueprints which provide ``datatype`` by default are ``hidden``, ``proxy``,
 ``text``, ``lines``, ``select`` and ``number``.
 
 When providing a ``datatype`` to a widget which is not ``required``, we
-probably want to have a valid ``emptyvalue``, which takes effect if request
+probably want to have a valid ``emptyvalue``, which takes effect if the request
 contains an empty string for this widget. The empty value must either be of
 or castable to the defined ``datatype`` or ``UNSET``.
 
@@ -305,11 +309,11 @@ Blueprints which provide ``emptyvalue`` by default are ``hidden``, ``proxy``,
 Invariants
 ----------
 
-Invariants are implemented as extractors on compounds. Usally they are put as
+Invariants are implemented as extractors on compounds. Usually they are defined as
 a custom blueprint (see below) with one extractor on some parent of the elements
-to validate.
+to be validated.
 
-Here is a short example (extension of the ``hello world`` example) for a custom
+Here is a short example (extension of the ``hello world`` example) of a custom
 invariant extractor which checks if one or the other field is filled, but never
 both or none (XOR):
 
@@ -319,7 +323,7 @@ both or none (XOR):
     # ... see helloworld example whats missing here
 
     def myinvariant_extractor(widget, data):
-        if data['hello'].extacted == data['world'].extracted:
+        if data['hello'].extracted == data['world'].extracted:
             error = ExtractionError(
                 'provide hello or world, not both or none'
             )
@@ -328,7 +332,7 @@ both or none (XOR):
         return data.extracted
 
     def application(environ, start_response): 
-        # ... see helloworld example whats missing here
+        # ... see helloworld example for the code that belongs here
         form = factory(
             u'*myinvariant:form',
             name='helloworld', 
@@ -350,20 +354,20 @@ both or none (XOR):
             props={
                 'label': 'OR Enter some text here',
             })
-        # ... see helloworld example whats missing here
+        # ... see helloworld example for the code that belongs here
 
 
 Persistence
 ===========
 
-YAFOWIL provides a delegating mechanism for single data model bound forms.
+YAFOWIL provides a delegation mechanism for single data model bound forms.
 Processing the extracted form data often requires some additional computing and
-targets several persistent obejcts. In this case we simply implement the submit
+targets several persistent objects. In this case, we simply implement the submit
 action callback and do what's necessary:
 
 .. code-block:: python
 
-    class Form(obejct):
+    class Form(object):
 
         def __init__(self, model):
             self.model = model
@@ -403,18 +407,18 @@ action callback and do what's necessary:
 
     form = Form(model)
     form(request)
-    # ... should have form data peristed to model now
+    # ... should have form data persisted to model now
 
 While fetching the value from data and assigning it to model look quite
 reasonable as long as forms are small, this may get annoying when writing more
 and complex forms. If forms refer to a single model, ``data.write`` can be used
-to delegate transferring extracted data to model.
+to delegate transferring the extracted data to the model.
 
 .. code-block:: python
 
     from yafowil.persistence import attribute_writer
 
-    class Form(obejct):
+    class Form(object):
 
         # ...
 
@@ -438,11 +442,11 @@ to delegate transferring extracted data to model.
 The most common way is to add the ``persist_writer`` property to the entire
 form. ``data.write`` will walk through the data tree and call
 ``attribute_writer`` with ``model``, ``target`` and ``value`` arguments for
-each runtime data node with ``persist`` attribute True.
+each runtime-data node with the ``persist`` property set to ``True``.
 
 The ``persist`` property indicates widgets to be considered when
-``data.write`` gets called and is given among widget properties at factory
-time.
+``data.write`` gets called and is given as part of the widget properties
+at factory time.
 
 The ``persist`` property is ``True`` by default on ``hidden``, ``proxy``,
 ``text``, ``textarea``, ``lines``, ``password``, ``checkbox``, ``select``,
@@ -451,27 +455,28 @@ The ``persist`` property is ``True`` by default on ``hidden``, ``proxy``,
 The ``model`` received in persisting callback is the model passed to
 ``data.write``.
 
-The ``target`` received in persisting callback is an arbitrary python object
-and defaults to the widget respective runtime data ``name``. The target can
-be customized by providing ``persist_target`` on widget properties.
+The ``target`` received in the persisting callback is an arbitrary Python object
+and defaults to the runtime-data ``name`` for any particular widget.
+The target can be customized by providing ``persist_target`` as part of the
+widget properties at factory time.
 
-The ``value`` received in persisting callback is the extracted value from
-runtime data.
+The ``value`` received in the persisting callback is the extracted value from
+runtime-data.
 
-The writer callback can be customized for each widget via ``persist_writer``
+The writer callback can be customized for each widget via the ``persist_writer``
 property.
 
-``data.write`` can be called with ``recurive=False`` keyword argument.
-Persistence only happens on the calling level then.
+``data.write`` can be called with a ``recursive=False`` keyword argument.
+In that case, persistence only happens on the calling level.
 
-When setting ``persist`` property ``True`` on compound widgets, make sure
-it's children get ``persist`` set to ``False`` explicitly if used child factoy
+When setting the ``persist`` property ``True`` on compound widgets, make sure
+its children get ``persist`` set to ``False`` explicitly if the used child factory
 blueprint is persistent by default.
 
-If ``data.write`` gets called on runtime data which contains extration error(s)
+If ``data.write`` gets called on runtime-data which contains extraction error(s),
 a ``RuntimeError`` is raised.
 
-The following default writer callbacks exists:
+The following default writer callbacks are provided:
 
 * ``yafowil.persistence.attribute_writer``
     Write ``value`` to ``target`` attribute on ``model``.
@@ -482,15 +487,15 @@ The following default writer callbacks exists:
 * ``yafowil.persistence.node_attribute_writer``
     Write ``value`` to ``target`` node.attrs key on ``model``.
 
-In conjunction with ``datatype`` and ``emptyvalue`` we have fancy convenience
-for peristing form data to single models.
+In conjunction with ``datatype`` and ``emptyvalue``, this gives us a lot of
+convenience for persisting form data to single models.
 
 
 Providing blueprints
 ====================
 
 General behaviours (rendering, extracting, etc...) can be registered as
-blueprint in the factory:
+blueprints in the factory:
 
 .. code-block:: python
 
@@ -502,7 +507,7 @@ blueprint in the factory:
         preprocessors=[],
         builders=[])
 
-and then used as regular blueprint when calling the factory:
+and then used as regular blueprints when calling the factory:
 
 .. code-block:: python
 
@@ -515,8 +520,8 @@ Adding custom behaviour
 =======================
 
 It's possible to inject custom behaviour by marking a part of the blueprint
-chain with the asterisk ``*`` character. Behaviours are one or a combination
-of a
+chain with the asterisk ``*`` character. Behaviours are one or more
+of a:
 
 ``extractor``
     extracts, validates and/or converts form-data from the request.
@@ -528,7 +533,7 @@ of a
     build the markup for display only.
 
 ``builder``
-    Generic hook called once at factory time of the widget. Here i.e. subwidgets
+    Generic hook called once at factory time of the widget. Here e.g. subwidgets
     can be created.
 
 ``preprocessor``
@@ -538,7 +543,7 @@ of a
 .. code-block:: python
 
     def myvalidator(widget, data):
-       # validate the data, raise ExtractionError if somethings wrong
+       # validate the data, raise ExtractionError if something's wrong
        if data.extracted != 'something:'
            raise ExtractionError("only 'something' is allowed as input.")
        return data.extracted
@@ -556,21 +561,21 @@ of a
 Delivering resources
 ====================
 
-YAFOWIL addon widgets are shipped with related Javascript and Stylesheet
+YAFOWIL addon widgets are shipped with their required JavaScript and stylesheet
 resources. These resources are registered to the factory with additional
 information like delivery order and resources group.
 
-To help the integrator delivering these resources through the used web
-framework, the helper object ``yafowil.resources.YafowilResources`` is supposed
-to be used.
+To help the integrator delivering these resources through their chosen web
+framework, the helper object ``yafowil.resources.YafowilResources`` should
+be used.
 
 The function ``configure_resource_directory`` should be overwritten on deriving
 class which is responsible to make the given physical resource directory
 somehow available to the web.
 
-The object can be instanciated with ``js_skip`` and ``css_skip`` keyword
+The object can be instantiated with ``js_skip`` and ``css_skip`` keyword
 arguments, which contain iterable resource group names to skip when calculating
-resources. This is useful if basic or dependency resources are already shipped
+resources. This is useful if basic or dependent resources are already shipped
 in another way.
 
 The following example shows how to integrate YAFOWIL resources in a
@@ -589,7 +594,7 @@ The following example shows how to integrate YAFOWIL resources in a
            super(Resources, self).__init__(js_skip=js_skip, css_skip=css_skip)
 
        def configure_resource_directory(self, plugin_name, resourc_edir):
-           # instanciate static view
+           # instantiate static view
            resources_view = static_view(resourc_edir, use_subpath=True)
            # attach resources view to package
            view_name = '%s_resources' % plugin_name.replace('.', '_')
@@ -601,11 +606,11 @@ The following example shows how to integrate YAFOWIL resources in a
            return resource_base
 
     def includeme(config):
-        # resources object gets instanciated only once
+        # resources object gets instantiated only once
         resources = Resources(config=config)
 
-        # sorted JS resources URL's. Supposed to be rendered to HTML
+        # sorted JS resources URLs. Supposed to be rendered to HTML
         resources.js_resources
 
-        # sorted CSS resources URL's. Supposed to be rendered to HTML
+        # sorted CSS resources URLs. Supposed to be rendered to HTML
         resources.css_resources
