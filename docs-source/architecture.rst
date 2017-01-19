@@ -278,15 +278,17 @@ current widget in the context of the current request. An extractor is a
 callable expecting a widget instance and a runtime-data instance as parameters.
 
 **User story**
-    An integer field consists of:
-    - a first extractor getting the value from the request parameter matching
-      the widget name. This results in a string.
-    - The next extractor in the chain is responsible for converting the string
-      to an integer. If it fails, an ``ExtractionError`` is raised. Otherwise the
-      converted value is returned.
-    - If only positive integers are allowed, a validating extractor is added to
-      the chain. If it's not positive, an ``ExtractionError`` is raised, otherwise
-      the value is returned unmodified.
+
+An integer field consists of
+
+- a first extractor getting the value from the request parameter matching
+  the widget name. This results in a string.
+- The next extractor in the chain is responsible for converting the string
+  to an integer. If it fails, an ``ExtractionError`` is raised. Otherwise the
+  converted value is returned.
+- If only positive integers are allowed, a validating extractor is added to
+  the chain. If it's not positive, an ``ExtractionError`` is raised, otherwise
+  the value is returned unmodified.
 
 
 Edit renderer chain
@@ -304,17 +306,21 @@ YAFOWIL happens in pure Python.
 The edit renderer chain is executed if the mode of the widget is ``edit``.
 
 **User story**
-    An file input field has to be rendered with checkboxes to indicate whether 
-    the file should be deleted.
-    The file input itself is a renderer, and the checkboxes are another renderer.
-    - The first renderer in chain creates a pure HTML ``<input ..>`` tag for
-      the file upload.
-    - The next renderer creates some checkboxes with labels. It has access to
-      the string output of the first renderer as part of runtime-data. So some
-      ``<checkbox ..>`` tags can be prepended, wrapped around or appended to
-      the previously rendered ``<input ..>``.
-    Both renderers are reusable and may be used in other contexts, e.g. in an
-    image blueprint context.
+
+An file input field has to be rendered with checkboxes to indicate whether 
+the file should be deleted.
+
+The file input itself is a renderer, and the checkboxes are another renderer.
+
+- The first renderer in chain creates a pure HTML ``<input ..>`` tag for
+  the file upload.
+- The next renderer creates some checkboxes with labels. It has access to
+  the string output of the first renderer as part of runtime-data. So some
+  ``<checkbox ..>`` tags can be prepended, wrapped around or appended to
+  the previously rendered ``<input ..>``.
+
+Both renderers are reusable and may be used in other contexts, e.g. in an
+image blueprint context.
 
 
 Display renderer chain
@@ -331,10 +337,11 @@ It is possible to mix edit and display renderers in one widget tree. Each
 widget can have its own mode.
 
 **User story**
-    A form is created for a complex dataset where different groups of users have
-    different access permissions whether to edit or view a dataset value, or
-    even to see it at all. The mode property of the widget controls which 
-    rendering chain, if any, gets executed.
+
+A form is created for a complex dataset where different groups of users have
+different access permissions whether to edit or view a dataset value, or
+even to see it at all. The mode property of the widget controls which 
+rendering chain, if any, gets executed.
 
 
 Preprocessor chain
@@ -347,12 +354,13 @@ and gets widget and runtime-data as parameters. There are global preprocessors
 running on every widget and widget-specific pre-processors. 
 Widget-specific pre-processors are executed *after* the global preprocessors.
 
-**User story**:
-    YAFOWIL expects the request to be a dict-like object providing parameters
-    via ``get`` and ``__getitem__``. Further i18n support should be available
-    e.g. via ``zope.i18n``. A framework integration package now provides one
-    global preprocessor function wrapping the request if needed, and another
-    hooking up the i18n message factory and the translate function.
+**User story**
+
+YAFOWIL expects the request to be a dict-like object providing parameters
+via ``get`` and ``__getitem__``. Further i18n support should be available
+e.g. via ``zope.i18n``. A framework integration package now provides one
+global preprocessor function wrapping the request if needed, and another
+hooking up the i18n message factory and the translate function.
 
 
 Builder chain
