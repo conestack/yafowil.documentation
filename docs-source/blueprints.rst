@@ -1,4 +1,3 @@
-=====================
 Reference: Blueprints
 =====================
 
@@ -15,6 +14,8 @@ following packages:
 * yafowil.widget.autocomplete
 
 * yafowil.widget.chosen
+
+* yafowil.widget.cron
 
 * yafowil.widget.datetime
 

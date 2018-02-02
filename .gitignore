@@ -10,6 +10,7 @@
 /.pydevproject.bak
 /.project
 /.settings
+/.vscode
 /pip-selfcheck.json
 /buildout.cfg
 /env/
@@ -26,3 +27,4 @@
 /lib/
 /local/
 /coverage/
+/share/
