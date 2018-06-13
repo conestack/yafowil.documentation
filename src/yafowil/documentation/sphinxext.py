@@ -1,11 +1,17 @@
 from docutils import nodes
 from docutils.statemachine import ViewList
-from sphinx.util.compat import Directive
 from sphinx.util.docstrings import prepare_docstring
 from sphinx.util.nodes import nested_parse_with_titles
 import yafowil.loader
 from yafowil.base import factory
 from yafowil.utils import UNSET
+
+
+try:
+    from sphinx.util.compat import Directive
+except ImportError:
+    from docutils.parsers.rst import Directive
+
 
 _marker = list()
 
@@ -141,7 +147,7 @@ class WidgetDoc(YDirective):
         else:
             row[2].append(nodes.paragraph('(not documented)'))
             # this does not log. bullshit. no idea how to make sphinx log
-            print "YAFOWIL property '%s' is not documented!" % wpname
+            print("YAFOWIL property '%s' is not documented!" % wpname)
 
         ul = nodes.bullet_list()
         used = []
@@ -170,8 +176,8 @@ class WidgetDoc(YDirective):
         add_chain_for_property(factory.builders(blueprint_name))
         add_chain_for_property(factory.preprocessors(blueprint_name))
         if not used:
-            print "YAFOWIL property '%s' is not handled by managed props!" % \
-                  wpname
+            print("YAFOWIL property '%s' is not handled by managed props!" % \
+                  wpname)
 
         if (len(ul)):
             row[2].append(nodes.strong(text='Used by:'))

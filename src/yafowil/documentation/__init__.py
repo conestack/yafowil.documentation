@@ -1,5 +1,5 @@
 from docutils.writers.html4css1 import HTMLTranslator
-from sphinxext import (
+from yafowil.documentation.sphinxext import (
     WidgetDoc,
     PlanDoc,
 )
