@@ -28,3 +28,5 @@
 /local/
 /coverage/
 /share/
+/lib64
+/pyvenv.cfg
