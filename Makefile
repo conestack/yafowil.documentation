@@ -18,8 +18,9 @@ all:
 live:
 	make html
 	rm -r docs/* || echo "no docs folder"
-	cp -r build/html docs
+	cp -r build/html/* docs/
 	echo "docs.yafowil.info" >>docs/CNAME
+	echo " >>docs/.nojekyll
 
 clean:
 	rm -r $(BUILDDIR)/doctrees || echo no doctrees
