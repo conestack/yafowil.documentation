@@ -17,6 +17,7 @@
 /dist/
 /parts/
 /bin/
+/build/
 /eggs/
 /downloads/
 /develop-eggs/
