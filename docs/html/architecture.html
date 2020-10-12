@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Elements Explained &#8212; YAFOWIL - Yet Another Form Widget Library</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Describe YAFOWIL forms with YAML" href="yaml.html" />
+    <link rel="prev" title="Minimal Hello World Example Webapplication" href="helloworld.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+<a href="https://github.com/bluedynamics/yafowil.documentation">
+  <img title="Fork yafowil.documentation on GitHub"
+       alt="Fork me on GitHub"
+       src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"
+       style="position:absolute; top:40px; right:0; border:0;">
+</a>
+
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          YAFOWIL Documentation</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.2</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helloworld.html">Minimal Hello World Example Webapplication</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Elements Explained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="helloworld.html" title="Previous Chapter: Minimal Hello World Example Webapplication"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Minimal Hello...</span>
+    </a>
+  </li>
+  <li>
+    <a href="yaml.html" title="Next Chapter: Describe YAFOWIL forms with YAML"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Describe YAFO... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <ul id="navtree"
+          class="list-group">
+        <li class="list-group-item active">
+          Navigation
+        </li>
+        <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helloworld.html">Minimal Hello World Example Webapplication</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Elements Explained</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-principles">Base principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#callables-everywhere">Callables everywhere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#widget">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#runtime-data">Runtime data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controller">Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#factory">Factory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blueprints">Blueprints</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a></li>
+</ul>
+
+      </ul>
+    </div>
+    <div class="col-md-9">
+      
+  <div class="section" id="elements-explained">
+<h1>Elements Explained<a class="headerlink" href="#elements-explained" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="base-principles">
+<h2>Base principles<a class="headerlink" href="#base-principles" title="Permalink to this headline">¶</a></h2>
+<p>YAFOWIL is based on a set of core ideas:</p>
+<ol class="arabic simple">
+<li><p>Runtime rules, static is subordinate,</p></li>
+<li><p>Don’t mess with a framework,</p></li>
+<li><p>Keep it simple and Pythonic,</p></li>
+<li><p>No fights with storage,</p></li>
+<li><p>Use chains and trees as structures.</p></li>
+</ol>
+</div>
+<div class="section" id="callables-everywhere">
+<h2>Callables everywhere<a class="headerlink" href="#callables-everywhere" title="Permalink to this headline">¶</a></h2>
+<p>If you work with YAFOWIL for the first time, it probably feels a bit different
+compared to other multiple-class-inheriting, schema-based forms.</p>
+<p>Instead YAFOWIL uses simple callables at several places. You never need to
+inherit any class from <code class="docutils literal notranslate"><span class="pre">yafowil.*</span></code> (and if you think you need to you don’t
+understand its architecture and should ask us to improve this documentation).</p>
+<p>Callables are used for every extensible aspect of YAFOWIL. They are bundled
+as blueprints and used via the factory.</p>
+<p>Explanation: Callables are simple functions or instances of a class with a
+<code class="docutils literal notranslate"><span class="pre">__call__</span></code> method.</p>
+</div>
+<div class="section" id="widget">
+<h2>Widget<a class="headerlink" href="#widget" title="Permalink to this headline">¶</a></h2>
+<p>A YAFOWIL form consists of a tree of widgets. Everything you would probably
+call a “Field” in other form libraries is a widget instance. Widgets can have
+children. Thus, fieldsets and even the form root itself are also widgets.</p>
+<p>The behavior of a widget is defined by a series of blueprints and properties
+as shown below in the referring sections.</p>
+<p>The widget class is generic! It’s never instantiated directly. The factory is
+the only place where this happens.</p>
+<p>At creation time of widgets you need to use its dict-like API for creating
+compounds of widgets, such as a form or a fieldset.</p>
+<p><strong>Attention! Possible confusion:</strong>:</p>
+<ul class="simple">
+<li><p><em>Widgets</em> are built from a chain of blueprints in <em>existing</em>
+<em>libraries/addons</em> and are configured using properties,</p></li>
+<li><p><em>Blueprints</em> are chains of extractors, renderers, preprocessors and builders
+(see below),</p></li>
+<li><p>the <em>average YAFOWIL user</em> does <em>not need to create blueprints</em>, she just uses
+them,</p></li>
+<li><p><em>advanced YAFOWIL users</em> planning to develop their own widgets will need to
+write blueprints.</p></li>
+</ul>
+</div>
+<div class="section" id="runtime-data">
+<h2>Runtime data<a class="headerlink" href="#runtime-data" title="Permalink to this headline">¶</a></h2>
+<p>While one request-to-response cycle runs, widgets state is kept in a
+runtime-data instance. It collects all information such as values, request,
+any errors that occurred, and the rendered HTML of a widget in the context of
+the current request.</p>
+</div>
+<div class="section" id="controller">
+<h2>Controller<a class="headerlink" href="#controller" title="Permalink to this headline">¶</a></h2>
+<p>The controller is responsible for form processing (extraction and validation),
+delegation of actions and form rendering (including error handling).</p>
+<p>The controller is initialized with a form and request object and immediately
+starts the processing. The <code class="docutils literal notranslate"><span class="pre">rendered</span></code> instance attribute contains the
+rendered form, while the <code class="docutils literal notranslate"><span class="pre">data</span></code> attribute contains the extracted runtime-data
+tree.</p>
+</div>
+<div class="section" id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h2>
+<p>Unlike most form frameworks, YAFOWIL does not make a distinction between
+extraction of a value from the HTTP-request and validation. Both happen in one
+processing step. If an extraction step fails, it raises a
+<code class="docutils literal notranslate"><span class="pre">yafowil.base.ExtractionError</span></code>. This special Python Exception carries a
+human-readable message and specifies whether this error shall abort the extraction
+chain or not. In either case the form has errors.</p>
+</div>
+<div class="section" id="factory">
+<h2>Factory<a class="headerlink" href="#factory" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="basics">
+<h3>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h3>
+<p>The factory knows of the available blueprints and is responsible to construct
+and configure widget instances. To construct a widget the factory gets called
+with the blueprint name as first parameter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yafowil.base</span> <span class="kn">import</span> <span class="n">factory</span>
+<span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The behavior of the callbacks in the different execution chains of the
+blueprint can be configured with the <code class="docutils literal notranslate"><span class="pre">props</span></code> dict. See the blueprints reference
+for a full list of accepted properties:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;disabled&#39;</span><span class="p">:</span> <span class="s1">&#39;disabled&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>For the root widget (most probably the form itself), the name attribute must be
+given to the factory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;example_form&#39;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;http://www.example.com/process_form&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Child widget names are set automatically using the child <code class="docutils literal notranslate"><span class="pre">key</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;field_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="combining-blueprints-the-factory-chain">
+<h3>Combining blueprints - the factory chain<a class="headerlink" href="#combining-blueprints-the-factory-chain" title="Permalink to this headline">¶</a></h3>
+<p>Usually we have some common widgets, e.g. a pure textarea, and then we need
+some label, description, a way to display errors, maybe a table cell or an
+encapsulating <code class="docutils literal notranslate"><span class="pre">div</span></code> and so on. And it can be very different depending on the
+framework used or the design we need to implement. But the core functionality
+is always the same. In other words: The input field and its behavior is stable,
+the eye-candy around it is not.</p>
+<p>To solve the different needs, YAFOWIL supports chaining blueprints at factory
+time, the so called <code class="docutils literal notranslate"><span class="pre">factory</span> <span class="pre">chain</span></code>.</p>
+<p>The blueprint chain is used by passing a colon-separated list of blueprint names
+as a string to the factory as first argument. I.e. to provide a text field inside a
+wrapper <code class="docutils literal notranslate"><span class="pre">div</span></code> with label, help-text and error message if extraction failed, call
+the factory like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;field_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;field:label:error:text&#39;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Field 1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="s1">&#39;Helptext for field 1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;required&#39;</span><span class="p">:</span> <span class="s1">&#39;Field 1 must not be empty&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>This causes the callable chains of each blueprint to be executed in order.
+Extractors are executed from right to left while all others are executed left
+to right.</p>
+<p>Now we may come up with the problem that several properties refer to more than
+one callable inside the execution chains. To address a property specific to a
+blueprint of the widget, you can prefix it with the blueprint name.</p>
+<p>E.g., <code class="docutils literal notranslate"><span class="pre">label.class</span></code> addresses the <code class="docutils literal notranslate"><span class="pre">class</span></code> property of the <code class="docutils literal notranslate"><span class="pre">label</span></code> blueprint
+only instead of affecting all blueprints:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;field_1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;field:label:error:text&#39;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Field 1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;label.class&#39;</span><span class="p">:</span> <span class="s1">&#39;label_css_class&#39;</span>
+    <span class="s1">&#39;help&#39;</span><span class="p">:</span> <span class="s1">&#39;Helptext for field 1&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;required&#39;</span><span class="p">:</span> <span class="s1">&#39;Field 1 must not be empty&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="macros-predefined-factory-chains">
+<h3>Macros - predefined factory chains<a class="headerlink" href="#macros-predefined-factory-chains" title="Permalink to this headline">¶</a></h3>
+<p>For the lazy people, macros are provided. Macros expand to a factory chain of
+blueprints. Expansion happens at chain-lookup time before the widget is built.</p>
+<p>Macros must be registered in the factory and can override property defaults:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span><span class="o">.</span><span class="n">register_macro</span><span class="p">(</span><span class="s1">&#39;errorfield&#39;</span><span class="p">,</span> <span class="s1">&#39;field:label:error&#39;</span><span class="p">,</span> <span class="s1">&#39;props&#39;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="s1">&#39;field.class&#39;</span><span class="p">:</span> <span class="s1">&#39;field&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;field.error_class&#39;</span><span class="p">:</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;error.class&#39;</span><span class="p">:</span> <span class="s1">&#39;fieldErrorBox&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;error.render_empty&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="s1">&#39;error.position&#39;</span><span class="p">:</span> <span class="s1">&#39;before&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Now the <code class="docutils literal notranslate"><span class="pre">errorfield</span></code> macro can be used inside the factory chain by using the
+name prefixed with <code class="docutils literal notranslate"><span class="pre">#</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">textfield</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;#errorfield:text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-blueprints">
+<h3>Custom blueprints<a class="headerlink" href="#custom-blueprints" title="Permalink to this headline">¶</a></h3>
+<p>For usecases where it’s not worth writing a generic widget, it’s possible
+to inject custom blueprints.</p>
+<p>Custom blueprints are passed to the factory either as 5-tuple containing chains
+of extractors, edit renderers, preprocessors, builders and display renderers,
+or as dictionary containing the chains under the keys <code class="docutils literal notranslate"><span class="pre">extractors</span></code>,
+<code class="docutils literal notranslate"><span class="pre">edit_renderers</span></code>, <code class="docutils literal notranslate"><span class="pre">preprocessors</span></code>, <code class="docutils literal notranslate"><span class="pre">builders</span></code> and <code class="docutils literal notranslate"><span class="pre">display_renderers</span></code>.
+Please read the section about blueprints below to get a deeper understanding of
+what happens.</p>
+<p>Each chain contains callables as explained above. To tell the factory about
+usage of a custom blueprint, use the asterisk-prefix in the factory chain,
+as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>``field:label:*mycustom:textarea``
+</pre></div>
+</div>
+<p>When using custom blueprints, the factory expects the <code class="docutils literal notranslate"><span class="pre">custom</span></code>
+keyword argument, which is a dict with custom blueprint names as keys
+(<code class="docutils literal notranslate"><span class="pre">mycustom</span></code> in our example), and the custom blueprint configuration as
+explained above.</p>
+<p>Create custom callbacks:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">special_renderer</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="sa">u</span><span class="s1">&#39;&lt;SPECIAL&gt;</span><span class="si">%s</span><span class="s1">&lt;/SPECIAL&gt;&#39;</span> <span class="o">%</span> <span class="n">data</span><span class="o">.</span><span class="n">rendered</span>
+
+<span class="k">def</span> <span class="nf">special_extractor</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;extracted special&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Inject as dict:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;outer:*special:inner&#39;</span><span class="p">,</span> <span class="n">custom</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;special&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;extractors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">special_extractor</span><span class="p">],</span>
+        <span class="s1">&#39;edit_renderers&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">special_renderer</span><span class="p">],</span>
+    <span class="p">},</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Inject as list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;outer:*special:inner&#39;</span><span class="p">,</span> <span class="n">custom</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;special&#39;</span><span class="p">:</span> <span class="p">([</span><span class="n">special_extractor</span><span class="p">],</span> <span class="p">[</span><span class="n">special_renderer</span><span class="p">],</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]),</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Custom blueprints are great for easily injecting validation extractors.</p>
+</div>
+</div>
+<div class="section" id="blueprints">
+<h2>Blueprints<a class="headerlink" href="#blueprints" title="Permalink to this headline">¶</a></h2>
+<p>Blueprints are construction guides providing different behaviors on a
+widget: e.g. rendering an HTML input field, or extracting and validating input
+data or converting data received from the request.</p>
+<p>These behaviors are organized as chains of callables. The behavior of the
+callables themselves is controlled by properties. Each chain has different
+responsibilities. Chains are executed left-to-right.</p>
+<div class="section" id="extractor-chain">
+<h3>Extractor chain<a class="headerlink" href="#extractor-chain" title="Permalink to this headline">¶</a></h3>
+<p>Extractors are responsible to get, convert and validate the data of the
+current widget in the context of the current request. An extractor is a
+callable expecting a widget instance and a runtime-data instance as parameters.</p>
+<p><strong>User story</strong></p>
+<p>An integer field consists of</p>
+<ul class="simple">
+<li><p>a first extractor getting the value from the request parameter matching
+the widget name. This results in a string.</p></li>
+<li><p>The next extractor in the chain is responsible for converting the string
+to an integer. If it fails, an <code class="docutils literal notranslate"><span class="pre">ExtractionError</span></code> is raised. Otherwise the
+converted value is returned.</p></li>
+<li><p>If only positive integers are allowed, a validating extractor is added to
+the chain. If it’s not positive, an <code class="docutils literal notranslate"><span class="pre">ExtractionError</span></code> is raised, otherwise
+the value is returned unmodified.</p></li>
+</ul>
+</div>
+<div class="section" id="edit-renderer-chain">
+<h3>Edit renderer chain<a class="headerlink" href="#edit-renderer-chain" title="Permalink to this headline">¶</a></h3>
+<p>Edit renderers are responsible to create HTML form output (unicode-strings)
+ready to be passed to the response. It is a callable expecting a widget
+instance and a runtime-data instance as parameters. At this point the
+runtime-data instance has already passed the extraction chain and contains
+information about extracted values and errors. Edit renderers may utilize any
+templating language if desired. YAFOWIL has no preferences nor does it support
+any specific templating language out of the box. All internal rendering in
+YAFOWIL happens in pure Python.</p>
+<p>The edit renderer chain is executed if the mode of the widget is <code class="docutils literal notranslate"><span class="pre">edit</span></code>.</p>
+<p><strong>User story</strong></p>
+<p>An file input field has to be rendered with checkboxes to indicate whether
+the file should be deleted.</p>
+<p>The file input itself is a renderer, and the checkboxes are another renderer.</p>
+<ul class="simple">
+<li><p>The first renderer in chain creates a pure HTML <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">..&gt;</span></code> tag for
+the file upload.</p></li>
+<li><p>The next renderer creates some checkboxes with labels. It has access to
+the string output of the first renderer as part of runtime-data. So some
+<code class="docutils literal notranslate"><span class="pre">&lt;checkbox</span> <span class="pre">..&gt;</span></code> tags can be prepended, wrapped around or appended to
+the previously rendered <code class="docutils literal notranslate"><span class="pre">&lt;input</span> <span class="pre">..&gt;</span></code>.</p></li>
+</ul>
+<p>Both renderers are reusable and may be used in other contexts, e.g. in an
+image blueprint context.</p>
+</div>
+<div class="section" id="display-renderer-chain">
+<h3>Display renderer chain<a class="headerlink" href="#display-renderer-chain" title="Permalink to this headline">¶</a></h3>
+<p>Display renderers are responsible to create HTML view output (unicode-strings)
+ready to be passed to the response.</p>
+<p>The display renderer chain is executed if the mode of the widget is <code class="docutils literal notranslate"><span class="pre">display</span></code>.
+Like edit renderers it is a callable expecting widget and runtime-data as
+parameters. Like the edit renderer it is executed after extraction.</p>
+<p>It is possible to mix edit and display renderers in one widget tree. Each
+widget can have its own mode.</p>
+<p><strong>User story</strong></p>
+<p>A form is created for a complex dataset where different groups of users have
+different access permissions whether to edit or view a dataset value, or
+even to see it at all. The mode property of the widget controls which
+rendering chain, if any, gets executed.</p>
+</div>
+<div class="section" id="preprocessor-chain">
+<h3>Preprocessor chain<a class="headerlink" href="#preprocessor-chain" title="Permalink to this headline">¶</a></h3>
+<p>The preprocessor chain is executed once per request-to-response cycle,
+directly after runtime-data was created and before extraction happens.
+A preprocessor callable can be used to hook up framework-specific requirements,
+and gets widget and runtime-data as parameters. There are global preprocessors
+running on every widget and widget-specific pre-processors.
+Widget-specific pre-processors are executed <em>after</em> the global preprocessors.</p>
+<p><strong>User story</strong></p>
+<p>YAFOWIL expects the request to be a dict-like object providing parameters
+via <code class="docutils literal notranslate"><span class="pre">get</span></code> and <code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>. Further i18n support should be available
+e.g. via <code class="docutils literal notranslate"><span class="pre">zope.i18n</span></code>. A framework integration package now provides one
+global preprocessor function wrapping the request if needed, and another
+hooking up the i18n message factory and the translate function.</p>
+</div>
+<div class="section" id="builder-chain">
+<h3>Builder chain<a class="headerlink" href="#builder-chain" title="Permalink to this headline">¶</a></h3>
+<p>This chain of callables is called only once right after the widget was created
+by the factory. A common use-case is to automatically populate a widget with
+child widgets. It expects widget and factory as parameters.</p>
+<dl class="simple">
+<dt><strong>User story</strong></dt><dd><p>A blueprint is written for a complex widget, and luckily there are lots of
+other blueprints already out there providing several behaviors needed.
+If a complex blueprint should render e.g. a table containing two fields, a
+<em>builder</em> callable is registered which builds the table containing the 2
+input fields by using the dict-like widget API and calling the factory for
+creating its children.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

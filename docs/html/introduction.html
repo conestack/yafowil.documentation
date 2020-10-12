@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Introduction &#8212; YAFOWIL - Yet Another Form Widget Library</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/styles.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Minimal Hello World Example Webapplication" href="helloworld.html" />
+    <link rel="prev" title="Callables Everywhere" href="index.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+<a href="https://github.com/bluedynamics/yafowil.documentation">
+  <img title="Fork yafowil.documentation on GitHub"
+       alt="Fork me on GitHub"
+       src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png"
+       style="position:absolute; top:40px; right:0; border:0;">
+</a>
+
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default ">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          YAFOWIL Documentation</a>
+        <span class="navbar-text navbar-version pull-left"><b>2.2</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="helloworld.html">Minimal Hello World Example Webapplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Elements Explained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="index.html" title="Previous Chapter: Callables Everywhere"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; Callables Everywhere</span>
+    </a>
+  </li>
+  <li>
+    <a href="helloworld.html" title="Next Chapter: Minimal Hello World Example Webapplication"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Minimal Hello... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <ul id="navtree"
+          class="list-group">
+        <li class="list-group-item active">
+          Navigation
+        </li>
+        <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#integrations">Integrations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-widget">Creating a widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#widgets-trees">Widgets trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rendering-mode">Rendering Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-extraction">Data extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#persistence">Persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#providing-blueprints">Providing blueprints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-custom-behaviour">Adding custom behaviour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#delivering-resources">Delivering resources</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="helloworld.html">Minimal Hello World Example Webapplication</a></li>
+<li class="toctree-l1"><a class="reference internal" href="architecture.html">Elements Explained</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a></li>
+</ul>
+
+      </ul>
+    </div>
+    <div class="col-md-9">
+      
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>YAFOWIL targets rendering form widgets and extracting/validating the data send
+by the browser per widget.</p>
+<p>YAFOWIL widgets are just configuration. It provides a factory which can
+produce <em>widget instances</em> from <em>blueprints</em>.</p>
+<p>There is a library of existing blueprints ready to be extended on demand.</p>
+<p>YAFOWIL provides blueprints for all HTML standard inputs, lots of helper
+blueprints for building complex widgets and a bunch of add-ons (usually in
+the namespace <code class="docutils literal notranslate"><span class="pre">yafowil.widget.*</span></code>).</p>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>The YAFOWIL authors use several Python frameworks, and became very tired of
+inventing widgets again and again. There YAFOWIL was intentionally written to
+be framework-independent. By just feeding it with
+configuration it can be used and extended in most existing python web
+frameworks. Zope, Pyramid, Django, Flask, CherryPy and similar are
+candidates.</p>
+<p>Another common problem with form libs is a non-unique look and feel of the
+available widget collection. YAFOWIL tries to provide some useful addon widgets
+which takes care of a unified user experience.</p>
+</div>
+<div class="section" id="dependencies">
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h2>
+<p>YAFOWIL aims to have no dependencies on any web framework. It utilizes the
+<a class="reference external" href="http://pypi.python.org/pypi/node">node</a>
+package which provides a powerful abstraction for lightweight graph data structures.
+YAFOWIL does not know about data-storage, but offers a hook to add
+processing callback handler functions and a mechanism for delegating persistence
+automatically to a certain degree.</p>
+</div>
+<div class="section" id="integrations">
+<h2>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">¶</a></h2>
+<p>YAFOWIL currently integrates with the following packages:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://pypi.python.org/pypi/yafowil.plone">yafowil.plone</a></p></li>
+<li><p><a class="reference external" href="http://pypi.python.org/pypi/yafowil.webob">yafowil.webob</a></p></li>
+<li><p><a class="reference external" href="http://pypi.python.org/pypi/yafowil.werkzeug">yafowil.werkzeug</a></p></li>
+<li><p><a class="reference external" href="http://pypi.python.org/pypi/yafowil.bootstrap">yafowil.bootstrap</a></p></li>
+</ul>
+<p>For details read the chapter <a class="reference internal" href="#integrations">Integrations</a>.</p>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>For the impatient, code says more than 1000 words: A simple example form works
+like so:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yafowil.loader</span>
+<span class="kn">from</span> <span class="nn">yafowil.base</span> <span class="kn">import</span> <span class="n">factory</span>
+<span class="kn">from</span> <span class="nn">yafowil.controller</span> <span class="kn">import</span> <span class="n">Controller</span>
+</pre></div>
+</div>
+<p>Create a form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+    <span class="s1">&#39;form&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;myform&#39;</span><span class="p">,</span>
+    <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;http://www.domain.tld/someform&#39;</span><span class="p">,</span>
+    <span class="p">})</span>
+
+<span class="n">form</span><span class="p">[</span><span class="s1">&#39;someinput&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+    <span class="s1">&#39;label:text&#39;</span><span class="p">,</span>
+    <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Your Text&#39;</span><span class="p">,</span>
+    <span class="p">})</span>
+
+<span class="k">def</span> <span class="nf">formaction</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">data</span><span class="o">.</span><span class="n">printtree</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">formnext</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s1">&#39;http://www.domain.tld/result&#39;</span>
+
+<span class="n">form</span><span class="p">[</span><span class="s1">&#39;submit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+    <span class="s1">&#39;submit&#39;</span><span class="p">,</span>
+    <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;handler&#39;</span><span class="p">:</span> <span class="n">formaction</span><span class="p">,</span>
+        <span class="s1">&#39;next&#39;</span><span class="p">:</span> <span class="n">formnext</span><span class="p">,</span>
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+<p>Render the empty form by calling the form object:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">rendered</span> <span class="o">=</span> <span class="n">form</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This results in:</p>
+<div class="highlight-html notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;http://www.domain.tld/someform&quot;</span>
+      <span class="na">enctype</span><span class="o">=</span><span class="s">&quot;multipart/form-data&quot;</span>
+      <span class="na">id</span><span class="o">=</span><span class="s">&quot;form-myform&quot;</span>
+      <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">label</span> <span class="na">for</span><span class="o">=</span><span class="s">&quot;input-myform-someinput&quot;</span><span class="p">&gt;</span>Your Text<span class="p">&lt;/</span><span class="nt">label</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;input-myform-someinput&quot;</span>
+           <span class="na">name</span><span class="o">=</span><span class="s">&quot;myform.someinput&quot;</span>
+           <span class="na">type</span><span class="o">=</span><span class="s">&quot;text&quot;</span><span class="p">/&gt;</span>
+    <span class="p">&lt;</span><span class="nt">input</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;input-myform-submit&quot;</span>
+           <span class="na">name</span><span class="o">=</span><span class="s">&quot;action.myform.submit&quot;</span>
+           <span class="na">type</span><span class="o">=</span><span class="s">&quot;submit&quot;</span>
+           <span class="na">value</span><span class="o">=</span><span class="s">&quot;submit&quot;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+<p>Process the form with a <code class="docutils literal notranslate"><span class="pre">request</span></code>.
+The request is expected to be a dict-like mapping:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;myform.someinput&#39;</span><span class="p">:</span> <span class="s1">&#39;Hello World&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;action.myform.submit&#39;</span><span class="p">:</span> <span class="s1">&#39;submit&#39;</span>
+<span class="p">}</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result of processing gets written to <code class="docutils literal notranslate"><span class="pre">controller.data</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">python</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>controller.data</p>
+</div></blockquote>
+</div>
+<div class="section" id="creating-a-widget">
+<h2>Creating a widget<a class="headerlink" href="#creating-a-widget" title="Permalink to this headline">¶</a></h2>
+<p>A <em>widget</em> is an instance of a <em>blueprint</em> created by the factory. Factory is a
+singleton and operates as a registry for blueprints.</p>
+<p>By calling the factory, a widget is created; here, a naked text input field from
+the <code class="docutils literal notranslate"><span class="pre">text</span></code> blueprint:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Blueprints can be chained by colon-separated names, or given as a list:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;field:label:text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This causes the created widget to chain the registered renderers, extractors,
+and other parts of the named blueprints (<code class="docutils literal notranslate"><span class="pre">field</span></code>, <code class="docutils literal notranslate"><span class="pre">label</span></code> and <code class="docutils literal notranslate"><span class="pre">text</span></code>)
+in order.</p>
+<p>Blueprint chains can be organised using macros to reduce the complexity of
+factory calls (details below). E.g.:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;#errorfield:text&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>expands the macro <code class="docutils literal notranslate"><span class="pre">#errorfield</span></code> to <code class="docutils literal notranslate"><span class="pre">field:label:error</span></code> and appends <code class="docutils literal notranslate"><span class="pre">:text</span></code> so
+the result is <code class="docutils literal notranslate"><span class="pre">field:label:error:text</span></code>.</p>
+</div>
+<div class="section" id="widgets-trees">
+<h2>Widgets trees<a class="headerlink" href="#widgets-trees" title="Permalink to this headline">¶</a></h2>
+<p>YAFOWIL forms are organized as <strong>widget trees</strong>. The entire form is the
+root widget which contains compound nodes (which can contain children) and/or
+leaf nodes. A widget behaves similarly to an ordered Python dictionary. Compounds
+may represent the entire HTML form or fieldsets, while leaf objects may
+represent the various HTML input fields.</p>
+<p>Thus building widget trees looks like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+    <span class="s1">&#39;form&#39;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;formname&#39;</span><span class="p">,</span>
+    <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;someurl&#39;</span><span class="p">,</span>
+    <span class="p">})</span>
+<span class="n">form</span><span class="p">[</span><span class="s1">&#39;somefield&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+    <span class="s1">&#39;field:label:text&#39;</span><span class="p">,</span>
+    <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Some Field&#39;</span><span class="p">,</span>
+    <span class="p">})</span>
+<span class="n">form</span><span class="p">[</span><span class="s1">&#39;somefieldset&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+    <span class="s1">&#39;fieldset&#39;</span><span class="p">,</span>
+    <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;legend&#39;</span><span class="p">:</span> <span class="s1">&#39;A Fieldset&#39;</span><span class="p">,</span>
+    <span class="p">})</span>
+<span class="n">form</span><span class="p">[</span><span class="s1">&#39;somefieldset&#39;</span><span class="p">][</span><span class="s1">&#39;innerfield&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+    <span class="s1">&#39;field:label:text&#39;</span><span class="p">,</span>
+    <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Inner Field&#39;</span><span class="p">,</span>
+    <span class="p">})</span>
+<span class="n">form</span><span class="p">[</span><span class="s1">&#39;submit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+    <span class="s1">&#39;submit&#39;</span><span class="p">,</span>
+    <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;handler&#39;</span><span class="p">:</span> <span class="n">formaction</span><span class="p">,</span>
+        <span class="s1">&#39;next&#39;</span><span class="p">:</span> <span class="n">formnext</span><span class="p">,</span>
+        <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rendering-mode">
+<h2>Rendering Mode<a class="headerlink" href="#rendering-mode" title="Permalink to this headline">¶</a></h2>
+<p>The way a widget is rendered is controlled by its mode. Every widget may be given
+a <code class="docutils literal notranslate"><span class="pre">mode</span></code> keyword argument to the factory as a string or a callable accepting
+two parameters (<code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code>), and returning a string.</p>
+<p>These modes are supported:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">edit</span></code></dt><dd><p>Default classic mode, editing of form is possible. Rendering follows the
+registered <code class="docutils literal notranslate"><span class="pre">edit_renderers</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">display</span></code></dt><dd><p>No form elements are rendered, just the data as defined by registered
+<code class="docutils literal notranslate"><span class="pre">display_renderers</span></code>.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">skip</span></code></dt><dd><p>Renders an empty string.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="data-extraction">
+<h2>Data extraction<a class="headerlink" href="#data-extraction" title="Permalink to this headline">¶</a></h2>
+<p>After calling the <code class="docutils literal notranslate"><span class="pre">Controller</span></code> we have the form processing result on
+<code class="docutils literal notranslate"><span class="pre">controller.data</span></code>, which is an instance of <code class="docutils literal notranslate"><span class="pre">yafowil.base.RuntimeData</span></code>.
+Like widgets, runtime-data is organized as tree where each runtime data node
+refers to a widget node and provides the extracted value and any error(s) that
+occurred while extracting data from the request.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">request</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;formname.somefield&#39;</span><span class="p">:</span> <span class="s1">&#39;Hello World&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;action.formname.submit&#39;</span><span class="p">:</span> <span class="s1">&#39;submit&#39;</span>
+<span class="p">}</span>
+<span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">(</span><span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">controller</span><span class="o">.</span><span class="n">data</span>
+
+<span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;myform.someinput&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extracted</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="validation">
+<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">¶</a></h2>
+<p>In YAFOWIL, validation and extraction happens at the same time. Extraction means
+to get a meaningful value out of the request. Validation means to check
+constraints, i.e if a number is positive or an email-address is valid. If
+validation fails, <code class="docutils literal notranslate"><span class="pre">ExtractionErrors</span></code> are collected on runtime-data describing
+what happened.</p>
+<div class="section" id="datatype-extraction">
+<h3>Datatype extraction<a class="headerlink" href="#datatype-extraction" title="Permalink to this headline">¶</a></h3>
+<p>There is a set of common blueprints where you can define the <code class="docutils literal notranslate"><span class="pre">datatype</span></code> of
+the extracted value. Datatype is either some primitive type like <code class="docutils literal notranslate"><span class="pre">int</span></code> or
+<code class="docutils literal notranslate"><span class="pre">float</span></code>, a class object which can be instantiated with the extracted string
+value like <code class="docutils literal notranslate"><span class="pre">uuid.UUID</span></code>, or a callable expecting the extracted string value
+and converting it to whatever.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;somefield&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;field:label:text&#39;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Some Field&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;datatype&#39;</span><span class="p">:</span> <span class="nb">int</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Blueprints which provide <code class="docutils literal notranslate"><span class="pre">datatype</span></code> by default are <code class="docutils literal notranslate"><span class="pre">hidden</span></code>, <code class="docutils literal notranslate"><span class="pre">proxy</span></code>,
+<code class="docutils literal notranslate"><span class="pre">text</span></code>, <code class="docutils literal notranslate"><span class="pre">lines</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code> and <code class="docutils literal notranslate"><span class="pre">number</span></code>.</p>
+<p>When providing a <code class="docutils literal notranslate"><span class="pre">datatype</span></code> to a widget which is not <code class="docutils literal notranslate"><span class="pre">required</span></code>, we
+probably want to have a valid <code class="docutils literal notranslate"><span class="pre">emptyvalue</span></code>, which takes effect if the request
+contains an empty string for this widget. The empty value must either be of
+or castable to the defined <code class="docutils literal notranslate"><span class="pre">datatype</span></code> or <code class="docutils literal notranslate"><span class="pre">UNSET</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">form</span><span class="p">[</span><span class="s1">&#39;somefield&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;field:label:text&#39;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Some Field&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;datatype&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="s1">&#39;emptyvalue&#39;</span><span class="p">:</span> <span class="mi">0</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Blueprints which provide <code class="docutils literal notranslate"><span class="pre">emptyvalue</span></code> by default are <code class="docutils literal notranslate"><span class="pre">hidden</span></code>, <code class="docutils literal notranslate"><span class="pre">proxy</span></code>,
+<code class="docutils literal notranslate"><span class="pre">text</span></code>, <code class="docutils literal notranslate"><span class="pre">textarea</span></code>, <code class="docutils literal notranslate"><span class="pre">lines</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>, <code class="docutils literal notranslate"><span class="pre">file</span></code>, <code class="docutils literal notranslate"><span class="pre">password</span></code>,
+<code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code>, <code class="docutils literal notranslate"><span class="pre">search</span></code> and <code class="docutils literal notranslate"><span class="pre">number</span></code>.</p>
+</div>
+<div class="section" id="invariants">
+<h3>Invariants<a class="headerlink" href="#invariants" title="Permalink to this headline">¶</a></h3>
+<p>Invariants are implemented as extractors on compounds. Usually they are defined as
+a custom blueprint (see below) with one extractor on some parent of the elements
+to be validated.</p>
+<p>Here is a short example (extension of the <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code> example) of a custom
+invariant extractor which checks if one or the other field is filled, but never
+both or none (XOR):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yafowil.base</span> <span class="kn">import</span> <span class="n">ExtractionError</span>
+<span class="c1"># ... see helloworld example whats missing here</span>
+
+<span class="k">def</span> <span class="nf">myinvariant_extractor</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extracted</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;world&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extracted</span><span class="p">:</span>
+        <span class="n">error</span> <span class="o">=</span> <span class="n">ExtractionError</span><span class="p">(</span>
+            <span class="s1">&#39;provide hello or world, not both or none&#39;</span>
+        <span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+        <span class="n">data</span><span class="p">[</span><span class="s1">&#39;world&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span>
+
+<span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+    <span class="c1"># ... see helloworld example for the code that belongs here</span>
+    <span class="n">form</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+        <span class="sa">u</span><span class="s1">&#39;*myinvariant:form&#39;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;helloworld&#39;</span><span class="p">,</span>
+        <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="n">url</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">custom</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;myinvariant&#39;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="s1">&#39;extractors&#39;</span><span class="p">:</span> <span class="p">[</span><span class="n">myinvariant_extractor</span><span class="p">]</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+    <span class="n">form</span><span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+        <span class="s1">&#39;field:label:error:text&#39;</span><span class="p">,</span>
+        <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Enter some text here&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="n">form</span><span class="p">[</span><span class="s1">&#39;world&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+        <span class="s1">&#39;field:label:error:text&#39;</span><span class="p">,</span>
+        <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;OR Enter some text here&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="c1"># ... see helloworld example for the code that belongs here</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="persistence">
+<h2>Persistence<a class="headerlink" href="#persistence" title="Permalink to this headline">¶</a></h2>
+<p>YAFOWIL provides a delegation mechanism for single data model bound forms.
+Processing the extracted form data often requires some additional computing and
+targets several persistent objects. In this case, we simply implement the submit
+action callback and do what’s necessary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Form</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="c1"># HERE IS THE INTERESTING PART</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">hello</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;myform.hello&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extracted</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">world</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;myform.world&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extracted</span>
+        <span class="c1"># ...</span>
+        <span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="n">form</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+        <span class="s1">&#39;form&#39;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;myform&#39;</span><span class="p">,</span>
+        <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;http://www.domain.tld/someform&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="n">form</span><span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+        <span class="s1">&#39;field:label:error:text&#39;</span><span class="p">,</span>
+        <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Enter hello text here&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="n">form</span><span class="p">[</span><span class="s1">&#39;world&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+        <span class="s1">&#39;field:label:error:text&#39;</span><span class="p">,</span>
+        <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Enter world text here&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+    <span class="n">form</span><span class="p">[</span><span class="s1">&#39;submit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+        <span class="s1">&#39;submit&#39;</span><span class="p">,</span>
+        <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;handler&#39;</span><span class="p">:</span> <span class="n">save</span><span class="p">,</span>
+            <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="p">})</span>
+
+<span class="n">form</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">form</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="c1"># ... should have form data persisted to model now</span>
+</pre></div>
+</div>
+<p>While fetching the value from data and assigning it to model look quite
+reasonable as long as forms are small, this may get annoying when writing more
+and complex forms. If forms refer to a single model, <code class="docutils literal notranslate"><span class="pre">data.write</span></code> can be used
+to delegate transferring the extracted data to the model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yafowil.persistence</span> <span class="kn">import</span> <span class="n">attribute_writer</span>
+
+<span class="k">class</span> <span class="nc">Form</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+    <span class="c1"># ...</span>
+
+    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="c1"># HERE IS THE INTERESTING PART</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
+        <span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="n">form</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+        <span class="s1">&#39;form&#39;</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="s1">&#39;myform&#39;</span><span class="p">,</span>
+        <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;action&#39;</span><span class="p">:</span> <span class="s1">&#39;http://www.domain.tld/someform&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;persist_writer&#39;</span><span class="p">:</span> <span class="n">attribute_writer</span>
+        <span class="p">})</span>
+    <span class="c1"># ...</span>
+
+<span class="n">form</span> <span class="o">=</span> <span class="n">Form</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">form</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The most common way is to add the <code class="docutils literal notranslate"><span class="pre">persist_writer</span></code> property to the entire
+form. <code class="docutils literal notranslate"><span class="pre">data.write</span></code> will walk through the data tree and call
+<code class="docutils literal notranslate"><span class="pre">attribute_writer</span></code> with <code class="docutils literal notranslate"><span class="pre">model</span></code>, <code class="docutils literal notranslate"><span class="pre">target</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code> arguments for
+each runtime-data node with the <code class="docutils literal notranslate"><span class="pre">persist</span></code> property set to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">persist</span></code> property indicates widgets to be considered when
+<code class="docutils literal notranslate"><span class="pre">data.write</span></code> gets called and is given as part of the widget properties
+at factory time.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">persist</span></code> property is <code class="docutils literal notranslate"><span class="pre">True</span></code> by default on <code class="docutils literal notranslate"><span class="pre">hidden</span></code>, <code class="docutils literal notranslate"><span class="pre">proxy</span></code>,
+<code class="docutils literal notranslate"><span class="pre">text</span></code>, <code class="docutils literal notranslate"><span class="pre">textarea</span></code>, <code class="docutils literal notranslate"><span class="pre">lines</span></code>, <code class="docutils literal notranslate"><span class="pre">password</span></code>, <code class="docutils literal notranslate"><span class="pre">checkbox</span></code>, <code class="docutils literal notranslate"><span class="pre">select</span></code>,
+<code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code> and <code class="docutils literal notranslate"><span class="pre">number</span></code> blueprints.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">model</span></code> received in persisting callback is the model passed to
+<code class="docutils literal notranslate"><span class="pre">data.write</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">target</span></code> received in the persisting callback is an arbitrary Python object
+and defaults to the runtime-data <code class="docutils literal notranslate"><span class="pre">name</span></code> for any particular widget.
+The target can be customized by providing <code class="docutils literal notranslate"><span class="pre">persist_target</span></code> as part of the
+widget properties at factory time.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">value</span></code> received in the persisting callback is the extracted value from
+runtime-data.</p>
+<p>The writer callback can be customized for each widget via the <code class="docutils literal notranslate"><span class="pre">persist_writer</span></code>
+property.</p>
+<p><code class="docutils literal notranslate"><span class="pre">data.write</span></code> can be called with a <code class="docutils literal notranslate"><span class="pre">recursive=False</span></code> keyword argument.
+In that case, persistence only happens on the calling level.</p>
+<p>When setting the <code class="docutils literal notranslate"><span class="pre">persist</span></code> property <code class="docutils literal notranslate"><span class="pre">True</span></code> on compound widgets, make sure
+its children get <code class="docutils literal notranslate"><span class="pre">persist</span></code> set to <code class="docutils literal notranslate"><span class="pre">False</span></code> explicitly if the used child factory
+blueprint is persistent by default.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">data.write</span></code> gets called on runtime-data which contains extraction error(s),
+a <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> is raised.</p>
+<p>The following default writer callbacks are provided:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">yafowil.persistence.attribute_writer</span></code></dt><dd><p>Write <code class="docutils literal notranslate"><span class="pre">value</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code> attribute on <code class="docutils literal notranslate"><span class="pre">model</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">yafowil.persistence.write_mapping_writer</span></code></dt><dd><p>Write <code class="docutils literal notranslate"><span class="pre">value</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code> write mapping key on <code class="docutils literal notranslate"><span class="pre">model</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">yafowil.persistence.node_attribute_writer</span></code></dt><dd><p>Write <code class="docutils literal notranslate"><span class="pre">value</span></code> to <code class="docutils literal notranslate"><span class="pre">target</span></code> node.attrs key on <code class="docutils literal notranslate"><span class="pre">model</span></code>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>In conjunction with <code class="docutils literal notranslate"><span class="pre">datatype</span></code> and <code class="docutils literal notranslate"><span class="pre">emptyvalue</span></code>, this gives us a lot of
+convenience for persisting form data to single models.</p>
+</div>
+<div class="section" id="providing-blueprints">
+<h2>Providing blueprints<a class="headerlink" href="#providing-blueprints" title="Permalink to this headline">¶</a></h2>
+<p>General behaviours (rendering, extracting, etc…) can be registered as
+blueprints in the factory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+    <span class="s1">&#39;myblueprint&#39;</span><span class="p">,</span>
+    <span class="n">extractors</span><span class="o">=</span><span class="p">[</span><span class="n">myvalidator</span><span class="p">],</span>
+    <span class="n">edit_renderers</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">display_renderers</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">preprocessors</span><span class="o">=</span><span class="p">[],</span>
+    <span class="n">builders</span><span class="o">=</span><span class="p">[])</span>
+</pre></div>
+</div>
+<p>and then used as regular blueprints when calling the factory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;field:label:myblueprint:text&#39;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+    <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Inner Field&#39;</span><span class="p">,</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="adding-custom-behaviour">
+<h2>Adding custom behaviour<a class="headerlink" href="#adding-custom-behaviour" title="Permalink to this headline">¶</a></h2>
+<p>It’s possible to inject custom behaviour by marking a part of the blueprint
+chain with the asterisk <code class="docutils literal notranslate"><span class="pre">*</span></code> character. Behaviours are one or more
+of a:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">extractor</span></code></dt><dd><p>extracts, validates and/or converts form-data from the request.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">edit_renderer</span></code></dt><dd><p>build the markup for editing.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">display_renderer</span></code></dt><dd><p>build the markup for display only.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">builder</span></code></dt><dd><p>Generic hook called once at factory time of the widget. Here e.g. subwidgets
+can be created.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">preprocessor</span></code></dt><dd><p>Generic hook to prepare runtime-data. Runs once per runtime-data instance
+before extractors or renderers are running.</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myvalidator</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+   <span class="c1"># validate the data, raise ExtractionError if something&#39;s wrong</span>
+   <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span> <span class="o">!=</span> <span class="s1">&#39;something:&#39;</span>
+       <span class="k">raise</span> <span class="n">ExtractionError</span><span class="p">(</span><span class="s2">&quot;only &#39;something&#39; is allowed as input.&quot;</span><span class="p">)</span>
+   <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span>
+
+<span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
+    <span class="s1">&#39;field:label:*myvalidation:text&#39;</span><span class="p">,</span>
+    <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Inner Field&#39;</span><span class="p">,</span>
+    <span class="p">},</span>
+    <span class="n">custom</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;myvalidation&#39;</span><span class="p">:</span> <span class="nb">dict</span><span class="p">(</span><span class="n">extractor</span><span class="o">=</span><span class="p">[</span><span class="n">myvalidator</span><span class="p">]),</span>
+    <span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="delivering-resources">
+<h2>Delivering resources<a class="headerlink" href="#delivering-resources" title="Permalink to this headline">¶</a></h2>
+<p>YAFOWIL addon widgets are shipped with their required JavaScript and stylesheet
+resources. These resources are registered to the factory with additional
+information like delivery order and resources group.</p>
+<p>To help the integrator delivering these resources through their chosen web
+framework, the helper object <code class="docutils literal notranslate"><span class="pre">yafowil.resources.YafowilResources</span></code> should
+be used.</p>
+<p>The function <code class="docutils literal notranslate"><span class="pre">configure_resource_directory</span></code> should be overwritten on deriving
+class which is responsible to make the given physical resource directory
+somehow available to the web.</p>
+<p>The object can be instantiated with <code class="docutils literal notranslate"><span class="pre">js_skip</span></code> and <code class="docutils literal notranslate"><span class="pre">css_skip</span></code> keyword
+arguments, which contain iterable resource group names to skip when calculating
+resources. This is useful if basic or dependent resources are already shipped
+in another way.</p>
+<p>The following example shows how to integrate YAFOWIL resources in a
+<a class="reference external" href="http://www.pylonsproject.org">pyramid</a> application.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyramid.static</span> <span class="kn">import</span> <span class="n">static_view</span>
+<span class="kn">from</span> <span class="nn">yafowil.resources</span> <span class="kn">import</span> <span class="n">YafowilResources</span>
+<span class="kn">import</span> <span class="nn">mypackage.views</span>
+
+<span class="k">class</span> <span class="nc">Resources</span><span class="p">(</span><span class="n">YafowilResources</span><span class="p">):</span>
+
+   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">js_skip</span><span class="o">=</span><span class="p">[],</span> <span class="n">css_skip</span><span class="o">=</span><span class="p">[],</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
+       <span class="nb">super</span><span class="p">(</span><span class="n">Resources</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">js_skip</span><span class="o">=</span><span class="n">js_skip</span><span class="p">,</span> <span class="n">css_skip</span><span class="o">=</span><span class="n">css_skip</span><span class="p">)</span>
+
+   <span class="k">def</span> <span class="nf">configure_resource_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="n">resourc_edir</span><span class="p">):</span>
+       <span class="c1"># instantiate static view</span>
+       <span class="n">resources_view</span> <span class="o">=</span> <span class="n">static_view</span><span class="p">(</span><span class="n">resourc_edir</span><span class="p">,</span> <span class="n">use_subpath</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+       <span class="c1"># attach resources view to package</span>
+       <span class="n">view_name</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_resources&#39;</span> <span class="o">%</span> <span class="n">plugin_name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;_&#39;</span><span class="p">)</span>
+       <span class="nb">setattr</span><span class="p">(</span><span class="n">mypackage</span><span class="o">.</span><span class="n">views</span><span class="p">,</span> <span class="n">view_name</span><span class="p">,</span> <span class="n">resources_view</span><span class="p">)</span>
+       <span class="c1"># register view via config</span>
+       <span class="n">view_path</span> <span class="o">=</span> <span class="s1">&#39;mypackage.views.</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">view_name</span>
+       <span class="n">resource_base</span> <span class="o">=</span> <span class="s1">&#39;++resource++</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">plugin_name</span>
+       <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">view_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">resource_base</span><span class="p">)</span>
+       <span class="k">return</span> <span class="n">resource_base</span>
+
+<span class="k">def</span> <span class="nf">includeme</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="c1"># resources object gets instantiated only once</span>
+    <span class="n">resources</span> <span class="o">=</span> <span class="n">Resources</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="c1"># sorted JS resources URLs. Supposed to be rendered to HTML</span>
+    <span class="n">resources</span><span class="o">.</span><span class="n">js_resources</span>
+
+    <span class="c1"># sorted CSS resources URLs. Supposed to be rendered to HTML</span>
+    <span class="n">resources</span><span class="o">.</span><span class="n">css_resources</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

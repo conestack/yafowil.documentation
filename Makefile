@@ -19,6 +19,7 @@ live:
 	make html
 	rm -r docs/* || echo "no docs folder"
 	cp -r build/html docs
+	echo "docs.yafowil.info" >>docs/CNAME
 
 clean:
 	rm -r $(BUILDDIR)/doctrees || echo no doctrees
