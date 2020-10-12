@@ -1,11 +1,10 @@
+import yafowil.loader
 from docutils import nodes
 from docutils.statemachine import ViewList
 from sphinx.util.docstrings import prepare_docstring
 from sphinx.util.nodes import nested_parse_with_titles
-import yafowil.loader
 from yafowil.base import factory
 from yafowil.utils import UNSET
-
 
 try:
     from sphinx.util.compat import Directive
@@ -17,7 +16,6 @@ _marker = list()
 
 
 class YDirective(Directive):
-
     def _rest2node(self, rest, container=None):
         vl = ViewList(prepare_docstring(rest))
         if container is None:
@@ -29,40 +27,39 @@ class YDirective(Directive):
 
 
 class WidgetDoc(YDirective):
-
     def run(self):
         result = []
         for key in sorted(factory._blueprints.keys()):
-            if factory.doc['blueprint'].get(key, None) is UNSET:
+            if factory.doc["blueprint"].get(key, None) is UNSET:
                 continue
             result.append(self._doc_widget(key))
         return result
 
     def _managed_props_of(self, widgetname):
-        props = set([_ for _ in factory.doc['props']
-                     if _.startswith('%s.' % widgetname)])
+        props = set(
+            [_ for _ in factory.doc["props"] if _.startswith("%s." % widgetname)]
+        )
         for chainidx in range(0, 5):
             chain = factory._blueprints[widgetname][chainidx]
             for func in chain:
-                mprops = getattr(func, '__yafowil_managed_props__', [])
-                props.update(['%s.%s' % (widgetname, _) for _ in mprops])
+                mprops = getattr(func, "__yafowil_managed_props__", [])
+                props.update(["%s.%s" % (widgetname, _) for _ in mprops])
         return sorted(props)
 
     def _doc_widget(self, widgetname):
         sec = nodes.section()
-        sec['ids'].append(widgetname)
+        sec["ids"].append(widgetname)
         # set a title:
         sec.append(nodes.subtitle(text=widgetname))
         # fetch main documentation
-        maindoc = factory.doc['blueprint'].get(widgetname, None)
+        maindoc = factory.doc["blueprint"].get(widgetname, None)
         if maindoc is not None:
             sec.append(self._rest2node(maindoc))
         else:
-            sec.append(nodes.paragraph(
-                text='This widget is currently undocumented.'))
+            sec.append(nodes.paragraph(text="This widget is currently undocumented."))
 
         # document properties
-        rub = nodes.rubric(text='Properties')
+        rub = nodes.rubric(text="Properties")
         sec.append(rub)
         table = """
         +----------+---------+-------------+
@@ -75,11 +72,10 @@ class WidgetDoc(YDirective):
         table.children[0].children[0].children[4].children = []
         rub.append(table)
         for prop in self._managed_props_of(widgetname):
-            table.children[0].children[0].children[4].append(
-                                                      self._doc_property(prop))
+            table.children[0].children[0].children[4].append(self._doc_property(prop))
 
         # build table of callables used
-        rub = nodes.rubric(text='Chains')
+        rub = nodes.rubric(text="Chains")
         sec.append(rub)
         table = """\
         +------------+----------------+-------------------+---------------+----------+
@@ -103,7 +99,7 @@ class WidgetDoc(YDirective):
         for el in chain:
             exist = True
             li = nodes.list_item()
-            if hasattr(el, 'func_name'):  # function
+            if hasattr(el, "func_name"):  # function
                 li.append(nodes.paragraph(text=el.func_name))
             else:  # class
                 li.append(nodes.paragraph(text=el.__class__.__name__))
@@ -113,7 +109,7 @@ class WidgetDoc(YDirective):
         return nodes.paragraph(text="-/-")
 
     def _doc_property(self, wpname):
-        blueprint_name, prop = wpname.split('.')
+        blueprint_name, prop = wpname.split(".")
         table = """
         +----------+---------+-------------+
         | name     | default | description |
@@ -136,16 +132,15 @@ class WidgetDoc(YDirective):
             default = factory.defaults.get(prop, _marker)
             if default is not _marker:
                 row[1].append(nodes.literal(text=repr(default)))
-                row[1].append(nodes.emphasis(text=' global'))
+                row[1].append(nodes.emphasis(text=" global"))
             else:
-                row[1].append(nodes.emphasis(text='required/ not set'))
+                row[1].append(nodes.emphasis(text="required/ not set"))
 
-        doc = factory.doc['props'].get(wpname,
-                                       factory.doc['props'].get(prop, _marker))
+        doc = factory.doc["props"].get(wpname, factory.doc["props"].get(prop, _marker))
         if doc is not _marker:
             row[2].append(self._rest2node(doc))
         else:
-            row[2].append(nodes.paragraph('(not documented)'))
+            row[2].append(nodes.paragraph("(not documented)"))
             # this does not log. bullshit. no idea how to make sphinx log
             print("YAFOWIL property '%s' is not documented!" % wpname)
 
@@ -154,13 +149,13 @@ class WidgetDoc(YDirective):
 
         def add_chain_for_property(chain):
             for el in chain:
-                if prop not in getattr(el, '__yafowil_managed_props__', []):
-                    #if getattr(el, '__yafowil_managed_props__', True):
-                        #print ('YAFOWIL callable %s has no ' % el,
-                        #       'managed props decorator!')
+                if prop not in getattr(el, "__yafowil_managed_props__", []):
+                    # if getattr(el, '__yafowil_managed_props__', True):
+                    # print ('YAFOWIL callable %s has no ' % el,
+                    #       'managed props decorator!')
                     continue
                 li = nodes.list_item()
-                if hasattr(el, 'func_name'):  # function
+                if hasattr(el, "func_name"):  # function
                     name = el.func_name
                 else:  # class
                     name = el.__class__.__name__
@@ -176,18 +171,16 @@ class WidgetDoc(YDirective):
         add_chain_for_property(factory.builders(blueprint_name))
         add_chain_for_property(factory.preprocessors(blueprint_name))
         if not used:
-            print("YAFOWIL property '%s' is not handled by managed props!" % \
-                  wpname)
+            print("YAFOWIL property '%s' is not handled by managed props!" % wpname)
 
-        if (len(ul)):
-            row[2].append(nodes.strong(text='Used by:'))
+        if len(ul):
+            row[2].append(nodes.strong(text="Used by:"))
             row[2].append(ul)
 
         return row
 
 
 class PlanDoc(YDirective):
-
     def run(self):
         result = []
         result.append(self._doc_plans())
@@ -208,5 +201,5 @@ class PlanDoc(YDirective):
 
         for macro, blueprints in sorted(factory._macros.items()):
             rows[0].append(nodes.paragraph(text=macro))
-            rows[1].append(nodes.paragraph(text=':'.join(blueprints)))
+            rows[1].append(nodes.paragraph(text=":".join(blueprints)))
         return table

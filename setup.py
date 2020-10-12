@@ -32,7 +32,7 @@ setup(
     zip_safe=True,
     install_requires=[
         'setuptools',
-        'Pillow',
+        'pillow',
         'sphinx',
         'collective.sphinx.includedoc',
         'sphinx_bootstrap_theme',
