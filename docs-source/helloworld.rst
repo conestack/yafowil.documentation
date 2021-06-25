@@ -99,5 +99,5 @@ Now bootstrap and run buildout, and start the application.::
 
 Pointing the browser to `<http://localhost:8080/>`_ shows the application.
 
-The `full working example code <https://github.com/bluedynamics/yafowil-example-helloworld>`_
+The `full working example code <https://github.com/conestack/yafowil-example-helloworld>`_
 is available at github.
