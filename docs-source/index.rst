@@ -6,7 +6,8 @@
 
 .. image:: _static/yafowil.png
 
-Visit our `YAFOWIL DEMO <http://demo.yafowil.info>`_ SITE!
+.. Tip::
+  Visit our `YAFOWIL demo site <http://demo.yafowil.info>`_ !
 
 
 Callables Everywhere
@@ -32,7 +33,7 @@ Contents
    :maxdepth: 2
    
    introduction
-   helloworld 
+   Hello world example <helloworld> 
    architecture
    yaml
    integrations

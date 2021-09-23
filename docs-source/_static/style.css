@@ -1,0 +1,41 @@
+@font-face {
+    font-family: nineteenfortytwo;
+    src: url(1942.ttf);
+}
+
+#logo {
+    font-family: nineteenfortytwo;
+}
+
+#reference-blueprints p.section-subtitle {
+    font-weight: 500;
+    font-size: 24px;
+    margin-left: .7rem;
+}
+
+#reference-blueprints table.docutils {
+    margin-left: .5rem;
+}
+
+#reference-blueprints ul {
+    list-style: none;
+    padding-left: .2rem;
+}
+
+#reference-blueprints ul > li > em {
+    color: var(--bs-orange);
+}
+
+#reference-blueprints .docutils .container {
+    padding-left: 0;
+}
+
+#reference-blueprints .cs-content code.literal {
+    background: #07adff1f;
+    border: none;
+    color: #0078bf;
+}
+
+#reference-blueprints .docutils.container dt, .docutils.container ul {
+    margin-left: .3rem!important;
+}

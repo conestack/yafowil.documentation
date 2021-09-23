@@ -5,6 +5,8 @@ This page contains documentation for available blueprints registered in the
 factory. This list is auto-generated and contains documentation of the
 following packages:
 
+.. rst-class:: packages
+
 * yafowil (core package)
 
 * yafowil.widget.ace

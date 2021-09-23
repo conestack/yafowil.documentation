@@ -47,8 +47,8 @@ The package ``yafowil.werkzeug`` provides bindings to ``Werkzeug``-based
 frameworks, such as ``Flask`` or ``tipfy``.
 
 
-Boostrap Styles
----------------
+Bootstrap Styles
+----------------
 
 The package ``yafowil.bootstrap`` ships with twitter bootstrap resources and
 provides common widget configuration to provide a pretty look and feel and 

@@ -44,16 +44,16 @@ the only place where this happens.
 At creation time of widgets you need to use its dict-like API for creating
 compounds of widgets, such as a form or a fieldset.
 
-**Attention! Possible confusion:**:
+.. Attention ::
 
-- *Widgets* are built from a chain of blueprints in *existing*
-  *libraries/addons* and are configured using properties,
-- *Blueprints* are chains of extractors, renderers, preprocessors and builders
-  (see below),
-- the *average YAFOWIL user* does *not need to create blueprints*, she just uses
-  them,
-- *advanced YAFOWIL users* planning to develop their own widgets will need to
-  write blueprints.
+    - *Widgets* are built from a chain of blueprints in *existing*
+      *libraries/addons* and are configured using properties,
+    - *Blueprints* are chains of extractors, renderers, preprocessors and builders
+      (see below),
+    - the *average YAFOWIL user* does *not need to create blueprints*, she just uses
+      them,
+    - *advanced YAFOWIL users* planning to develop their own widgets will need to
+      write blueprints.
 
 
 Runtime data

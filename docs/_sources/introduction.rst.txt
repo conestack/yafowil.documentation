@@ -2,10 +2,12 @@
 Introduction
 ============
 
-YAFOWIL targets rendering form widgets and extracting/validating the data send
+YAFOWIL targets are rendering form widgets and extracting/validating the data sent
 by the browser per widget.
 
-YAFOWIL widgets are just configuration. It provides a factory which can
+YAFOWIL widgets are just configuration.
+
+It provides a factory which can
 produce *widget instances* from *blueprints*.
 
 There is a library of existing blueprints ready to be extended on demand.
@@ -18,16 +20,17 @@ the namespace ``yafowil.widget.*``).
 Motivation
 ==========
 
-The YAFOWIL authors use several Python frameworks, and became very tired of 
-inventing widgets again and again. There YAFOWIL was intentionally written to
+The YAFOWIL authors use several Python frameworks and became very tired of 
+inventing widgets again and again. 
+
+YAFOWIL was intentionally written to
 be framework-independent. By just feeding it with
 configuration it can be used and extended in most existing python web
-frameworks. Zope, Pyramid, Django, Flask, CherryPy and similar are
-candidates.
+frameworks. Possible candidates include Zope, Pyramid, Django, Flask, CherryPy and similar.
 
-Another common problem with form libs is a non-unique look and feel of the
-available widget collection. YAFOWIL tries to provide some useful addon widgets
-which takes care of a unified user experience.
+Another common problem with form libraries is a non-unique look and feel of the
+available widget collection. YAFOWIL tries to provide some useful addon widgets,
+thereby taking care of a unified user experience.
 
 
 Dependencies
@@ -36,9 +39,10 @@ Dependencies
 YAFOWIL aims to have no dependencies on any web framework. It utilizes the
 `node <http://pypi.python.org/pypi/node>`_
 package which provides a powerful abstraction for lightweight graph data structures.
+
 YAFOWIL does not know about data-storage, but offers a hook to add
 processing callback handler functions and a mechanism for delegating persistence
-automatically to a certain degree.
+automatically (to a certain degree).
 
 
 Integrations
@@ -51,13 +55,15 @@ YAFOWIL currently integrates with the following packages:
 * `yafowil.werkzeug <http://pypi.python.org/pypi/yafowil.werkzeug>`_
 * `yafowil.bootstrap <http://pypi.python.org/pypi/yafowil.bootstrap>`_
 
-For details read the chapter Integrations_.
+For details refer to the chapter Integrations_.
 
 
 Example
 =======
 
-For the impatient, code says more than 1000 words: A simple example form works
+For the impatient, code says more than 1000 words.
+
+A simple example form works
 like so:
 
 .. code-block:: python
@@ -122,7 +128,7 @@ This results in:
     </form>
 
 Process the form with a ``request``.
-The request is expected to be a dict-like mapping:
+Requests are expected to be a dict-like mapping:
 
 .. code-block:: python
 
@@ -145,7 +151,9 @@ Creating a widget
 A *widget* is an instance of a *blueprint* created by the factory. Factory is a
 singleton and operates as a registry for blueprints.
 
-By calling the factory, a widget is created; here, a naked text input field from
+By calling the factory, a widget is created.
+
+Here, a naked text input field from
 the ``text`` blueprint:
 
 .. code-block:: python
@@ -173,8 +181,8 @@ expands the macro ``#errorfield`` to ``field:label:error`` and appends ``:text``
 the result is ``field:label:error:text``.
 
 
-Widgets trees
-=============
+Widget trees
+============
 
 YAFOWIL forms are organized as **widget trees**. The entire form is the
 root widget which contains compound nodes (which can contain children) and/or
@@ -182,7 +190,7 @@ leaf nodes. A widget behaves similarly to an ordered Python dictionary. Compound
 may represent the entire HTML form or fieldsets, while leaf objects may
 represent the various HTML input fields.
 
-Thus building widget trees looks like:
+Building a widget tree:
 
 .. code-block:: python
 
@@ -242,6 +250,7 @@ Data extraction
 
 After calling the ``Controller`` we have the form processing result on
 ``controller.data``, which is an instance of ``yafowil.base.RuntimeData``.
+
 Like widgets, runtime-data is organized as tree where each runtime data node
 refers to a widget node and provides the extracted value and any error(s) that
 occurred while extracting data from the request.
@@ -264,8 +273,9 @@ Validation
 
 In YAFOWIL, validation and extraction happens at the same time. Extraction means
 to get a meaningful value out of the request. Validation means to check
-constraints, i.e if a number is positive or an email-address is valid. If
-validation fails, ``ExtractionErrors`` are collected on runtime-data describing
+constraints, i.e if a number is positive or an email-address is valid.
+
+If validation fails, ``ExtractionErrors`` are collected on runtime-data describing
 what happened.
 
 
@@ -361,6 +371,7 @@ Persistence
 ===========
 
 YAFOWIL provides a delegation mechanism for single data model bound forms.
+
 Processing the extracted form data often requires some additional computing and
 targets several persistent objects. In this case, we simply implement the submit
 action callback and do what's necessary:
@@ -409,9 +420,9 @@ action callback and do what's necessary:
     form(request)
     # ... should have form data persisted to model now
 
-While fetching the value from data and assigning it to model look quite
-reasonable as long as forms are small, this may get annoying when writing more
-and complex forms. If forms refer to a single model, ``data.write`` can be used
+While fetching the value from data and assigning it to model seems quite
+reasonable, as long as forms are small, this may get annoying when writing more
+or complex forms. If forms refer to a single model, ``data.write`` can be used
 to delegate transferring the extracted data to the model.
 
 .. code-block:: python
@@ -487,7 +498,7 @@ The following default writer callbacks are provided:
 * ``yafowil.persistence.node_attribute_writer``
     Write ``value`` to ``target`` node.attrs key on ``model``.
 
-In conjunction with ``datatype`` and ``emptyvalue``, this gives us a lot of
+In conjunction with ``datatype`` and ``emptyvalue``, this approach gives us a lot of
 convenience for persisting form data to single models.
 
 
