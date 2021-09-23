@@ -45,9 +45,9 @@ copyright = u'2018-2020, Robert Niederreiter, Jens Klein, et al'
 # built documents.
 #
 # The short X.Y version.
-version = '3.0'
+version = '2.3.3'
 # The full version, including alpha/beta/rc tags.
-release = '3.0'
+release = '2.3.3'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
