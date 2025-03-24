@@ -1,21 +1,19 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Describe YAFOWIL forms with YAML &#8212; YAFOWIL - Yet Another Form Widget Library</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css" />
-    <link rel="stylesheet" type="text/css" href="_static/style.css" />
-    <link rel="stylesheet" type="text/css" href="_static/1942.ttf" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
+    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
+    <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
+    <script src="_static/documentation_options.js?v=f4302432"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Integrations" href="integrations.html" />
@@ -163,8 +161,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#ace">ace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#array">array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#autocomplete">autocomplete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#button">button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#checkbox">checkbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#chosen">chosen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#color">color</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#compound">compound</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#cron">cron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#datetime">datetime</a></li>
@@ -182,11 +181,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#label">label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#lines">lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#location">location</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#multiselect">multiselect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#number">number</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#password">password</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#proxy">proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#richtext">richtext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#search">search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select">select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select2">select2</a></li>
@@ -201,9 +198,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#th">th</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#thead">thead</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#time">time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#tiptap">tiptap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#tr">tr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#url">url</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
 </ul>
@@ -213,87 +210,89 @@
   </aside>
     
 
-    <main class="document cs-main order-1">
+    
+      <main class="document cs-main order-1" role="main">
+    
       <div class="ps-lg-4 mt-3 cs-content">
         
   <section id="describe-yafowil-forms-with-yaml">
-<h1>Describe YAFOWIL forms with YAML<a class="headerlink" href="#describe-yafowil-forms-with-yaml" title="Permalink to this headline">#</a></h1>
+<h1>Describe YAFOWIL forms with YAML<a class="headerlink" href="#describe-yafowil-forms-with-yaml" title="Link to this heading">#</a></h1>
 <p>It is possible to describe YAFOWIL forms using <a class="reference external" href="http://www.yaml.org/">YAML</a>
 as description language.</p>
 <p><a class="reference external" href="http://www.json.org/JSON">JSON</a> syntax is a
 <a class="reference external" href="https://en.wikipedia.org/wiki/YAML#JSON">subset</a> of YAML version 1.2, so we
 support JSON too.</p>
 <section id="create-file-containing-form-description">
-<h2>Create file containing form description<a class="headerlink" href="#create-file-containing-form-description" title="Permalink to this headline">#</a></h2>
+<h2>Create file containing form description<a class="headerlink" href="#create-file-containing-form-description" title="Link to this heading">#</a></h2>
 <p>Create a file, i.e. <code class="docutils literal notranslate"><span class="pre">demo_form.yaml</span></code> and add widget configuration.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">factory</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">form</span>
-<span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">demo_form</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">factory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">form</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo_form</span>
 <span class="nt">props</span><span class="p">:</span>
-    <span class="nt">action</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">context.form_action</span>
+<span class="w">    </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">context.form_action</span>
 <span class="nt">widgets</span><span class="p">:</span>
-<span class="p p-Indicator">-</span> <span class="nt">title</span><span class="p">:</span>
-    <span class="nt">factory</span><span class="p">:</span> <span class="s">&quot;label:field:error:text&quot;</span>
-    <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">expr:context.get(&#39;title&#39;, &#39;&#39;)</span>
-    <span class="nt">props</span><span class="p">:</span>
-        <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">i18n:title:Title</span>
-        <span class="nt">required</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">i18n:title_required:No title given</span>
-<span class="p p-Indicator">-</span> <span class="nt">description</span><span class="p">:</span>
-    <span class="nt">factory</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">label:field:textarea</span>
-    <span class="nt">value</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">expr:context.get(&#39;description&#39;, &#39;&#39;)</span>
-    <span class="nt">props</span><span class="p">:</span>
-        <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">i18n:description:Description</span>
-        <span class="nt">rows</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5</span>
-<span class="p p-Indicator">-</span> <span class="nt">save</span><span class="p">:</span>
-    <span class="nt">factory</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">submit</span>
-    <span class="nt">props</span><span class="p">:</span>
-        <span class="nt">action</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">save</span>
-        <span class="nt">expression</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">True</span>
-        <span class="nt">handler</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">context.save</span>
-        <span class="nt">next</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">context.next</span>
-        <span class="nt">label</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">i18n:save:Save</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">title</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">factory</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;label:field:error:text&quot;</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">expr:context.get(&#39;title&#39;, &#39;&#39;)</span>
+<span class="w">    </span><span class="nt">props</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i18n:title:Title</span>
+<span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i18n:title_required:No title given</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">description</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">factory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">label:field:textarea</span>
+<span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">expr:context.get(&#39;description&#39;, &#39;&#39;)</span>
+<span class="w">    </span><span class="nt">props</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i18n:description:Description</span>
+<span class="w">        </span><span class="nt">rows</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">save</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">factory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submit</span>
+<span class="w">    </span><span class="nt">props</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">action</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">save</span>
+<span class="w">        </span><span class="nt">expression</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span>
+<span class="w">        </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">context.save</span>
+<span class="w">        </span><span class="nt">next</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">context.next</span>
+<span class="w">        </span><span class="nt">label</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">i18n:save:Save</span>
 </pre></div>
 </div>
 <p>In JSON notation the same would look like this.</p>
 <div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-  <span class="nt">&quot;factory&quot;</span><span class="p">:</span> <span class="s2">&quot;form&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;demo_form&quot;</span><span class="p">,</span>
-  <span class="nt">&quot;props&quot;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;context.form_action&quot;</span>
-  <span class="p">},</span>
-  <span class="nt">&quot;widgets&quot;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;factory&quot;</span><span class="p">:</span> <span class="s2">&quot;label:field:error:text&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;expr:context.get(&#39;title&#39;, &#39;&#39;)&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;props&quot;</span><span class="p">:</span> <span class="p">{</span>
-          <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;i18n:title:Title&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;required&quot;</span><span class="p">:</span> <span class="s2">&quot;i18n:title_required:No title given&quot;</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;description&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;factory&quot;</span><span class="p">:</span> <span class="s2">&quot;label:field:textarea&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;value&quot;</span><span class="p">:</span> <span class="s2">&quot;expr:context.get(&#39;description&#39;, &#39;&#39;)&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;props&quot;</span><span class="p">:</span> <span class="p">{</span>
-          <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;i18n:description:Description&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;rows&quot;</span><span class="p">:</span> <span class="mi">5</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&quot;save&quot;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&quot;factory&quot;</span><span class="p">:</span> <span class="s2">&quot;submit&quot;</span><span class="p">,</span>
-        <span class="nt">&quot;props&quot;</span><span class="p">:</span> <span class="p">{</span>
-          <span class="nt">&quot;action&quot;</span><span class="p">:</span> <span class="s2">&quot;save&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;expression&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-          <span class="nt">&quot;handler&quot;</span><span class="p">:</span> <span class="s2">&quot;context.save&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;i18n:save:Save&quot;</span><span class="p">,</span>
-          <span class="nt">&quot;next&quot;</span><span class="p">:</span> <span class="s2">&quot;context.next&quot;</span>
-        <span class="p">}</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">]</span>
+<span class="w">  </span><span class="nt">&quot;factory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;form&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;demo_form&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;props&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;context.form_action&quot;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;widgets&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;factory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label:field:error:text&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;expr:context.get(&#39;title&#39;, &#39;&#39;)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;props&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;i18n:title:Title&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;required&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;i18n:title_required:No title given&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;factory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;label:field:textarea&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;expr:context.get(&#39;description&#39;, &#39;&#39;)&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;props&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;i18n:description:Description&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;rows&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;save&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;factory&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;submit&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;props&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;save&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;expression&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;handler&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;context.save&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;label&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;i18n:save:Save&quot;</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">&quot;next&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;context.next&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -326,17 +325,28 @@ descibed here.</p>
 </dl>
 </section>
 <section id="computed-values">
-<h2>Computed values<a class="headerlink" href="#computed-values" title="Permalink to this headline">#</a></h2>
+<h2>Computed values<a class="headerlink" href="#computed-values" title="Link to this heading">#</a></h2>
 <p>Beside static values, definitions may contain python expressions, i18n message
 strings, access to a rendering context and pointers to callables.</p>
 <dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">i18n:</span></code></dt><dd><p>If definition value starts with <code class="docutils literal notranslate"><span class="pre">i18n:</span></code>, a message string gets created
 by calling given message factory.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">expr:</span></code></dt><dd><p>If definition value starts with <code class="docutils literal notranslate"><span class="pre">expr:</span></code>, a callback wrapper is created
-which gets executed each time the widget tree gets rendered. For security
-reasons, only rendering <code class="docutils literal notranslate"><span class="pre">context</span></code>, <code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> are available
+<dt><code class="docutils literal notranslate"><span class="pre">expr:</span></code></dt><dd><p>If definition value starts with <code class="docutils literal notranslate"><span class="pre">expr:</span></code>, a yafowil callback wrapper gets
+created, accepting <code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> keyword arguments, which is
+executed when the widget tree is processed. For security reasons, only
+rendering <code class="docutils literal notranslate"><span class="pre">context</span></code>, <code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> are available
 in expressions.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">python:</span></code></dt><dd><p>If definition value starts with <code class="docutils literal notranslate"><span class="pre">python:</span></code> it gets evaluated as plain
+python expression. This is useful for the rare cases where yafowil or one
+of it’s addons expects a callable not accepting <code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code>
+as arguments, like <code class="docutils literal notranslate"><span class="pre">datatype</span></code> does. By default, these expressions get an
+empty globals dictionary. Python expression globals can be customized
+either globally by adding values to <code class="docutils literal notranslate"><span class="pre">yafowil.yaml.python_expression_globals</span></code>
+or per parser run by passing <code class="docutils literal notranslate"><span class="pre">expression_globals</span></code> to <code class="docutils literal notranslate"><span class="pre">YAMLParser</span></code>
+constructor respective <code class="docutils literal notranslate"><span class="pre">parse_from_YAML</span></code> function. Parser specific globals
+take precedence over globally defined ones.</p>
 </dd>
 <dt><code class="docutils literal notranslate"><span class="pre">context</span></code></dt><dd><p>If definition value starts with <code class="docutils literal notranslate"><span class="pre">context</span></code>, rendering context is used to
 lookup callbacks. If lookup fails, return definition value as string.</p>
@@ -347,52 +357,56 @@ When lookup fails, return definition value as string.</p>
 </dl>
 </section>
 <section id="define-rendering-context">
-<h2>Define rendering context<a class="headerlink" href="#define-rendering-context" title="Permalink to this headline">#</a></h2>
+<h2>Define rendering context<a class="headerlink" href="#define-rendering-context" title="Link to this heading">#</a></h2>
 <p>A rendering context has to be provided. Refering to the form description
 example above, this may look like:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">FormRenderingContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">FormRenderingContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="gp">...</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="c1"># do data lookup here</span>
 <span class="gp">... </span>        <span class="n">value</span> <span class="o">=</span> <span class="n">key</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="n">value</span>
 <span class="gp">...</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="nf">form_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">form_action</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="c1"># create and return form action URL</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="s1">&#39;http://example.com/form_action&#39;</span>
 <span class="gp">...</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="c1"># extract and save form data</span>
 <span class="gp">... </span>        <span class="k">pass</span>
 <span class="gp">...</span>
-<span class="gp">... </span>    <span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">def</span><span class="w"> </span><span class="nf">next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
 <span class="gp">... </span>        <span class="c1"># compute and return next URL</span>
 <span class="gp">... </span>        <span class="k">return</span> <span class="s1">&#39;http://example.com/form_action_succeed&#39;</span>
 </pre></div>
 </div>
 </section>
 <section id="create-message-factory">
-<h2>Create Message Factory<a class="headerlink" href="#create-message-factory" title="Permalink to this headline">#</a></h2>
+<h2>Create Message Factory<a class="headerlink" href="#create-message-factory" title="Link to this heading">#</a></h2>
 <p>Unless no others are registered one want to use message factories from
 <code class="docutils literal notranslate"><span class="pre">pyramid.i18n</span></code> or <code class="docutils literal notranslate"><span class="pre">zope.i18nmessageid</span></code>. See refering documentation for
 details. Here we create a dummy message factory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message_factory</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">message_factory</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span>
 </pre></div>
 </div>
 </section>
 <section id="creating-yafowil-forms-form-yaml-files">
-<h2>Creating YAFOWIL-Forms form YAML-Files<a class="headerlink" href="#creating-yafowil-forms-form-yaml-files" title="Permalink to this headline">#</a></h2>
+<h2>Creating YAFOWIL-Forms form YAML-Files<a class="headerlink" href="#creating-yafowil-forms-form-yaml-files" title="Link to this heading">#</a></h2>
 <p>To create a yafowil widget tree from YAML, use <code class="docutils literal notranslate"><span class="pre">yafowil.yaml.parse_from_YAML</span></code>.
 This accepts also JSON file files ending with <code class="docutils literal notranslate"><span class="pre">.json</span></code>.
 To adress a specific pyhton package path prefix the filename with
 <code class="docutils literal notranslate"><span class="pre">my.module:</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">yafowil.loader</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">yafowil.yaml</span> <span class="kn">import</span> <span class="n">parse_from_YAML</span>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">yafowil.loader</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.yaml</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_from_YAML</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">rendering_context</span> <span class="o">=</span> <span class="n">FormRenderingContext</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span> <span class="o">=</span> <span class="n">parse_from_YAML</span><span class="p">(</span><span class="s1">&#39;yafowil.yaml:demo_form.yaml&#39;</span><span class="p">,</span>
-<span class="gp">... </span>                       <span class="n">context</span><span class="o">=</span><span class="n">rendering_context</span><span class="p">,</span>
-<span class="gp">... </span>                       <span class="n">message_factory</span><span class="o">=</span><span class="n">message_factory</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">expression_globals</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">form</span> <span class="o">=</span> <span class="n">parse_from_YAML</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="s1">&#39;yafowil.yaml:demo_form.yaml&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">context</span><span class="o">=</span><span class="n">rendering_context</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">message_factory</span><span class="o">=</span><span class="n">message_factory</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">expression_globals</span><span class="o">=</span><span class="n">expression_globals</span>
+<span class="gp">... </span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This results into…:</p>
@@ -420,7 +434,7 @@ To adress a specific pyhton package path prefix the filename with
 </div>
 </section>
 <section id="manage-translations-of-yaml-forms">
-<h2>Manage translations of YAML forms<a class="headerlink" href="#manage-translations-of-yaml-forms" title="Permalink to this headline">#</a></h2>
+<h2>Manage translations of YAML forms<a class="headerlink" href="#manage-translations-of-yaml-forms" title="Link to this heading">#</a></h2>
 <p>As shown above, YAML forms may contain i18n translation strings. The message
 strings and the corresponding default values can be extracted automatically
 and written to po files using <a class="reference external" href="http://pypi.python.org/pypi/lingua">lingua</a>
@@ -433,6 +447,8 @@ corresponding documentation.</p>
 
 
       </div>
+
+    
   <div class="cs-local-toc mx-4 mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
     <strong class="d-block h6 my-2 pb-2 border-bottom">On this page</strong>
     <nav id="TableOfContents">
@@ -447,6 +463,7 @@ corresponding documentation.</p>
 
     </nav>
   </div>
+    
     </main>
   </div><div class="container footer" role="contentinfo">
   <footer class="d-flex flex-wrap justify-content-between align-items-center pt-2 my-4 border-top"><ul class="pb-2 mb-3 nav container border-bottom">
@@ -465,7 +482,7 @@ corresponding documentation.</p>
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
       </div>
   </footer>
 </div>

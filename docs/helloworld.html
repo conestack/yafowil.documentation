@@ -1,21 +1,19 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Minimal Hello World Example Webapplication &#8212; YAFOWIL - Yet Another Form Widget Library</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css" />
-    <link rel="stylesheet" type="text/css" href="_static/style.css" />
-    <link rel="stylesheet" type="text/css" href="_static/1942.ttf" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
+    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
+    <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
+    <script src="_static/documentation_options.js?v=f4302432"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Elements Explained" href="architecture.html" />
@@ -163,8 +161,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#ace">ace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#array">array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#autocomplete">autocomplete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#button">button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#checkbox">checkbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#chosen">chosen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#color">color</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#compound">compound</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#cron">cron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#datetime">datetime</a></li>
@@ -182,11 +181,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#label">label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#lines">lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#location">location</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#multiselect">multiselect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#number">number</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#password">password</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#proxy">proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#richtext">richtext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#search">search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select">select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select2">select2</a></li>
@@ -201,9 +198,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#th">th</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#thead">thead</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#time">time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#tiptap">tiptap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#tr">tr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#url">url</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
 </ul>
@@ -213,11 +210,13 @@
   </aside>
     
 
-    <main class="document cs-main order-1">
+    
+      <main class="document cs-main order-1" role="main">
+    
       <div class="ps-lg-4 mt-3 cs-content">
         
   <section id="minimal-hello-world-example-webapplication">
-<h1>Minimal Hello World Example Webapplication<a class="headerlink" href="#minimal-hello-world-example-webapplication" title="Permalink to this headline">#</a></h1>
+<h1>Minimal Hello World Example Webapplication<a class="headerlink" href="#minimal-hello-world-example-webapplication" title="Link to this heading">#</a></h1>
 <p>This buildout uses <code class="docutils literal notranslate"><span class="pre">WebOb</span></code> to help creating a minimal WSGI
 application.</p>
 <p>Create a minimal filesystem structure:</p>
@@ -238,7 +237,7 @@ application.</p>
 </pre></div>
 </div>
 <p>Add file <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">setuptools</span><span class="w"> </span><span class="kn">import</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
 <span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;helloworld&#39;</span><span class="p">,</span>
       <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(</span><span class="s1">&#39;src&#39;</span><span class="p">),</span>
       <span class="n">package_dir</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="s1">&#39;src&#39;</span><span class="p">},</span>
@@ -252,30 +251,30 @@ application.</p>
 </div>
 <p>Add <code class="docutils literal notranslate"><span class="pre">src/helloworld/run.py</span></code> including a minimal web application, the YAFOWIL
 form and a dumb filesystem-based storage:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yafowil</span> <span class="kn">import</span> <span class="n">loader</span>
-<span class="kn">import</span> <span class="nn">yafowil.webob</span>
-<span class="kn">from</span> <span class="nn">yafowil.base</span> <span class="kn">import</span> <span class="n">factory</span>
-<span class="kn">from</span> <span class="nn">yafowil.controller</span> <span class="kn">import</span> <span class="n">Controller</span>
-<span class="kn">from</span> <span class="nn">webob</span> <span class="kn">import</span> <span class="n">Request</span><span class="p">,</span> <span class="n">Response</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">yafowil</span><span class="w"> </span><span class="kn">import</span> <span class="n">loader</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">yafowil.webob</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">factory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.controller</span><span class="w"> </span><span class="kn">import</span> <span class="n">Controller</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">webob</span><span class="w"> </span><span class="kn">import</span> <span class="n">Request</span><span class="p">,</span> <span class="n">Response</span>
 
 <span class="n">address</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">8080</span>
 <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://</span><span class="si">%s</span><span class="s1">:</span><span class="si">%s</span><span class="s1">/&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">store</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">store</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;helloworld.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">storage</span><span class="p">:</span>
         <span class="n">storage</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;helloworld.hello&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extracted</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">readall</span><span class="p">():</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">readall</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;helloworld.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">storage</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">storage</span><span class="o">.</span><span class="n">readlines</span><span class="p">())</span>
     <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;Empty storage!&#39;</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">next</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">next</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">url</span>
 
-<span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
     <span class="n">request</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">environ</span><span class="p">)</span>
     <span class="n">response</span> <span class="o">=</span> <span class="n">Response</span><span class="p">()</span>
     <span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&lt;html&gt;&lt;body&gt;&lt;h1&gt;YAFOWIL Demo&lt;/h1&gt;&#39;</span><span class="p">)</span>
@@ -295,8 +294,8 @@ form and a dumb filesystem-based storage:</p>
     <span class="n">response</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;&lt;hr /&gt;</span><span class="si">%s</span><span class="s1">&lt;/html&gt;&lt;/body&gt;&#39;</span> <span class="o">%</span> <span class="s1">&#39;&lt;br /&gt;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">readall</span><span class="p">()))</span>
     <span class="k">return</span> <span class="n">response</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">wsgiref.simple_server</span> <span class="kn">import</span> <span class="n">make_server</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">():</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">wsgiref.simple_server</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_server</span>
     <span class="n">server</span> <span class="o">=</span> <span class="n">make_server</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">port</span><span class="p">,</span> <span class="n">application</span><span class="p">)</span>
     <span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
 </pre></div>
@@ -314,6 +313,9 @@ is available at github.</p>
 
 
       </div>
+
+    
+    
     </main>
   </div><div class="container footer" role="contentinfo">
   <footer class="d-flex flex-wrap justify-content-between align-items-center pt-2 my-4 border-top"><ul class="pb-2 mb-3 nav container border-bottom">
@@ -332,7 +334,7 @@ is available at github.</p>
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
       </div>
   </footer>
 </div>
