@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools>=61.0"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "yafowil.documentation"
@@ -38,15 +38,6 @@ dependencies = [
     "yafowil.widget.wysihtml5",
     "yafowil.yaml",
 ]
-
-[tool.setuptools.packages.find]
-where = ["src"]
-
-[tool.setuptools]
-zip-safe = true
-
-[tool.setuptools.package-dir]
-"" = "src"
 
 [tool.zest-releaser]
 create-wheel = true
