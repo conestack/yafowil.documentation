@@ -14,6 +14,11 @@ classifiers = [
     "License :: OSI Approved :: Python Software Foundation License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Topic :: Software Development",
 ]
 dependencies = [
@@ -38,7 +43,6 @@ dependencies = [
     "yafowil.widget.wysihtml5",
     "yafowil.yaml",
 ]
-
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/yafowil"]
