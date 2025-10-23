@@ -30,3 +30,10 @@
 /share/
 /lib64
 /pyvenv.cfg
+/.mxmake/
+/.venv/
+/node_modules/
+/package-lock.json
+/package.json
+/sources/
+/venv/

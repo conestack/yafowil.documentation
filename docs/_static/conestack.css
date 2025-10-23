@@ -176,6 +176,8 @@ body {
   position: relative;
   font-weight: 600;
   margin-bottom: 0.3rem;
+  margin-left: 20px;
+  text-indent: -10px;
 }
 .cs-nav-toc li.toctree-l1.current > a {
   color: var(--cs-bg-color);
@@ -213,6 +215,11 @@ body {
 .cs-nav-toc li.toctree-l1 > span.toggle {
   position: absolute;
   cursor: pointer;
+  display: block;
+  width: 20px;
+  height: 20px;
+  left: -22px;
+  top: 2px;
 }
 .cs-nav-toc li.toctree-l1 > span.toggle::before {
   display: inline-block;
@@ -244,7 +251,7 @@ body {
 }
 @media (min-width: 992px) {
   #cs-layout {
-    grid-template-columns: 1fr 5fr !important;
+    grid-template-columns: 1fr 10fr !important;
   }
 }
 @media (min-width: 769px) {
@@ -261,6 +268,14 @@ body {
   }
 }
 
+@media (min-width: 992px) {
+  #cs-layout, #cs-nav {
+    max-width: var(--layout-width) !important;
+  }
+  #cs-sidebar {
+    min-width: var(--sidebar-left-width) !important;
+  }
+}
 .cs-main {
   gap: inherit;
   display: grid;
@@ -334,7 +349,7 @@ body {
   width: 2.2rem;
   height: 2.2rem;
   color: var(--cs-color);
-  box-shadow: -2px 2px 12px #00000031;
+  box-shadow: -2px 2px 12px rgba(0, 0, 0, 0.1921568627);
 }
 
 footer .previous-chapter::before {
@@ -614,7 +629,7 @@ footer .next-chapter::after {
     height: max-content;
     max-height: calc(100vh - 8rem);
     width: min-content;
-    min-width: 180px;
+    min-width: var(--sidebar-right-width) !important;
   }
 }
 .cs-local-toc nav {
@@ -850,5 +865,3 @@ footer .next-chapter::after {
   font-size: 12px;
   padding: 0.1em 0.2em;
 }
-
-/*# sourceMappingURL=conestack.css.map */

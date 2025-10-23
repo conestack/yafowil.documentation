@@ -36,10 +36,6 @@ setup(
         'sphinx',
         'sphinx_conestack_theme',
         'yafowil',
-        # add-on widgets to document
-        # 'yafowil.widget.alohaeditor',
-        # 'yafowil.widget.dynatree',
-        # 'yafowil.widget.recaptcha',
         'yafowil.widget.ace',
         'yafowil.widget.array',
         'yafowil.widget.autocomplete',

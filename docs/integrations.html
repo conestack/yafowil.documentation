@@ -1,21 +1,19 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Integrations &#8212; YAFOWIL - Yet Another Form Widget Library</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css" />
-    <link rel="stylesheet" type="text/css" href="_static/style.css" />
-    <link rel="stylesheet" type="text/css" href="_static/1942.ttf" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
+    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
+    <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
+    <script src="_static/documentation_options.js?v=f4302432"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Reference: Blueprints" href="blueprints.html" />
@@ -157,14 +155,16 @@
 <li class="toctree-l2"><a class="reference internal" href="#zope-2-plone-based-usage">Zope 2 / Plone based usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#werkzeug-based-frameworks">Werkzeug based frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bootstrap-styles">Bootstrap Styles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#treibstoff">Treibstoff</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#ace">ace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#array">array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#autocomplete">autocomplete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#button">button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#checkbox">checkbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#chosen">chosen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#color">color</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#compound">compound</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#cron">cron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#datetime">datetime</a></li>
@@ -182,11 +182,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#label">label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#lines">lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#location">location</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#multiselect">multiselect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#number">number</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#password">password</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#proxy">proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#richtext">richtext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#search">search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select">select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select2">select2</a></li>
@@ -201,9 +199,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#th">th</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#thead">thead</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#time">time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#tiptap">tiptap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#tr">tr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#url">url</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
 </ul>
@@ -213,13 +211,15 @@
   </aside>
     
 
-    <main class="document cs-main order-1">
+    
+      <main class="document cs-main order-1" role="main">
+    
       <div class="ps-lg-4 mt-3 cs-content">
         
   <section id="integrations">
-<h1>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">#</a></h1>
+<h1>Integrations<a class="headerlink" href="#integrations" title="Link to this heading">#</a></h1>
 <section id="basics">
-<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">#</a></h2>
+<h2>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h2>
 <p>By importing <code class="docutils literal notranslate"><span class="pre">yafowil.loader</span></code> all registrations are done using the
 entry-points provided by add-on widgets and integration packages.</p>
 <p>CSS and JavaScript resources needed by the add-on widgets are available through
@@ -232,12 +232,12 @@ to the factory.</p>
 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> or in <code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code> - whatever is chosen -, is needed.</p>
 </section>
 <section id="webob-based-frameworks">
-<h2>WebOb-based frameworks<a class="headerlink" href="#webob-based-frameworks" title="Permalink to this headline">#</a></h2>
+<h2>WebOb-based frameworks<a class="headerlink" href="#webob-based-frameworks" title="Link to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.webob</span></code> provides binding to <code class="docutils literal notranslate"><span class="pre">WebOb</span></code> based frameworks,
 such as <code class="docutils literal notranslate"><span class="pre">Pyramid</span></code>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Appengine</span></code> and others.</p>
 </section>
 <section id="zope-2-plone-based-usage">
-<h2>Zope 2 / Plone based usage<a class="headerlink" href="#zope-2-plone-based-usage" title="Permalink to this headline">#</a></h2>
+<h2>Zope 2 / Plone based usage<a class="headerlink" href="#zope-2-plone-based-usage" title="Link to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.plone</span></code> handles integration for Zope 2 and Plone.
 Install YAFOWIL in <code class="docutils literal notranslate"><span class="pre">portal_setup</span></code> or in site-setup <code class="docutils literal notranslate"><span class="pre">add-ons</span></code>.</p>
 <p>The example
@@ -245,20 +245,29 @@ Install YAFOWIL in <code class="docutils literal notranslate"><span class="pre">
 explains how to build a custom search form using YAFOWIL.</p>
 </section>
 <section id="werkzeug-based-frameworks">
-<h2>Werkzeug based frameworks<a class="headerlink" href="#werkzeug-based-frameworks" title="Permalink to this headline">#</a></h2>
+<h2>Werkzeug based frameworks<a class="headerlink" href="#werkzeug-based-frameworks" title="Link to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.werkzeug</span></code> provides bindings to <code class="docutils literal notranslate"><span class="pre">Werkzeug</span></code>-based
 frameworks, such as <code class="docutils literal notranslate"><span class="pre">Flask</span></code> or <code class="docutils literal notranslate"><span class="pre">tipfy</span></code>.</p>
 </section>
 <section id="bootstrap-styles">
-<h2>Bootstrap Styles<a class="headerlink" href="#bootstrap-styles" title="Permalink to this headline">#</a></h2>
+<h2>Bootstrap Styles<a class="headerlink" href="#bootstrap-styles" title="Link to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.bootstrap</span></code> ships with twitter bootstrap resources and
 provides common widget configuration to provide a pretty look and feel and
 responsive layout.</p>
+</section>
+<section id="treibstoff">
+<h2>Treibstoff<a class="headerlink" href="#treibstoff" title="Link to this heading">#</a></h2>
+<p>The package <code class="docutils literal notranslate"><span class="pre">treibstoff</span></code> extends widget functionality with special handling, e.g.
+for ts.ajax environments.
+When treibstoff is present, widgets are automatically registered and gain
+additional behaviors.</p>
 </section>
 </section>
 
 
       </div>
+
+    
   <div class="cs-local-toc mx-4 mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
     <strong class="d-block h6 my-2 pb-2 border-bottom">On this page</strong>
     <nav id="TableOfContents">
@@ -268,10 +277,12 @@ responsive layout.</p>
 <li><a class="reference internal" href="#zope-2-plone-based-usage">Zope 2 / Plone based usage</a></li>
 <li><a class="reference internal" href="#werkzeug-based-frameworks">Werkzeug based frameworks</a></li>
 <li><a class="reference internal" href="#bootstrap-styles">Bootstrap Styles</a></li>
+<li><a class="reference internal" href="#treibstoff">Treibstoff</a></li>
 </ul>
 
     </nav>
   </div>
+    
     </main>
   </div><div class="container footer" role="contentinfo">
   <footer class="d-flex flex-wrap justify-content-between align-items-center pt-2 my-4 border-top"><ul class="pb-2 mb-3 nav container border-bottom">
@@ -290,7 +301,7 @@ responsive layout.</p>
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
       </div>
   </footer>
 </div>
