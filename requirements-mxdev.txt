@@ -1,0 +1,26 @@
+###############################################################################
+# mxdev development sources
+-e ./sources/yafowil
+-e ./sources/yafowil.bootstrap
+-e ./sources/yafowil.webob
+-e ./sources/yafowil.widget.ace
+-e ./sources/yafowil.widget.array
+-e ./sources/yafowil.widget.autocomplete
+-e ./sources/yafowil.widget.color
+-e ./sources/yafowil.widget.cron
+-e ./sources/yafowil.widget.datetime
+-e ./sources/yafowil.widget.dict
+-e ./sources/yafowil.widget.image
+-e ./sources/yafowil.widget.location
+-e ./sources/yafowil.widget.select2
+-e ./sources/yafowil.widget.slider
+-e ./sources/yafowil.widget.tiptap
+-e ./sources/yafowil.yaml
+
+
+###############################################################################
+# begin requirements from: requirements.txt
+
+-e .
+# end requirements from: requirements.txt
+###############################################################################

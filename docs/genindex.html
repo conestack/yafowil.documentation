@@ -1,20 +1,18 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Index &#8212; YAFOWIL - Yet Another Form Widget Library</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css" />
-    <link rel="stylesheet" type="text/css" href="_static/style.css" />
-    <link rel="stylesheet" type="text/css" href="_static/1942.ttf" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
+    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
+    <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
+    <script src="_static/documentation_options.js?v=f4302432"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
 <link rel="stylesheet" type="text/css" src="_static/bootstrap.css" />
@@ -154,14 +152,16 @@
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#zope-2-plone-based-usage">Zope 2 / Plone based usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#werkzeug-based-frameworks">Werkzeug based frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#bootstrap-styles">Bootstrap Styles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#treibstoff">Treibstoff</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#ace">ace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#array">array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#autocomplete">autocomplete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#button">button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#checkbox">checkbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#chosen">chosen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#color">color</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#compound">compound</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#cron">cron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#datetime">datetime</a></li>
@@ -179,11 +179,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#label">label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#lines">lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#location">location</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#multiselect">multiselect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#number">number</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#password">password</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#proxy">proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#richtext">richtext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#search">search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select">select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select2">select2</a></li>
@@ -198,9 +196,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#th">th</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#thead">thead</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#time">time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#tiptap">tiptap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#tr">tr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#url">url</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
 </ul>
@@ -210,7 +208,9 @@
   </aside>
     
 
-    <main class="document cs-main order-1">
+    
+      <main class="document cs-main order-1" role="main">
+    
       <div class="ps-lg-4 mt-3 cs-content">
         
 
@@ -222,6 +222,9 @@
 
 
       </div>
+
+    
+    
     </main>
   </div><div class="container footer" role="contentinfo">
   <footer class="d-flex flex-wrap justify-content-between align-items-center pt-2 my-4 border-top"><ul class="pb-2 mb-3 nav container border-bottom">
@@ -234,7 +237,7 @@
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
       </div>
   </footer>
 </div>

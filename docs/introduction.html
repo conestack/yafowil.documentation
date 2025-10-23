@@ -1,21 +1,19 @@
-
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Introduction &#8212; YAFOWIL - Yet Another Form Widget Library</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css" />
-    <link rel="stylesheet" type="text/css" href="_static/style.css" />
-    <link rel="stylesheet" type="text/css" href="_static/1942.ttf" />
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
+    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
+    <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
+    <script src="_static/documentation_options.js?v=f4302432"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Minimal Hello World Example Webapplication" href="helloworld.html" />
@@ -157,14 +155,16 @@
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#zope-2-plone-based-usage">Zope 2 / Plone based usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#werkzeug-based-frameworks">Werkzeug based frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#bootstrap-styles">Bootstrap Styles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#treibstoff">Treibstoff</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#ace">ace</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#array">array</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#autocomplete">autocomplete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#button">button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#checkbox">checkbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#chosen">chosen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#color">color</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#compound">compound</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#cron">cron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#datetime">datetime</a></li>
@@ -182,11 +182,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#label">label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#lines">lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#location">location</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#multiselect">multiselect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#number">number</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#password">password</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#proxy">proxy</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#richtext">richtext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#search">search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select">select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select2">select2</a></li>
@@ -201,9 +199,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#th">th</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#thead">thead</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#time">time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#tiptap">tiptap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#tr">tr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#url">url</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
 </ul>
@@ -213,11 +211,13 @@
   </aside>
     
 
-    <main class="document cs-main order-1">
+    
+      <main class="document cs-main order-1" role="main">
+    
       <div class="ps-lg-4 mt-3 cs-content">
         
   <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
 <p>YAFOWIL targets are rendering form widgets and extracting/validating the data sent
 by the browser per widget.</p>
 <p>YAFOWIL widgets are just configuration.</p>
@@ -228,7 +228,7 @@ produce <em>widget instances</em> from <em>blueprints</em>.</p>
 blueprints for building complex widgets and a bunch of add-ons (usually in
 the namespace <code class="docutils literal notranslate"><span class="pre">yafowil.widget.*</span></code>).</p>
 <section id="motivation">
-<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">#</a></h2>
+<h2>Motivation<a class="headerlink" href="#motivation" title="Link to this heading">#</a></h2>
 <p>The YAFOWIL authors use several Python frameworks and became very tired of
 inventing widgets again and again.</p>
 <p>YAFOWIL was intentionally written to
@@ -240,7 +240,7 @@ available widget collection. YAFOWIL tries to provide some useful addon widgets,
 thereby taking care of a unified user experience.</p>
 </section>
 <section id="dependencies">
-<h2>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">#</a></h2>
+<h2>Dependencies<a class="headerlink" href="#dependencies" title="Link to this heading">#</a></h2>
 <p>YAFOWIL aims to have no dependencies on any web framework. It utilizes the
 <a class="reference external" href="http://pypi.python.org/pypi/node">node</a>
 package which provides a powerful abstraction for lightweight graph data structures.</p>
@@ -249,24 +249,23 @@ processing callback handler functions and a mechanism for delegating persistence
 automatically (to a certain degree).</p>
 </section>
 <section id="integrations">
-<h2>Integrations<a class="headerlink" href="#integrations" title="Permalink to this headline">#</a></h2>
+<h2>Integrations<a class="headerlink" href="#integrations" title="Link to this heading">#</a></h2>
 <p>YAFOWIL currently integrates with the following packages:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="http://pypi.python.org/pypi/yafowil.plone">yafowil.plone</a></p></li>
 <li><p><a class="reference external" href="http://pypi.python.org/pypi/yafowil.webob">yafowil.webob</a></p></li>
 <li><p><a class="reference external" href="http://pypi.python.org/pypi/yafowil.werkzeug">yafowil.werkzeug</a></p></li>
 <li><p><a class="reference external" href="http://pypi.python.org/pypi/yafowil.bootstrap">yafowil.bootstrap</a></p></li>
+<li><p><a class="reference external" href="http://pypi.python.org/pypi/treibstoff">treibstoff</a></p></li>
 </ul>
-<p>For details refer to the chapter <a class="reference internal" href="#integrations">Integrations</a>.</p>
+<p>For details refer to the chapter <a class="reference internal" href="integrations.html"><span class="doc">Integrations</span></a>.</p>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h2>
-<p>For the impatient, code says more than 1000 words.</p>
-<p>A simple example form works
-like so:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">yafowil.loader</span>
-<span class="kn">from</span> <span class="nn">yafowil.base</span> <span class="kn">import</span> <span class="n">factory</span>
-<span class="kn">from</span> <span class="nn">yafowil.controller</span> <span class="kn">import</span> <span class="n">Controller</span>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h2>
+<p>For those who prefer to dive right in, here’s how to create a simple example form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">yafowil.loader</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">factory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.controller</span><span class="w"> </span><span class="kn">import</span> <span class="n">Controller</span>
 </pre></div>
 </div>
 <p>Create a form:</p>
@@ -283,10 +282,10 @@ like so:</p>
         <span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;Your Text&#39;</span><span class="p">,</span>
     <span class="p">})</span>
 
-<span class="k">def</span> <span class="nf">formaction</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">formaction</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
     <span class="n">data</span><span class="o">.</span><span class="n">printtree</span><span class="p">()</span>
 
-<span class="k">def</span> <span class="nf">formnext</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">formnext</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
     <span class="k">return</span> <span class="s1">&#39;http://www.domain.tld/result&#39;</span>
 
 <span class="n">form</span><span class="p">[</span><span class="s1">&#39;submit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
@@ -336,7 +335,7 @@ Requests are expected to be a dict-like mapping:</p>
 </div></blockquote>
 </section>
 <section id="creating-a-widget">
-<h2>Creating a widget<a class="headerlink" href="#creating-a-widget" title="Permalink to this headline">#</a></h2>
+<h2>Creating a widget<a class="headerlink" href="#creating-a-widget" title="Link to this heading">#</a></h2>
 <p>A <em>widget</em> is an instance of a <em>blueprint</em> created by the factory. Factory is a
 singleton and operates as a registry for blueprints.</p>
 <p>By calling the factory, a widget is created.</p>
@@ -361,7 +360,7 @@ factory calls (details below). E.g.:</p>
 the result is <code class="docutils literal notranslate"><span class="pre">field:label:error:text</span></code>.</p>
 </section>
 <section id="widget-trees">
-<h2>Widget trees<a class="headerlink" href="#widget-trees" title="Permalink to this headline">#</a></h2>
+<h2>Widget trees<a class="headerlink" href="#widget-trees" title="Link to this heading">#</a></h2>
 <p>YAFOWIL forms are organized as <strong>widget trees</strong>. The entire form is the
 root widget which contains compound nodes (which can contain children) and/or
 leaf nodes. A widget behaves similarly to an ordered Python dictionary. Compounds
@@ -400,7 +399,7 @@ represent the various HTML input fields.</p>
 </div>
 </section>
 <section id="rendering-mode">
-<h2>Rendering Mode<a class="headerlink" href="#rendering-mode" title="Permalink to this headline">#</a></h2>
+<h2>Rendering Mode<a class="headerlink" href="#rendering-mode" title="Link to this heading">#</a></h2>
 <p>The way a widget is rendered is controlled by its mode. Every widget may be given
 a <code class="docutils literal notranslate"><span class="pre">mode</span></code> keyword argument to the factory as a string or a callable accepting
 two parameters (<code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code>), and returning a string.</p>
@@ -417,7 +416,7 @@ registered <code class="docutils literal notranslate"><span class="pre">edit_ren
 </dl>
 </section>
 <section id="data-extraction">
-<h2>Data extraction<a class="headerlink" href="#data-extraction" title="Permalink to this headline">#</a></h2>
+<h2>Data extraction<a class="headerlink" href="#data-extraction" title="Link to this heading">#</a></h2>
 <p>After calling the <code class="docutils literal notranslate"><span class="pre">Controller</span></code> we have the form processing result on
 <code class="docutils literal notranslate"><span class="pre">controller.data</span></code>, which is an instance of <code class="docutils literal notranslate"><span class="pre">yafowil.base.RuntimeData</span></code>.</p>
 <p>Like widgets, runtime-data is organized as tree where each runtime data node
@@ -436,14 +435,14 @@ occurred while extracting data from the request.</p>
 </div>
 </section>
 <section id="validation">
-<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline">#</a></h2>
+<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading">#</a></h2>
 <p>In YAFOWIL, validation and extraction happens at the same time. Extraction means
 to get a meaningful value out of the request. Validation means to check
 constraints, i.e if a number is positive or an email-address is valid.</p>
 <p>If validation fails, <code class="docutils literal notranslate"><span class="pre">ExtractionErrors</span></code> are collected on runtime-data describing
 what happened.</p>
 <section id="datatype-extraction">
-<h3>Datatype extraction<a class="headerlink" href="#datatype-extraction" title="Permalink to this headline">#</a></h3>
+<h3>Datatype extraction<a class="headerlink" href="#datatype-extraction" title="Link to this heading">#</a></h3>
 <p>There is a set of common blueprints where you can define the <code class="docutils literal notranslate"><span class="pre">datatype</span></code> of
 the extracted value. Datatype is either some primitive type like <code class="docutils literal notranslate"><span class="pre">int</span></code> or
 <code class="docutils literal notranslate"><span class="pre">float</span></code>, a class object which can be instantiated with the extracted string
@@ -473,17 +472,17 @@ or castable to the defined <code class="docutils literal notranslate"><span clas
 <code class="docutils literal notranslate"><span class="pre">email</span></code>, <code class="docutils literal notranslate"><span class="pre">url</span></code>, <code class="docutils literal notranslate"><span class="pre">search</span></code> and <code class="docutils literal notranslate"><span class="pre">number</span></code>.</p>
 </section>
 <section id="invariants">
-<h3>Invariants<a class="headerlink" href="#invariants" title="Permalink to this headline">#</a></h3>
+<h3>Invariants<a class="headerlink" href="#invariants" title="Link to this heading">#</a></h3>
 <p>Invariants are implemented as extractors on compounds. Usually they are defined as
 a custom blueprint (see below) with one extractor on some parent of the elements
 to be validated.</p>
 <p>Here is a short example (extension of the <code class="docutils literal notranslate"><span class="pre">hello</span> <span class="pre">world</span></code> example) of a custom
 invariant extractor which checks if one or the other field is filled, but never
 both or none (XOR):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yafowil.base</span> <span class="kn">import</span> <span class="n">ExtractionError</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtractionError</span>
 <span class="c1"># ... see helloworld example whats missing here</span>
 
-<span class="k">def</span> <span class="nf">myinvariant_extractor</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">myinvariant_extractor</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;hello&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extracted</span> <span class="o">==</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;world&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">extracted</span><span class="p">:</span>
         <span class="n">error</span> <span class="o">=</span> <span class="n">ExtractionError</span><span class="p">(</span>
             <span class="s1">&#39;provide hello or world, not both or none&#39;</span>
@@ -492,7 +491,7 @@ both or none (XOR):</p>
         <span class="n">data</span><span class="p">[</span><span class="s1">&#39;world&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">error</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span>
 
-<span class="k">def</span> <span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">application</span><span class="p">(</span><span class="n">environ</span><span class="p">,</span> <span class="n">start_response</span><span class="p">):</span>
     <span class="c1"># ... see helloworld example for the code that belongs here</span>
     <span class="n">form</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span>
         <span class="sa">u</span><span class="s1">&#39;*myinvariant:form&#39;</span><span class="p">,</span>
@@ -521,20 +520,20 @@ both or none (XOR):</p>
 </section>
 </section>
 <section id="persistence">
-<h2>Persistence<a class="headerlink" href="#persistence" title="Permalink to this headline">#</a></h2>
+<h2>Persistence<a class="headerlink" href="#persistence" title="Link to this heading">#</a></h2>
 <p>YAFOWIL provides a delegation mechanism for single data model bound forms.</p>
 <p>Processing the extracted form data often requires some additional computing and
 targets several persistent objects. In this case, we simply implement the submit
 action callback and do what’s necessary:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Form</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Form</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
         <span class="n">controller</span> <span class="o">=</span> <span class="n">Controller</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">form</span><span class="p">,</span> <span class="n">request</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="c1"># HERE IS THE INTERESTING PART</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">hello</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;myform.hello&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extracted</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">world</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;myform.world&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">extracted</span>
@@ -573,13 +572,13 @@ action callback and do what’s necessary:</p>
 reasonable, as long as forms are small, this may get annoying when writing more
 or complex forms. If forms refer to a single model, <code class="docutils literal notranslate"><span class="pre">data.write</span></code> can be used
 to delegate transferring the extracted data to the model.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yafowil.persistence</span> <span class="kn">import</span> <span class="n">attribute_writer</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.persistence</span><span class="w"> </span><span class="kn">import</span> <span class="n">attribute_writer</span>
 
-<span class="k">class</span> <span class="nc">Form</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Form</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="c1"># ...</span>
 
-    <span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="c1"># HERE IS THE INTERESTING PART</span>
         <span class="n">data</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">)</span>
         <span class="n">transaction</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
@@ -646,7 +645,7 @@ a <code class="docutils literal notranslate"><span class="pre">RuntimeError</spa
 convenience for persisting form data to single models.</p>
 </section>
 <section id="providing-blueprints">
-<h2>Providing blueprints<a class="headerlink" href="#providing-blueprints" title="Permalink to this headline">#</a></h2>
+<h2>Providing blueprints<a class="headerlink" href="#providing-blueprints" title="Link to this heading">#</a></h2>
 <p>General behaviours (rendering, extracting, etc…) can be registered as
 blueprints in the factory:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
@@ -666,7 +665,7 @@ blueprints in the factory:</p>
 </div>
 </section>
 <section id="adding-custom-behaviour">
-<h2>Adding custom behaviour<a class="headerlink" href="#adding-custom-behaviour" title="Permalink to this headline">#</a></h2>
+<h2>Adding custom behaviour<a class="headerlink" href="#adding-custom-behaviour" title="Link to this heading">#</a></h2>
 <p>It’s possible to inject custom behaviour by marking a part of the blueprint
 chain with the asterisk <code class="docutils literal notranslate"><span class="pre">*</span></code> character. Behaviours are one or more
 of a:</p>
@@ -684,7 +683,7 @@ can be created.</p>
 before extractors or renderers are running.</p>
 </dd>
 </dl>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">myvalidator</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">myvalidator</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
    <span class="c1"># validate the data, raise ExtractionError if something&#39;s wrong</span>
    <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span> <span class="o">!=</span> <span class="s1">&#39;something:&#39;</span>
        <span class="k">raise</span> <span class="n">ExtractionError</span><span class="p">(</span><span class="s2">&quot;only &#39;something&#39; is allowed as input.&quot;</span><span class="p">)</span>
@@ -702,7 +701,7 @@ before extractors or renderers are running.</p>
 </div>
 </section>
 <section id="delivering-resources">
-<h2>Delivering resources<a class="headerlink" href="#delivering-resources" title="Permalink to this headline">#</a></h2>
+<h2>Delivering resources<a class="headerlink" href="#delivering-resources" title="Link to this heading">#</a></h2>
 <p>YAFOWIL addon widgets are shipped with their required JavaScript and stylesheet
 resources. These resources are registered to the factory with additional
 information like delivery order and resources group.</p>
@@ -718,17 +717,17 @@ resources. This is useful if basic or dependent resources are already shipped
 in another way.</p>
 <p>The following example shows how to integrate YAFOWIL resources in a
 <a class="reference external" href="http://www.pylonsproject.org">pyramid</a> application.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pyramid.static</span> <span class="kn">import</span> <span class="n">static_view</span>
-<span class="kn">from</span> <span class="nn">yafowil.resources</span> <span class="kn">import</span> <span class="n">YafowilResources</span>
-<span class="kn">import</span> <span class="nn">mypackage.views</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pyramid.static</span><span class="w"> </span><span class="kn">import</span> <span class="n">static_view</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.resources</span><span class="w"> </span><span class="kn">import</span> <span class="n">YafowilResources</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mypackage.views</span>
 
-<span class="k">class</span> <span class="nc">Resources</span><span class="p">(</span><span class="n">YafowilResources</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Resources</span><span class="p">(</span><span class="n">YafowilResources</span><span class="p">):</span>
 
-   <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">js_skip</span><span class="o">=</span><span class="p">[],</span> <span class="n">css_skip</span><span class="o">=</span><span class="p">[],</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+   <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">js_skip</span><span class="o">=</span><span class="p">[],</span> <span class="n">css_skip</span><span class="o">=</span><span class="p">[],</span> <span class="n">config</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
        <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="n">config</span>
        <span class="nb">super</span><span class="p">(</span><span class="n">Resources</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">js_skip</span><span class="o">=</span><span class="n">js_skip</span><span class="p">,</span> <span class="n">css_skip</span><span class="o">=</span><span class="n">css_skip</span><span class="p">)</span>
 
-   <span class="k">def</span> <span class="nf">configure_resource_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="n">resourc_edir</span><span class="p">):</span>
+   <span class="k">def</span><span class="w"> </span><span class="nf">configure_resource_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">plugin_name</span><span class="p">,</span> <span class="n">resourc_edir</span><span class="p">):</span>
        <span class="c1"># instantiate static view</span>
        <span class="n">resources_view</span> <span class="o">=</span> <span class="n">static_view</span><span class="p">(</span><span class="n">resourc_edir</span><span class="p">,</span> <span class="n">use_subpath</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
        <span class="c1"># attach resources view to package</span>
@@ -740,7 +739,7 @@ in another way.</p>
        <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">view_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">resource_base</span><span class="p">)</span>
        <span class="k">return</span> <span class="n">resource_base</span>
 
-<span class="k">def</span> <span class="nf">includeme</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">includeme</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
     <span class="c1"># resources object gets instantiated only once</span>
     <span class="n">resources</span> <span class="o">=</span> <span class="n">Resources</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
 
@@ -756,6 +755,8 @@ in another way.</p>
 
 
       </div>
+
+    
   <div class="cs-local-toc mx-4 mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
     <strong class="d-block h6 my-2 pb-2 border-bottom">On this page</strong>
     <nav id="TableOfContents">
@@ -781,6 +782,7 @@ in another way.</p>
 
     </nav>
   </div>
+    
     </main>
   </div><div class="container footer" role="contentinfo">
   <footer class="d-flex flex-wrap justify-content-between align-items-center pt-2 my-4 border-top"><ul class="pb-2 mb-3 nav container border-bottom">
@@ -799,7 +801,7 @@ in another way.</p>
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.2.0.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
       </div>
   </footer>
 </div>

@@ -54,17 +54,16 @@ YAFOWIL currently integrates with the following packages:
 * `yafowil.webob <http://pypi.python.org/pypi/yafowil.webob>`_
 * `yafowil.werkzeug <http://pypi.python.org/pypi/yafowil.werkzeug>`_
 * `yafowil.bootstrap <http://pypi.python.org/pypi/yafowil.bootstrap>`_
+* `treibstoff <http://pypi.python.org/pypi/treibstoff>`_
 
-For details refer to the chapter Integrations_.
+For details refer to the chapter :doc:`integrations`.
 
 
 Example
 =======
 
-For the impatient, code says more than 1000 words.
+For those who prefer to dive right in, here’s how to create a simple example form:
 
-A simple example form works
-like so:
 
 .. code-block:: python
 
@@ -143,6 +142,7 @@ The result of processing gets written to ``controller.data``::
 .. code-block:: python
 
     controller.data
+
 
 
 Creating a widget

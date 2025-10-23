@@ -53,3 +53,12 @@ Bootstrap Styles
 The package ``yafowil.bootstrap`` ships with twitter bootstrap resources and
 provides common widget configuration to provide a pretty look and feel and 
 responsive layout.
+
+
+Treibstoff
+----------
+
+The package ``treibstoff`` extends widget functionality with special handling, e.g.
+for ts.ajax environments.
+When treibstoff is present, widgets are automatically registered and gain
+additional behaviors.
