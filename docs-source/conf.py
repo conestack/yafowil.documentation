@@ -27,7 +27,8 @@ extensions = [
     'yafowil.documentation',
     'collective.sphinx.includedoc',
     'sphinx.ext.todo',
-    'sphinx.ext.githubpages'
+    'sphinx.ext.githubpages',
+    'sphinxcontrib.jquery' # sphinx dropped jQuery support in version 6.0
 ]
 
 # The suffix of source filenames.

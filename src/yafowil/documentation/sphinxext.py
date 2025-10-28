@@ -202,5 +202,5 @@ class PlanDoc(YDirective):
 
         for macro, blueprints in sorted(factory._macros.items()):
             rows[0].append(nodes.paragraph(text=macro))
-            rows[1].append(nodes.paragraph(text=":".join(blueprints)))
+            rows[1].append(nodes.paragraph(text=":".join(blueprints[0])))
         return table

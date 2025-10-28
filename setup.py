@@ -31,11 +31,12 @@ setup(
     zip_safe=True,
     install_requires=[
         'collective.sphinx.includedoc',
+        'sphinxcontrib.jquery', # sphinx dropped jQuery support in version 6.0
         'pillow',
         'setuptools',
         'sphinx',
         'sphinx_conestack_theme',
-        'yafowil',
+        'yafowil<4.0.0',
         'yafowil.widget.ace',
         'yafowil.widget.array',
         'yafowil.widget.autocomplete',
