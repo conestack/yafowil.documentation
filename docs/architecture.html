@@ -1,21 +1,22 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="./">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Elements Explained &#8212; YAFOWIL - Yet Another Form Widget Library</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
-    <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
-    <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
-    <script src="_static/jquery.js?v=5d32c60e"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=f4302432"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/conestack.css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/1942.ttf" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Describe YAFOWIL forms with YAML" href="yaml.html" />
@@ -217,14 +218,14 @@
     
 
     
-      <main class="document cs-main order-1">
+      <main class="document cs-main order-1" role="main">
     
       <div class="ps-lg-4 mt-3 cs-content">
         
   <section id="elements-explained">
-<h1>Elements Explained<a class="headerlink" href="#elements-explained" title="Link to this heading">#</a></h1>
+<h1>Elements Explained<a class="headerlink" href="#elements-explained" title="Permalink to this heading">#</a></h1>
 <section id="base-principles">
-<h2>Base principles<a class="headerlink" href="#base-principles" title="Link to this heading">#</a></h2>
+<h2>Base principles<a class="headerlink" href="#base-principles" title="Permalink to this heading">#</a></h2>
 <p>YAFOWIL is based on a set of core ideas:</p>
 <ol class="arabic simple">
 <li><p>Runtime rules, static is subordinate,</p></li>
@@ -235,7 +236,7 @@
 </ol>
 </section>
 <section id="callables-everywhere">
-<h2>Callables everywhere<a class="headerlink" href="#callables-everywhere" title="Link to this heading">#</a></h2>
+<h2>Callables everywhere<a class="headerlink" href="#callables-everywhere" title="Permalink to this heading">#</a></h2>
 <p>If you work with YAFOWIL for the first time, it probably feels a bit different
 compared to other multiple-class-inheriting, schema-based forms.</p>
 <p>Instead YAFOWIL uses simple callables at several places. You never need to
@@ -247,7 +248,7 @@ as blueprints and used via the factory.</p>
 <code class="docutils literal notranslate"><span class="pre">__call__</span></code> method.</p>
 </section>
 <section id="widget">
-<h2>Widget<a class="headerlink" href="#widget" title="Link to this heading">#</a></h2>
+<h2>Widget<a class="headerlink" href="#widget" title="Permalink to this heading">#</a></h2>
 <p>A YAFOWIL form consists of a tree of widgets. Everything you would probably
 call a “Field” in other form libraries is a widget instance. Widgets can have
 children. Thus, fieldsets and even the form root itself are also widgets.</p>
@@ -272,14 +273,14 @@ write blueprints.</p></li>
 </div>
 </section>
 <section id="runtime-data">
-<h2>Runtime data<a class="headerlink" href="#runtime-data" title="Link to this heading">#</a></h2>
+<h2>Runtime data<a class="headerlink" href="#runtime-data" title="Permalink to this heading">#</a></h2>
 <p>While one request-to-response cycle runs, widgets state is kept in a
 runtime-data instance. It collects all information such as values, request,
 any errors that occurred, and the rendered HTML of a widget in the context of
 the current request.</p>
 </section>
 <section id="controller">
-<h2>Controller<a class="headerlink" href="#controller" title="Link to this heading">#</a></h2>
+<h2>Controller<a class="headerlink" href="#controller" title="Permalink to this heading">#</a></h2>
 <p>The controller is responsible for form processing (extraction and validation),
 delegation of actions and form rendering (including error handling).</p>
 <p>The controller is initialized with a form and request object and immediately
@@ -288,7 +289,7 @@ rendered form, while the <code class="docutils literal notranslate"><span class=
 tree.</p>
 </section>
 <section id="validation">
-<h2>Validation<a class="headerlink" href="#validation" title="Link to this heading">#</a></h2>
+<h2>Validation<a class="headerlink" href="#validation" title="Permalink to this heading">#</a></h2>
 <p>Unlike most form frameworks, YAFOWIL does not make a distinction between
 extraction of a value from the HTTP-request and validation. Both happen in one
 processing step. If an extraction step fails, it raises a
@@ -297,9 +298,9 @@ human-readable message and specifies whether this error shall abort the extracti
 chain or not. In either case the form has errors.</p>
 </section>
 <section id="factory">
-<h2>Factory<a class="headerlink" href="#factory" title="Link to this heading">#</a></h2>
+<h2>Factory<a class="headerlink" href="#factory" title="Permalink to this heading">#</a></h2>
 <section id="basics">
-<h3>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h3>
+<h3>Basics<a class="headerlink" href="#basics" title="Permalink to this heading">#</a></h3>
 <p>The factory knows of the available blueprints and is responsible to construct
 and configure widget instances. To construct a widget the factory gets called
 with the blueprint name as first parameter:</p>
@@ -328,7 +329,7 @@ given to the factory:</p>
 </div>
 </section>
 <section id="combining-blueprints-the-factory-chain">
-<h3>Combining blueprints - the factory chain<a class="headerlink" href="#combining-blueprints-the-factory-chain" title="Link to this heading">#</a></h3>
+<h3>Combining blueprints - the factory chain<a class="headerlink" href="#combining-blueprints-the-factory-chain" title="Permalink to this heading">#</a></h3>
 <p>Usually we have some common widgets, e.g. a pure textarea, and then we need
 some label, description, a way to display errors, maybe a table cell or an
 encapsulating <code class="docutils literal notranslate"><span class="pre">div</span></code> and so on. And it can be very different depending on the
@@ -366,7 +367,7 @@ only instead of affecting all blueprints:</p>
 </div>
 </section>
 <section id="macros-predefined-factory-chains">
-<h3>Macros - predefined factory chains<a class="headerlink" href="#macros-predefined-factory-chains" title="Link to this heading">#</a></h3>
+<h3>Macros - predefined factory chains<a class="headerlink" href="#macros-predefined-factory-chains" title="Permalink to this heading">#</a></h3>
 <p>For the lazy people, macros are provided. Macros expand to a factory chain of
 blueprints. Expansion happens at chain-lookup time before the widget is built.</p>
 <p>Macros must be registered in the factory and can override property defaults:</p>
@@ -386,7 +387,7 @@ name prefixed with <code class="docutils literal notranslate"><span class="pre">
 </div>
 </section>
 <section id="custom-blueprints">
-<h3>Custom blueprints<a class="headerlink" href="#custom-blueprints" title="Link to this heading">#</a></h3>
+<h3>Custom blueprints<a class="headerlink" href="#custom-blueprints" title="Permalink to this heading">#</a></h3>
 <p>For usecases where it’s not worth writing a generic widget, it’s possible
 to inject custom blueprints.</p>
 <p>Custom blueprints are passed to the factory either as 5-tuple containing chains
@@ -432,7 +433,7 @@ explained above.</p>
 </section>
 </section>
 <section id="blueprints">
-<h2>Blueprints<a class="headerlink" href="#blueprints" title="Link to this heading">#</a></h2>
+<h2>Blueprints<a class="headerlink" href="#blueprints" title="Permalink to this heading">#</a></h2>
 <p>Blueprints are construction guides providing different behaviors on a
 widget: e.g. rendering an HTML input field, or extracting and validating input
 data or converting data received from the request.</p>
@@ -440,7 +441,7 @@ data or converting data received from the request.</p>
 callables themselves is controlled by properties. Each chain has different
 responsibilities. Chains are executed left-to-right.</p>
 <section id="extractor-chain">
-<h3>Extractor chain<a class="headerlink" href="#extractor-chain" title="Link to this heading">#</a></h3>
+<h3>Extractor chain<a class="headerlink" href="#extractor-chain" title="Permalink to this heading">#</a></h3>
 <p>Extractors are responsible to get, convert and validate the data of the
 current widget in the context of the current request. An extractor is a
 callable expecting a widget instance and a runtime-data instance as parameters.</p>
@@ -458,7 +459,7 @@ the value is returned unmodified.</p></li>
 </ul>
 </section>
 <section id="edit-renderer-chain">
-<h3>Edit renderer chain<a class="headerlink" href="#edit-renderer-chain" title="Link to this heading">#</a></h3>
+<h3>Edit renderer chain<a class="headerlink" href="#edit-renderer-chain" title="Permalink to this heading">#</a></h3>
 <p>Edit renderers are responsible to create HTML form output (unicode-strings)
 ready to be passed to the response. It is a callable expecting a widget
 instance and a runtime-data instance as parameters. At this point the
@@ -484,7 +485,7 @@ the previously rendered <code class="docutils literal notranslate"><span class="
 image blueprint context.</p>
 </section>
 <section id="display-renderer-chain">
-<h3>Display renderer chain<a class="headerlink" href="#display-renderer-chain" title="Link to this heading">#</a></h3>
+<h3>Display renderer chain<a class="headerlink" href="#display-renderer-chain" title="Permalink to this heading">#</a></h3>
 <p>Display renderers are responsible to create HTML view output (unicode-strings)
 ready to be passed to the response.</p>
 <p>The display renderer chain is executed if the mode of the widget is <code class="docutils literal notranslate"><span class="pre">display</span></code>.
@@ -499,7 +500,7 @@ even to see it at all. The mode property of the widget controls which
 rendering chain, if any, gets executed.</p>
 </section>
 <section id="preprocessor-chain">
-<h3>Preprocessor chain<a class="headerlink" href="#preprocessor-chain" title="Link to this heading">#</a></h3>
+<h3>Preprocessor chain<a class="headerlink" href="#preprocessor-chain" title="Permalink to this heading">#</a></h3>
 <p>The preprocessor chain is executed once per request-to-response cycle,
 directly after runtime-data was created and before extraction happens.
 A preprocessor callable can be used to hook up framework-specific requirements,
@@ -514,7 +515,7 @@ global preprocessor function wrapping the request if needed, and another
 hooking up the i18n message factory and the translate function.</p>
 </section>
 <section id="builder-chain">
-<h3>Builder chain<a class="headerlink" href="#builder-chain" title="Link to this heading">#</a></h3>
+<h3>Builder chain<a class="headerlink" href="#builder-chain" title="Permalink to this heading">#</a></h3>
 <p>This chain of callables is called only once right after the widget was created
 by the factory. A common use-case is to automatically populate a widget with
 child widgets. It expects widget and factory as parameters.</p>
@@ -583,7 +584,7 @@ creating its children.</p>
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.0.
       </div>
   </footer>
 </div>

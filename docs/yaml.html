@@ -1,21 +1,22 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="./">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Describe YAFOWIL forms with YAML &#8212; YAFOWIL - Yet Another Form Widget Library</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
-    <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
-    <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
-    <script src="_static/jquery.js?v=5d32c60e"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=f4302432"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/conestack.css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/1942.ttf" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Integrations" href="integrations.html" />
@@ -217,19 +218,19 @@
     
 
     
-      <main class="document cs-main order-1">
+      <main class="document cs-main order-1" role="main">
     
       <div class="ps-lg-4 mt-3 cs-content">
         
   <section id="describe-yafowil-forms-with-yaml">
-<h1>Describe YAFOWIL forms with YAML<a class="headerlink" href="#describe-yafowil-forms-with-yaml" title="Link to this heading">#</a></h1>
+<h1>Describe YAFOWIL forms with YAML<a class="headerlink" href="#describe-yafowil-forms-with-yaml" title="Permalink to this heading">#</a></h1>
 <p>It is possible to describe YAFOWIL forms using <a class="reference external" href="http://www.yaml.org/">YAML</a>
 as description language.</p>
 <p><a class="reference external" href="https://www.json.org/json-en.html">JSON</a> syntax is a
 <a class="reference external" href="https://en.wikipedia.org/wiki/YAML#JSON">subset</a> of YAML version 1.2, so we
 support JSON too.</p>
 <section id="create-file-containing-form-description">
-<h2>Create file containing form description<a class="headerlink" href="#create-file-containing-form-description" title="Link to this heading">#</a></h2>
+<h2>Create file containing form description<a class="headerlink" href="#create-file-containing-form-description" title="Permalink to this heading">#</a></h2>
 <p>Create a file, i.e. <code class="docutils literal notranslate"><span class="pre">demo_form.yaml</span></code> and add widget configuration.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">factory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">form</span>
 <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">demo_form</span>
@@ -331,7 +332,7 @@ descibed here.</p>
 </dl>
 </section>
 <section id="computed-values">
-<h2>Computed values<a class="headerlink" href="#computed-values" title="Link to this heading">#</a></h2>
+<h2>Computed values<a class="headerlink" href="#computed-values" title="Permalink to this heading">#</a></h2>
 <p>Beside static values, definitions may contain python expressions, i18n message
 strings, access to a rendering context and pointers to callables.</p>
 <dl class="simple">
@@ -363,7 +364,7 @@ When lookup fails, return definition value as string.</p>
 </dl>
 </section>
 <section id="define-rendering-context">
-<h2>Define rendering context<a class="headerlink" href="#define-rendering-context" title="Link to this heading">#</a></h2>
+<h2>Define rendering context<a class="headerlink" href="#define-rendering-context" title="Permalink to this heading">#</a></h2>
 <p>A rendering context has to be provided. Refering to the form description
 example above, this may look like:</p>
 <div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span><span class="w"> </span><span class="nc">FormRenderingContext</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -388,7 +389,7 @@ example above, this may look like:</p>
 </div>
 </section>
 <section id="create-message-factory">
-<h2>Create Message Factory<a class="headerlink" href="#create-message-factory" title="Link to this heading">#</a></h2>
+<h2>Create Message Factory<a class="headerlink" href="#create-message-factory" title="Permalink to this heading">#</a></h2>
 <p>Unless no others are registered one want to use message factories from
 <code class="docutils literal notranslate"><span class="pre">pyramid.i18n</span></code> or <code class="docutils literal notranslate"><span class="pre">zope.i18nmessageid</span></code>. See refering documentation for
 details. Here we create a dummy message factory:</p>
@@ -397,7 +398,7 @@ details. Here we create a dummy message factory:</p>
 </div>
 </section>
 <section id="creating-yafowil-forms-form-yaml-files">
-<h2>Creating YAFOWIL-Forms form YAML-Files<a class="headerlink" href="#creating-yafowil-forms-form-yaml-files" title="Link to this heading">#</a></h2>
+<h2>Creating YAFOWIL-Forms form YAML-Files<a class="headerlink" href="#creating-yafowil-forms-form-yaml-files" title="Permalink to this heading">#</a></h2>
 <p>To create a yafowil widget tree from YAML, use <code class="docutils literal notranslate"><span class="pre">yafowil.yaml.parse_from_YAML</span></code>.
 This accepts also JSON file files ending with <code class="docutils literal notranslate"><span class="pre">.json</span></code>.
 To adress a specific pyhton package path prefix the filename with
@@ -440,7 +441,7 @@ To adress a specific pyhton package path prefix the filename with
 </div>
 </section>
 <section id="manage-translations-of-yaml-forms">
-<h2>Manage translations of YAML forms<a class="headerlink" href="#manage-translations-of-yaml-forms" title="Link to this heading">#</a></h2>
+<h2>Manage translations of YAML forms<a class="headerlink" href="#manage-translations-of-yaml-forms" title="Permalink to this heading">#</a></h2>
 <p>As shown above, YAML forms may contain i18n translation strings. The message
 strings and the corresponding default values can be extracted automatically
 and written to po files using <a class="reference external" href="http://pypi.python.org/pypi/lingua">lingua</a>
@@ -488,7 +489,7 @@ corresponding documentation.</p>
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.0.
       </div>
   </footer>
 </div>

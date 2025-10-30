@@ -1,21 +1,22 @@
+
 <!DOCTYPE html>
 
-<html lang="en" data-content_root="./">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Integrations &#8212; YAFOWIL - Yet Another Form Widget Library</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
-    <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
-    <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
-    <script src="_static/jquery.js?v=5d32c60e"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=f4302432"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/conestack.css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/1942.ttf" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Reference: Blueprints" href="blueprints.html" />
@@ -217,14 +218,14 @@
     
 
     
-      <main class="document cs-main order-1">
+      <main class="document cs-main order-1" role="main">
     
       <div class="ps-lg-4 mt-3 cs-content">
         
   <section id="integrations">
-<h1>Integrations<a class="headerlink" href="#integrations" title="Link to this heading">#</a></h1>
+<h1>Integrations<a class="headerlink" href="#integrations" title="Permalink to this heading">#</a></h1>
 <section id="basics">
-<h2>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h2>
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this heading">#</a></h2>
 <p>By importing <code class="docutils literal notranslate"><span class="pre">yafowil.loader</span></code> all registrations are done using the
 entry-points provided by add-on widgets and integration packages.</p>
 <p>CSS and JavaScript resources needed by the add-on widgets are available through
@@ -237,12 +238,12 @@ to the factory.</p>
 <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> or in <code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code> - whatever is chosen -, is needed.</p>
 </section>
 <section id="webob-based-frameworks">
-<h2>WebOb-based frameworks<a class="headerlink" href="#webob-based-frameworks" title="Link to this heading">#</a></h2>
+<h2>WebOb-based frameworks<a class="headerlink" href="#webob-based-frameworks" title="Permalink to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.webob</span></code> provides binding to <code class="docutils literal notranslate"><span class="pre">WebOb</span></code> based frameworks,
 such as <code class="docutils literal notranslate"><span class="pre">Pyramid</span></code>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Appengine</span></code> and others.</p>
 </section>
 <section id="zope-2-plone-based-usage">
-<h2>Zope 2 / Plone based usage<a class="headerlink" href="#zope-2-plone-based-usage" title="Link to this heading">#</a></h2>
+<h2>Zope 2 / Plone based usage<a class="headerlink" href="#zope-2-plone-based-usage" title="Permalink to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.plone</span></code> handles integration for Zope 2 and Plone.
 Install YAFOWIL in <code class="docutils literal notranslate"><span class="pre">portal_setup</span></code> or in site-setup <code class="docutils literal notranslate"><span class="pre">add-ons</span></code>.</p>
 <p>The example
@@ -250,18 +251,18 @@ Install YAFOWIL in <code class="docutils literal notranslate"><span class="pre">
 explains how to build a custom search form using YAFOWIL.</p>
 </section>
 <section id="werkzeug-based-frameworks">
-<h2>Werkzeug based frameworks<a class="headerlink" href="#werkzeug-based-frameworks" title="Link to this heading">#</a></h2>
+<h2>Werkzeug based frameworks<a class="headerlink" href="#werkzeug-based-frameworks" title="Permalink to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.werkzeug</span></code> provides bindings to <code class="docutils literal notranslate"><span class="pre">Werkzeug</span></code>-based
 frameworks, such as <code class="docutils literal notranslate"><span class="pre">Flask</span></code> or <code class="docutils literal notranslate"><span class="pre">tipfy</span></code>.</p>
 </section>
 <section id="bootstrap-styles">
-<h2>Bootstrap Styles<a class="headerlink" href="#bootstrap-styles" title="Link to this heading">#</a></h2>
+<h2>Bootstrap Styles<a class="headerlink" href="#bootstrap-styles" title="Permalink to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.bootstrap</span></code> ships with twitter bootstrap resources and
 provides common widget configuration to provide a pretty look and feel and
 responsive layout.</p>
 </section>
 <section id="treibstoff">
-<h2>Treibstoff<a class="headerlink" href="#treibstoff" title="Link to this heading">#</a></h2>
+<h2>Treibstoff<a class="headerlink" href="#treibstoff" title="Permalink to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">treibstoff</span></code> extends widget functionality with special handling, e.g.
 for ts.ajax environments.
 When treibstoff is present, widgets are automatically registered and gain
@@ -306,7 +307,7 @@ additional behaviors.</p>
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 5.0.0.
       </div>
   </footer>
 </div>
