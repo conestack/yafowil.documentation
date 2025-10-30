@@ -85,11 +85,11 @@ VENV_FOLDER?=.venv
 
 # mxdev to install in virtual environment.
 # Default: mxdev
-MXDEV?=mxdev
+MXDEV?=mxdev==4.1.0
 
 # mxmake to install in virtual environment.
 # Default: mxmake
-MXMAKE?=mxmake
+MXMAKE?=mxmake==1.3.0
 
 ## docs.sphinx
 
