@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "yafowil.documentation"
-version = "2.3.3"
+version = "4.0.0.dev0"
 description = "Documentation of YAFOWIL - Yet Another Form Widget Library"
 license = {text = "Simplified BSD and CC-BY-SA"}
 authors = [{name = "Yafowil Contributors", email = "dev@conestack.org"}]
