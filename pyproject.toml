@@ -40,7 +40,7 @@ dependencies = [
     "yafowil.widget.richtext>1.99",
     "yafowil.widget.select2>1.99",
     "yafowil.widget.slider>1.99",
-    "yafowil.widget.wysihtml>1.99",
+    "yafowil.widget.wysihtml5>1.99",
     "yafowil.yaml>2.99",
 ]
 
