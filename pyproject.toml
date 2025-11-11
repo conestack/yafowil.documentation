@@ -1,11 +1,13 @@
 [build-system]
-requires = ["hatchling"]
+requires = ["hatchling", "hatch-fancy-pypi-readme"]
 build-backend = "hatchling.build"
 
 [project]
 name = "yafowil.documentation"
 version = "4.0.0.dev0"
 description = "Documentation of YAFOWIL - Yet Another Form Widget Library"
+dynamic = ["readme"]
+requires-python = ">=3.10"
 license = {text = "Simplified BSD and CC-BY-SA"}
 authors = [{name = "Yafowil Contributors", email = "dev@conestack.org"}]
 keywords = ["html", "input", "widgets", "form", "compound"]
@@ -43,6 +45,18 @@ dependencies = [
     "yafowil.widget.wysihtml5>1.99",
     "yafowil.yaml>2.99",
 ]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/x-rst"
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.fragments]]
+path = "LICENSE.rst"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/yafowil"]

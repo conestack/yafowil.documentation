@@ -1,20 +1,32 @@
 ###############################################################################
+# mxdev combined constraints
+-c constraints-mxdev.txt
+
+###############################################################################
 # mxdev development sources
--e ./sources/yafowil
+-e ./sources/odict
+-e ./sources/plumber[test]
+-e ./sources/node
+-e ./sources/treibstoff
+-e ./sources/webresource[test]
+-e ./sources/yafowil[test]
 -e ./sources/yafowil.bootstrap
+-e ./sources/yafowil.lingua
 -e ./sources/yafowil.webob
 -e ./sources/yafowil.widget.ace
 -e ./sources/yafowil.widget.array
 -e ./sources/yafowil.widget.autocomplete
--e ./sources/yafowil.widget.color
+-e ./sources/yafowil.widget.chosen
 -e ./sources/yafowil.widget.cron
 -e ./sources/yafowil.widget.datetime
 -e ./sources/yafowil.widget.dict
 -e ./sources/yafowil.widget.image
 -e ./sources/yafowil.widget.location
+-e ./sources/yafowil.widget.multiselect
+-e ./sources/yafowil.widget.richtext
 -e ./sources/yafowil.widget.select2
 -e ./sources/yafowil.widget.slider
--e ./sources/yafowil.widget.tiptap
+-e ./sources/yafowil.widget.wysihtml5
 -e ./sources/yafowil.yaml
 
 
@@ -24,3 +36,6 @@
 -e .
 # end requirements from: requirements.txt
 ###############################################################################
+###############################################################################
+# main package
+-e .[test,docs]
