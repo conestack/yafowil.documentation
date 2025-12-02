@@ -1,6 +1,6 @@
-===================================
+=====================================
 Extending YAFOWIL - Custom Blueprints
-===================================
+=====================================
 
 This chapter explains how to create custom blueprints for YAFOWIL.
 
