@@ -28,6 +28,8 @@
 -e ./sources/yafowil.widget.slider
 -e ./sources/yafowil.widget.wysihtml5
 -e ./sources/yafowil.yaml
+-e ./sources/sphinx-conestack-theme
+-e ./sources/collective.sphinx.includedoc
 
 
 ###############################################################################

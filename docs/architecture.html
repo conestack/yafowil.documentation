@@ -7,20 +7,22 @@
 
     <title>Elements Explained &#8212; YAFOWIL - Yet Another Form Widget Library</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=20074c1a" />
+    <link rel="stylesheet" type="text/css" href="_static/css/conestack.css?v=53c11f18" />
     <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
     <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
     <script src="_static/documentation_options.js?v=f4302432"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Describe YAFOWIL forms with YAML" href="yaml.html" />
     <link rel="prev" title="Minimal Hello World Example Webapplication" href="helloworld.html" />
-<link rel="stylesheet" type="text/css" src="_static/bootstrap.css" />
-<script src="_static/bootstrap.bundle.min.js"></script>
-<script src="_static/conestack.js"></script>
+<link rel="stylesheet" type="text/css" src="_static/bootstrap/bootstrap.css" />
+<script src="_static/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="_static/js/conestack.js"></script>
+<script src="_static/js/colortoggle.js"></script>
 
   </head><body>
 
@@ -48,7 +50,7 @@
   </noscript>
 
   
-  <header class="navbar navbar-expand-md" id="header">
+  <header class="navbar navbar-expand-md sticky-top" id="header">
     <nav class="container-xxl flex-wrap flex-md-nowrap p-0" id="cs-nav">
   <a id="logo" class="navbar-brand p-0 me-2" href="index.html">
     <img src="_static/yafowil_logo_white.svg"
@@ -60,7 +62,7 @@
 
       
   <div id="nav-search" class="ms-auto">
-    <div id="searchbox" class="nav-item me-3" role="search">
+    <div id="searchbox" class="nav-item me-3" role="search" style="display: none;">
       <form class="search input-group" action="search.html" method="get">
         <input type="text" class="form-control" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
         <button type="submit" 
@@ -87,6 +89,17 @@
     </ul>
   </div>
 
+
+      <div id="colortoggler-wrapper">
+        <div id="colortoggler"
+             class="nav-item dropdown align-items-center h-100 p-0 form-check form-switch me-4">
+          <i class="bi-sun-fill me-2"></i>
+          <div class="form-check form-switch m-0 d-inline-block">
+            <input class="form-check-input" type="checkbox" id="colortoggle-switch">
+          </div>
+          <i class="bi-moon-fill"></i>
+        </div>
+      </div>
 
       <button id="navbar-toggle" class="navbar-toggler p-0 me-4" type="button" data-bs-toggle="collapse" data-bs-target="#cs-mobile-menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path></svg>
@@ -155,6 +168,7 @@
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#zope-2-plone-based-usage">Zope 2 / Plone based usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#werkzeug-based-frameworks">Werkzeug based frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#bootstrap-styles">Bootstrap Styles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#treibstoff">Treibstoff</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a><ul>
@@ -163,7 +177,7 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#autocomplete">autocomplete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#button">button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#checkbox">checkbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#color">color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#chosen">chosen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#compound">compound</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#cron">cron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#datetime">datetime</a></li>
@@ -181,9 +195,11 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#label">label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#lines">lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#location">location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#multiselect">multiselect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#number">number</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#password">password</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#proxy">proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#richtext">richtext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#search">search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select">select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#select2">select2</a></li>
@@ -198,9 +214,9 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#th">th</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#thead">thead</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#time">time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="blueprints.html#tiptap">tiptap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#tr">tr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#url">url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="blueprints.html#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
 </ul>
@@ -530,7 +546,7 @@ creating its children.</p>
 
     
   <div class="cs-local-toc mx-4 mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
-    <strong class="d-block h6 my-2 pb-2 border-bottom">On this page</strong>
+    <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
     <nav id="TableOfContents">
       <ul>
 <li><a class="reference internal" href="#base-principles">Base principles</a></li>
@@ -577,7 +593,7 @@ creating its children.</p>
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.1.
       </div>
   </footer>
 </div>

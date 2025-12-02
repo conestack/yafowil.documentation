@@ -7,19 +7,21 @@
 
     <title>Reference: Blueprints &#8212; YAFOWIL - Yet Another Form Widget Library</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
-    <link rel="stylesheet" type="text/css" href="_static/conestack.css?v=4f897864" />
+    <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=20074c1a" />
+    <link rel="stylesheet" type="text/css" href="_static/css/conestack.css?v=53c11f18" />
     <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
     <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
     <script src="_static/documentation_options.js?v=f4302432"></script>
-    <script src="_static/doctools.js?v=9bcbadda"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Integrations" href="integrations.html" />
-<link rel="stylesheet" type="text/css" src="_static/bootstrap.css" />
-<script src="_static/bootstrap.bundle.min.js"></script>
-<script src="_static/conestack.js"></script>
+<link rel="stylesheet" type="text/css" src="_static/bootstrap/bootstrap.css" />
+<script src="_static/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="_static/js/conestack.js"></script>
+<script src="_static/js/colortoggle.js"></script>
 
   </head><body>
 
@@ -47,7 +49,7 @@
   </noscript>
 
   
-  <header class="navbar navbar-expand-md" id="header">
+  <header class="navbar navbar-expand-md sticky-top" id="header">
     <nav class="container-xxl flex-wrap flex-md-nowrap p-0" id="cs-nav">
   <a id="logo" class="navbar-brand p-0 me-2" href="index.html">
     <img src="_static/yafowil_logo_white.svg"
@@ -59,7 +61,7 @@
 
       
   <div id="nav-search" class="ms-auto">
-    <div id="searchbox" class="nav-item me-3" role="search">
+    <div id="searchbox" class="nav-item me-3" role="search" style="display: none;">
       <form class="search input-group" action="search.html" method="get">
         <input type="text" class="form-control" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
         <button type="submit" 
@@ -86,6 +88,17 @@
     </ul>
   </div>
 
+
+      <div id="colortoggler-wrapper">
+        <div id="colortoggler"
+             class="nav-item dropdown align-items-center h-100 p-0 form-check form-switch me-4">
+          <i class="bi-sun-fill me-2"></i>
+          <div class="form-check form-switch m-0 d-inline-block">
+            <input class="form-check-input" type="checkbox" id="colortoggle-switch">
+          </div>
+          <i class="bi-moon-fill"></i>
+        </div>
+      </div>
 
       <button id="navbar-toggle" class="navbar-toggler p-0 me-4" type="button" data-bs-toggle="collapse" data-bs-target="#cs-mobile-menu">
         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" class="bi" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 11.5A.5.5 0 0 1 3 11h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 7h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 3 3h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"></path></svg>
@@ -154,6 +167,7 @@
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#zope-2-plone-based-usage">Zope 2 / Plone based usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#werkzeug-based-frameworks">Werkzeug based frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#bootstrap-styles">Bootstrap Styles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#treibstoff">Treibstoff</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Reference: Blueprints</a><ul>
@@ -162,7 +176,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#autocomplete">autocomplete</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#button">button</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#checkbox">checkbox</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#color">color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#chosen">chosen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#compound">compound</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cron">cron</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#datetime">datetime</a></li>
@@ -180,9 +194,11 @@
 <li class="toctree-l2"><a class="reference internal" href="#label">label</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#lines">lines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#location">location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multiselect">multiselect</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#number">number</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#password">password</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#proxy">proxy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#richtext">richtext</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#search">search</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#select">select</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#select2">select2</a></li>
@@ -197,9 +213,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#th">th</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#thead">thead</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#time">time</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tiptap">tiptap</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#tr">tr</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#url">url</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
 </ul>
@@ -603,7 +619,9 @@ given.</p>
 <section id="autocomplete">
 <h2>autocomplete<a class="headerlink" href="#autocomplete" title="Link to this heading">#</a></h2>
 <div class="docutils container">
-<p>Add-on blueprint <a class="reference external" href="http://github.com/conestack/yafowil.widget.autocomplete/">yafowil.widget.autocomplete</a> .</p>
+<p>Add-on blueprint <a class="reference external" href="http://github.com/conestack/yafowil.widget.autocomplete/">yafowil.widget.autocomplete</a> utilizing
+<code class="docutils literal notranslate"><span class="pre">jquery.ui.autocomplete</span></code> to offer the user a selection based on the input
+given so far.</p>
 </div>
 <p class="section-subtitle">Properties<div class="docutils container">
 <table class="docutils align-default">
@@ -1418,11 +1436,10 @@ customizable via CSS like so:</p>
 </div>
 </p>
 </section>
-<section id="color">
-<h2>color<a class="headerlink" href="#color" title="Link to this heading">#</a></h2>
+<section id="chosen">
+<h2>chosen<a class="headerlink" href="#chosen" title="Link to this heading">#</a></h2>
 <div class="docutils container">
-<p>Add-on blueprint
-<a class="reference external" href="http://github.com/conestack/yafowil.widget.color/">yafowil.widget.color</a> .</p>
+<p>Add-on blueprint <a class="reference external" href="http://github.com/conestack/yafowil.widget.chosen/">yafowil.widget.chosen</a> .</p>
 </div>
 <p class="section-subtitle">Properties<div class="docutils container">
 <table class="docutils align-default">
@@ -1433,170 +1450,137 @@ customizable via CSS like so:</p>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><strong>auto_align</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">True</span></code></td>
-<td><div class="docutils container">
-<p>Whether the color picker’s dropdown will change placement depending on available
-space.
-Values: [True|False]</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>box_height</strong></td>
+<tr class="row-even"><td><strong>allow_single_deselect</strong></td>
 <td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
 <td><div class="docutils container">
-<p>Set the initial height of the color box (in pixels).
-Values: [px].</p>
+<p>Allow deselection of single elements.</p>
 </div>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><strong>box_width</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">250</span></code></td>
-<td><div class="docutils container">
-<p>Set the initial width of the color box (in pixels).
-Values: [px].</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_edit_renderer</em></li>
+<li><em>chosen_edit_renderer</em></li>
 </ul>
 </td>
 </tr>
 <tr class="row-odd"><td><strong>class</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">'color-picker'</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">'chosen'</span></code></td>
 <td><div class="docutils container">
-<p>CSS classes for color widget wrapper DOM element.</p>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td><strong>datatype</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
-<td><div class="docutils container">
-<p>Datatype range for extraction.
-‘default’: default number range for given format
-‘0-1’: range 0 - 1
-Values: [‘default’|’0-1’].</p>
+<p>Common CSS-class to put on.</p>
 </div>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>color_extractor</em></li>
+<li><em>select_display_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>data</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">{}</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Additional data rendered as HTML5 data attributes on DOM Element.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_display_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>disable_search</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Disable search at all.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>chosen_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>disable_search_threshold</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Disable the threshold, when the search popup opens.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>chosen_edit_renderer</em></li>
 </ul>
 </td>
 </tr>
 <tr class="row-odd"><td><strong>disabled</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">False</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
 <td><div class="docutils container">
-<p>Disable or enable input field editing.
-Values: [True | False].</p>
+<p>Disables input.</p>
 </div>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>color_edit_renderer</em></li>
+<li><em>select_extractor</em></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><strong>emptyvalue</strong></td>
+<tr class="row-even"><td><strong>empty_display_value</strong></td>
 <td><em>required/ not set</em></td>
-<td><div class="docutils container">
-<p>If color value empty, return as extracted value.</p>
-</div>
+<td><p></p>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>generic_emptyvalue_extractor</em></li>
+<li><em>select_display_renderer</em></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>format</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">'hex'</span></code></td>
-<td><div class="docutils container">
-<p>Specify the output format of the color picker color.
-Values: [Str].</p>
-<p>Available options:
-- hex
-- hex8
-- hsl
-- hsla
-- rgb
-- rgba
-- kelvin</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_extractor</em></li>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><strong>layout_direction</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">'vertical'</span></code></td>
-<td><div class="docutils container">
-<p>Direction of the entire layout.
-Values: [‘vertical’|’horizontal’].</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>locked_swatches</strong></td>
+<tr class="row-odd"><td><strong>max_selected_options</strong></td>
 <td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
 <td><div class="docutils container">
-<p>Swatches to be initialized.
-Given swatches can’t be deleted in the widget.
-Values: [Array(Dict)].</p>
+<p>Maximum number of selected options.</p>
 </div>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>color_edit_renderer</em></li>
+<li><em>chosen_edit_renderer</em></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><strong>open_on_focus</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">True</span></code></td>
-<td><div class="docutils container">
-<p>Flag whether the picker dropdown opens on input focus.
-Values: [True | False].</p>
-</div>
+<tr class="row-even"><td><strong>multivalued</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">False</span></code></td>
+<td><p></p>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>color_edit_renderer</em></li>
+<li><em>select_extractor</em></li>
+<li><em>select_display_renderer</em></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>placement</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">'bottom'</span></code></td>
-<td><div class="docutils container">
-<p>Specify the color picker dropdown’s placement.
-Values: [‘top’|’bottom’(default)|’left’|’right’|’static’].</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><strong>preview_elem</strong></td>
+<tr class="row-odd"><td><strong>new_values</strong></td>
 <td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
 <td><div class="docutils container">
-<p>Add an optional preview elem.
+<p>Allow adding new values. For yafowil JS integration.
 Values: [True|False|None (default)].</p>
 </div>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>color_edit_renderer</em></li>
+<li><em>chosen_edit_renderer</em></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>required</strong></td>
+<tr class="row-even"><td><strong>no_results_text</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Text for no results.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>chosen_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>placeholder_text</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Placeholder text.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>chosen_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>required</strong></td>
 <td><code class="docutils literal notranslate"><span class="pre">False</span></code><em> global</em></td>
 <td><div class="docutils container">
 <p>Whether this value is required or not.</p>
@@ -1607,7 +1591,7 @@ Values: [True|False|None (default)].</p>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><strong>required_message</strong></td>
+<tr class="row-odd"><td><strong>required_message</strong></td>
 <td><code class="docutils literal notranslate"><span class="pre">'Mandatory</span> <span class="pre">field</span> <span class="pre">was</span> <span class="pre">empty'</span></code><em> global</em></td>
 <td><div class="docutils container">
 <p>Message to be shown if required condition was not met.</p>
@@ -1618,109 +1602,40 @@ Values: [True|False|None (default)].</p>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>show_inputs</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">False</span></code></td>
-<td><div class="docutils container">
-<p>Show or hide slider input elements.
-Values: [True|False(Default)].</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><strong>show_labels</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">False</span></code></td>
-<td><div class="docutils container">
-<p>Show or hide slider label elements.
-Values: [True|False(Default)].</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>slider_length</strong></td>
+<tr class="row-even"><td><strong>search_contains</strong></td>
 <td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
 <td><div class="docutils container">
-<p>Slider length prop
-Values: [True|False(Default)].</p>
+<p>Search also for substrings. Allowed values [True|False|None]. When using
+None or just not setting this value, the default of the Javascript widget is
+used.</p>
 </div>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>color_edit_renderer</em></li>
+<li><em>chosen_edit_renderer</em></li>
 </ul>
 </td>
 </tr>
-<tr class="row-even"><td><strong>slider_size</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">10</span></code></td>
+<tr class="row-odd"><td><strong>single_backstroke_delete</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
 <td><div class="docutils container">
-<p>Set the height of slider elements (in pixels).
-Values: [px].</p>
+<p>A single backstroke deletes the selected option.</p>
 </div>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>color_edit_renderer</em></li>
+<li><em>chosen_edit_renderer</em></li>
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><strong>sliders</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">['box',</span> <span class="pre">'h']</span></code></td>
+<tr class="row-even"><td><strong>template</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'%s'</span></code><em> global</em></td>
 <td><div class="docutils container">
-<p>Add additional sliders to layout.
-Values: [List(Str)|None].</p>
-<p>Available options:
-- box
-- r (red)
-- g (green)
-- b (blue)
-- h (hue)
-- s (saturation)
-- v (value)
-- a (alpha)
-- k (kelvin)</p>
+<p>Format string with pythons built-in string format template. If a callable
+is given it will be used instead and is called with <code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> as
+parameters.</p>
 </div>
 <dt>Used by:<span class="colon">:</span></dt>
 <ul>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><strong>strategy</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">'absolute'</span></code></td>
-<td><div class="docutils container">
-<p>Popper.js positioning strategy.
-Values: [‘absolute’ | ‘fixed’].</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>temperature</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">{'min':</span> <span class="pre">2000,</span> <span class="pre">'max':</span> <span class="pre">12000}</span></code></td>
-<td><div class="docutils container">
-<p>Set the minimum and maximum kelvin temperature.
-Values: [Dict(‘min’: 2200-11000, ‘max’: 2200-11000)].</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><strong>user_swatches</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">True</span></code></td>
-<td><div class="docutils container">
-<p>Flag whether the user can add and remove swatches.
-Values: [Array(Dict)].</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>color_edit_renderer</em></li>
+<li><em>select_display_renderer</em></li>
 </ul>
 </td>
 </tr>
@@ -1740,25 +1655,20 @@ Values: [Array(Dict)].</p>
 </thead>
 <tbody>
 <tr class="row-even"><td><ol class="simple">
-<li><p>generic_extractor</p></li>
+<li><p>select_extractor</p></li>
 <li><p>generic_required_extractor</p></li>
-<li><p>generic_emptyvalue_extractor</p></li>
-<li><p>color_extractor</p></li>
 </ol>
 </td>
 <td><ol class="simple">
-<li><p>color_edit_renderer</p></li>
+<li><p>chosen_edit_renderer</p></li>
 </ol>
 </td>
 <td><ol class="simple">
-<li><p>color_display_renderer</p></li>
+<li><p>select_display_renderer</p></li>
 </ol>
 </td>
 <td><p>-/-</p></td>
-<td><ol class="simple">
-<li><p>color_builder</p></li>
-</ol>
-</td>
+<td><p>-/-</p></td>
 </tr>
 </tbody>
 </table>
@@ -5614,6 +5524,416 @@ given.</p>
 </div>
 </p>
 </section>
+<section id="multiselect">
+<h2>multiselect<a class="headerlink" href="#multiselect" title="Link to this heading">#</a></h2>
+<div class="docutils container">
+<p>Add-on blueprint <a class="reference external" href="http://github.com/conestack/yafowil.widget.multiselect/">yafowil.widget.multiselect</a> .</p>
+</div>
+<p class="section-subtitle">Properties<div class="docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><strong>autofocus</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Whether this field gets the focus automatically or not (if browser supports
+it).</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>block_class</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>checkbox_input_class</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>checkbox_label_class</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>checkbox_wrapper_class</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>class</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'multiselect'</span></code></td>
+<td><div class="docutils container">
+<p>Common CSS-class to put on.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+<li><em>select_display_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>class_add</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Additional CSS-class to put on.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>data</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">{}</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Additional data rendered as HTML5 data attributes on DOM Element.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+<li><em>select_display_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>datatype</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Datatype is either a type or an instance of <code class="docutils literal notranslate"><span class="pre">DatatypeConverter</span></code>.
+If datatype is a type, an instance of <code class="docutils literal notranslate"><span class="pre">DatatypeConverter</span></code> gets created.</p>
+<p>For B/C behavior, datatype can be a string out of ‘str’, ‘unicode’,
+‘int’, ‘integer’, ‘long’, ‘float’ or ‘uuid’. This behavior is deprecated
+and will be removed as of yafowil 3.2.</p>
+<p><strong>NOTE</strong>: As of Python 3, string identifiers should not be used at all, but if
+you do so, the following rules apply:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>’str’ maps to <code class="docutils literal notranslate"><span class="pre">bytes</span></code> type.</p></li>
+<li><p>’unicode’ maps to <code class="docutils literal notranslate"><span class="pre">str</span></code> type.</p></li>
+<li><p>’long’ maps to <code class="docutils literal notranslate"><span class="pre">int</span></code> type.</p></li>
+</ul>
+</div></blockquote>
+<p>Custom datatype converters must raise one out of the following exceptions if
+conversion fails:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ValueError</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UnicodeDecodeError</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UnicodeEncodeError</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>disabled</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Disables input.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_extractor</em></li>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>empty_display_value</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_display_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>emptyvalue</strong></td>
+<td><em>required/ not set</em></td>
+<td><div class="docutils container">
+<p>If configured and received value in request is empty, return as extracted
+value.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>error_class</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>CSS-class to put on in case of error after extraction.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>error_class_default</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'error'</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Fallback CSS-class to put on in case of error if no specific class was
+given.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>format</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'block'</span></code></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>listing_label_position</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>listing_tag</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>multivalued</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">True</span></code></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_extractor</em></li>
+<li><em>select_edit_renderer</em></li>
+<li><em>select_display_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>placeholder</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Whether this input has a placeholder value or not (if browser supports it).</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>radio_input_class</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>radio_label_class</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>radio_wrapper_class</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>required</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">False</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Whether this value is required or not.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>generic_required_extractor</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>required_class</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>CSS-class to put on in case if required condition was not met.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>required_class_default</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'required'</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>CSS-class to apply if required condition was not met - if no specific class
+was given.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>required_message</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'Mandatory</span> <span class="pre">field</span> <span class="pre">was</span> <span class="pre">empty'</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Message to be shown if required condition was not met.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>generic_required_extractor</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>size</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Allowed input size.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>template</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'%s'</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Format string with pythons built-in string format template. If a callable
+is given it will be used instead and is called with <code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">data</span></code> as
+parameters.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_display_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>title</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Optional help text to be rendered in the title attribute.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>valid_class</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>CSS-class to put on in case of valid value after extraction.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>valid_class_default</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'valid'</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Fallback CSS-class to put on in case of valid value if no specific class was
+given.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>vocabulary</strong></td>
+<td><em>required/ not set</em></td>
+<td><p></p>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>select_edit_renderer</em></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+<p class="section-subtitle">Chains<div class="docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>extractors</p></th>
+<th class="head"><p>edit renderers</p></th>
+<th class="head"><p>display renderers</p></th>
+<th class="head"><p>preprocessors</p></th>
+<th class="head"><p>builders</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ol class="simple">
+<li><p>select_extractor</p></li>
+<li><p>generic_required_extractor</p></li>
+</ol>
+</td>
+<td><ol class="simple">
+<li><p>select_edit_renderer</p></li>
+</ol>
+</td>
+<td><ol class="simple">
+<li><p>select_display_renderer</p></li>
+</ol>
+</td>
+<td><p>-/-</p></td>
+<td><p>-/-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</section>
 <section id="number">
 <h2>number<a class="headerlink" href="#number" title="Link to this heading">#</a></h2>
 <div class="docutils container">
@@ -6419,6 +6739,127 @@ given.</p>
 </td>
 <td><ol class="simple">
 <li><p>empty_display_renderer</p></li>
+</ol>
+</td>
+<td><p>-/-</p></td>
+<td><p>-/-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</section>
+<section id="richtext">
+<h2>richtext<a class="headerlink" href="#richtext" title="Link to this heading">#</a></h2>
+<div class="docutils container">
+<p>Add-on blueprint <a class="reference external" href="http://github.com/conestack/yafowil.widget.richtext/">yafowil.widget.richtext</a> .</p>
+</div>
+<p class="section-subtitle">Properties<div class="docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><strong>cols</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">80</span></code></td>
+<td><div class="docutils container">
+<p>Number of characters.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>mimetypes</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">['text/html']</span></code></td>
+<td><div class="docutils container">
+<p>List of mimetypes.</p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><strong>mimetypes_class</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">''</span></code></td>
+<td><div class="docutils container">
+<p>CSS class to be set on mimetypes selection.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>mimetypes_data</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">{}</span></code></td>
+<td><div class="docutils container">
+<p>Dict containing data attributes to render on mimetypes selection.</p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><strong>readonly</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Flag for readonly.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>required</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">False</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Whether this value is required or not.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>generic_required_extractor</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>required_message</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'Mandatory</span> <span class="pre">field</span> <span class="pre">was</span> <span class="pre">empty'</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Message to be shown if required condition was not met.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>generic_required_extractor</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>rows</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">25</span></code></td>
+<td><div class="docutils container">
+<p>Number of lines.</p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><strong>wrap</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Either <code class="docutils literal notranslate"><span class="pre">soft</span></code>, <code class="docutils literal notranslate"><span class="pre">hard</span></code>, <code class="docutils literal notranslate"><span class="pre">virtual</span></code>, <code class="docutils literal notranslate"><span class="pre">physical</span></code> or  <code class="docutils literal notranslate"><span class="pre">off</span></code>.</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+<p class="section-subtitle">Chains<div class="docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>extractors</p></th>
+<th class="head"><p>edit renderers</p></th>
+<th class="head"><p>display renderers</p></th>
+<th class="head"><p>preprocessors</p></th>
+<th class="head"><p>builders</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ol class="simple">
+<li><p>generic_extractor</p></li>
+<li><p>generic_required_extractor</p></li>
+</ol>
+</td>
+<td><ol class="simple">
+<li><p>richtext_edit_renderer</p></li>
+</ol>
+</td>
+<td><ol class="simple">
+<li><p>richtext_display_renderer</p></li>
 </ol>
 </td>
 <td><p>-/-</p></td>
@@ -10188,159 +10629,6 @@ given.</p>
 </div>
 </p>
 </section>
-<section id="tiptap">
-<h2>tiptap<a class="headerlink" href="#tiptap" title="Link to this heading">#</a></h2>
-<div class="docutils container">
-<p>Add-on blueprint
-<a class="reference external" href="http://github.com/conestack/yafowil.widget.tiptap/">yafowil.widget.tiptap</a> .</p>
-</div>
-<p class="section-subtitle">Properties<div class="docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>name</p></th>
-<th class="head"><p>default</p></th>
-<th class="head"><p>description</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><strong>actions</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">[['heading'],</span> <span class="pre">['bold',</span> <span class="pre">'italic',</span> <span class="pre">'underline'],</span> <span class="pre">['color'],</span> <span class="pre">['bulletList',</span> <span class="pre">'orderedList',</span> <span class="pre">'indent',</span> <span class="pre">'outdent'],</span> <span class="pre">['html'],</span> <span class="pre">['image'],</span> <span class="pre">['link'],</span> <span class="pre">['code'],</span> <span class="pre">['codeBlock']]</span></code></td>
-<td><div class="docutils container">
-<p>Specifies the order of elements and button groups.
-Elements will be displayed in list order.
-Group buttons together by putting them in a list.</p>
-<p>Available actions:</p>
-<ul class="simple">
-<li><p>bold</p></li>
-<li><p>italic</p></li>
-<li><p>underline</p></li>
-<li><p>indent</p></li>
-<li><p>outdent</p></li>
-<li><p>bulletList</p></li>
-<li><p>orderedList</p></li>
-<li><p>code</p></li>
-<li><p>codeBlock</p></li>
-<li><p>heading</p></li>
-<li><p>color</p></li>
-<li><p>html</p></li>
-<li><p>image</p></li>
-<li><p>link</p></li>
-</ul>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>tiptap_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>class</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">'tiptap-editor'</span></code></td>
-<td><div class="docutils container">
-<p>CSS classes for tiptap widget wrapper DOM element.</p>
-</div>
-</td>
-</tr>
-<tr class="row-even"><td><strong>colors</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">[{'name':</span> <span class="pre">'Blue',</span> <span class="pre">'color':</span> <span class="pre">'rgb(53,39,245)'},</span> <span class="pre">{'name':</span> <span class="pre">'Lime',</span> <span class="pre">'color':</span> <span class="pre">'rgb(204,255,0)'},</span> <span class="pre">{'name':</span> <span class="pre">'Teal',</span> <span class="pre">'color':</span> <span class="pre">'rgb(42,202,234)'},</span> <span class="pre">{'name':</span> <span class="pre">'Red',</span> <span class="pre">'color':</span> <span class="pre">'rgb(208,6,10)'}]</span></code></td>
-<td><div class="docutils container">
-<p>Specify custom font colors for <code class="docutils literal notranslate"><span class="pre">color</span></code> action.</p>
-<p>Colors are defined as list of dict in the following form:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[{</span>
-    <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Red&#39;</span><span class="p">,</span>
-    <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;rgb(208,6,10)&#39;</span>
-<span class="p">}]</span>
-</pre></div>
-</div>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>tiptap_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>emptyvalue</strong></td>
-<td><em>required/ not set</em></td>
-<td><div class="docutils container">
-<p>If configured and received value in request is empty, return as extracted
-value.</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>generic_emptyvalue_extractor</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><strong>helpLink</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
-<td><div class="docutils container">
-<p>Add a <code class="docutils literal notranslate"><span class="pre">help</span></code> button linked to tiptap shortcuts.</p>
-<p>Values: [True|False|None].</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>tiptap_edit_renderer</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-odd"><td><strong>required</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">False</span></code><em> global</em></td>
-<td><div class="docutils container">
-<p>Whether this value is required or not.</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>generic_required_extractor</em></li>
-</ul>
-</td>
-</tr>
-<tr class="row-even"><td><strong>required_message</strong></td>
-<td><code class="docutils literal notranslate"><span class="pre">'Mandatory</span> <span class="pre">field</span> <span class="pre">was</span> <span class="pre">empty'</span></code><em> global</em></td>
-<td><div class="docutils container">
-<p>Message to be shown if required condition was not met.</p>
-</div>
-<dt>Used by:<span class="colon">:</span></dt>
-<ul>
-<li><em>generic_required_extractor</em></li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</p>
-<p class="section-subtitle">Chains<div class="docutils container">
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>extractors</p></th>
-<th class="head"><p>edit renderers</p></th>
-<th class="head"><p>display renderers</p></th>
-<th class="head"><p>preprocessors</p></th>
-<th class="head"><p>builders</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><ol class="simple">
-<li><p>generic_extractor</p></li>
-<li><p>generic_required_extractor</p></li>
-<li><p>generic_emptyvalue_extractor</p></li>
-</ol>
-</td>
-<td><ol class="simple">
-<li><p>tiptap_edit_renderer</p></li>
-</ol>
-</td>
-<td><ol class="simple">
-<li><p>tiptap_display_renderer</p></li>
-</ol>
-</td>
-<td><p>-/-</p></td>
-<td><p>-/-</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</p>
-</section>
 <section id="tr">
 <h2>tr<a class="headerlink" href="#tr" title="Link to this heading">#</a></h2>
 <div class="docutils container">
@@ -10721,6 +11009,223 @@ given.</p>
 </div>
 </p>
 </section>
+<section id="wysihtml5">
+<h2>wysihtml5<a class="headerlink" href="#wysihtml5" title="Link to this heading">#</a></h2>
+<div class="docutils container">
+<p>Add-on blueprint <a class="reference external" href="http://github.com/conestack/yafowil.widget.wysihtml5/">yafowil.widget.wysihtml5</a> .</p>
+</div>
+<p class="section-subtitle">Properties<div class="docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>name</p></th>
+<th class="head"><p>default</p></th>
+<th class="head"><p>description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><strong>color</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Show the color styles toolbar buttons.
+Options: bootstrap-wysihtml5.
+Values: [True|False|None (use default)].</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>wysihtml5_textarea_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>cols</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">80</span></code></td>
+<td><div class="docutils container">
+<p>Number of characters.</p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><strong>emphasis</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Show the emphasis toolbar buttons.
+Options: bootstrap-wysihtml5.
+Values: [True|False|None (use default)].</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>wysihtml5_textarea_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>font-styles</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Show the font styles toolbar buttons.
+Options: bootstrap-wysihtml5.
+Values: [True|False|None (use default)].</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>wysihtml5_textarea_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>html</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Show the html toolbar button.
+Options: bootstrap-wysihtml5.
+Values: [True|False|None (use default)].</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>wysihtml5_textarea_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>image</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Show the image toolbar buttons.
+Options: bootstrap-wysihtml5.
+Values: [True|False|None (use default)].</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>wysihtml5_textarea_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>justify</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Show the justify styles toolbar buttons.
+Options: bootstrap-wysihtml5.
+Values: [True|False|None (use default)].</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>wysihtml5_textarea_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>link</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Show the link toolbar button.
+Options: bootstrap-wysihtml5.
+Values: [True|False|None (use default)].</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>wysihtml5_textarea_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>lists</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Show the list toolbar buttons.
+Options: bootstrap-wysihtml5.
+Values: [True|False|None (use default)].</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>wysihtml5_textarea_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>readonly</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Flag for readonly.</p>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><strong>required</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">False</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Whether this value is required or not.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>generic_required_extractor</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>required_message</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">'Mandatory</span> <span class="pre">field</span> <span class="pre">was</span> <span class="pre">empty'</span></code><em> global</em></td>
+<td><div class="docutils container">
+<p>Message to be shown if required condition was not met.</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>generic_required_extractor</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>rows</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">10</span></code></td>
+<td><div class="docutils container">
+<p>Number of lines.</p>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><strong>size</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Size of toolbar buttons.
+Options: bootstrap-wysihtml5.
+Values: [‘lg’|’sm’|’sx’<a href="#id2"><span class="problematic" id="id3">|</span></a>None (default)].</p>
+</div>
+<dt>Used by:<span class="colon">:</span></dt>
+<ul>
+<li><em>wysihtml5_textarea_renderer</em></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><strong>wrap</strong></td>
+<td><code class="docutils literal notranslate"><span class="pre">None</span></code></td>
+<td><div class="docutils container">
+<p>Either <code class="docutils literal notranslate"><span class="pre">soft</span></code>, <code class="docutils literal notranslate"><span class="pre">hard</span></code>, <code class="docutils literal notranslate"><span class="pre">virtual</span></code>, <code class="docutils literal notranslate"><span class="pre">physical</span></code> or  <code class="docutils literal notranslate"><span class="pre">off</span></code>.</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+<p class="section-subtitle">Chains<div class="docutils container">
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>extractors</p></th>
+<th class="head"><p>edit renderers</p></th>
+<th class="head"><p>display renderers</p></th>
+<th class="head"><p>preprocessors</p></th>
+<th class="head"><p>builders</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ol class="simple">
+<li><p>generic_extractor</p></li>
+<li><p>generic_required_extractor</p></li>
+</ol>
+</td>
+<td><ol class="simple">
+<li><p>wysihtml5_textarea_renderer</p></li>
+</ol>
+</td>
+<td><ol class="simple">
+<li><p>wysihtml5_display_renderer</p></li>
+</ol>
+</td>
+<td><p>-/-</p></td>
+<td><p>-/-</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</p>
+</section>
 </section>
 
 
@@ -10728,7 +11233,7 @@ given.</p>
 
     
   <div class="cs-local-toc mx-4 mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
-    <strong class="d-block h6 my-2 pb-2 border-bottom">On this page</strong>
+    <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
     <nav id="TableOfContents">
       <ul>
 <li><a class="reference internal" href="#ace">ace</a></li>
@@ -10736,7 +11241,7 @@ given.</p>
 <li><a class="reference internal" href="#autocomplete">autocomplete</a></li>
 <li><a class="reference internal" href="#button">button</a></li>
 <li><a class="reference internal" href="#checkbox">checkbox</a></li>
-<li><a class="reference internal" href="#color">color</a></li>
+<li><a class="reference internal" href="#chosen">chosen</a></li>
 <li><a class="reference internal" href="#compound">compound</a></li>
 <li><a class="reference internal" href="#cron">cron</a></li>
 <li><a class="reference internal" href="#datetime">datetime</a></li>
@@ -10754,9 +11259,11 @@ given.</p>
 <li><a class="reference internal" href="#label">label</a></li>
 <li><a class="reference internal" href="#lines">lines</a></li>
 <li><a class="reference internal" href="#location">location</a></li>
+<li><a class="reference internal" href="#multiselect">multiselect</a></li>
 <li><a class="reference internal" href="#number">number</a></li>
 <li><a class="reference internal" href="#password">password</a></li>
 <li><a class="reference internal" href="#proxy">proxy</a></li>
+<li><a class="reference internal" href="#richtext">richtext</a></li>
 <li><a class="reference internal" href="#search">search</a></li>
 <li><a class="reference internal" href="#select">select</a></li>
 <li><a class="reference internal" href="#select2">select2</a></li>
@@ -10771,9 +11278,9 @@ given.</p>
 <li><a class="reference internal" href="#th">th</a></li>
 <li><a class="reference internal" href="#thead">thead</a></li>
 <li><a class="reference internal" href="#time">time</a></li>
-<li><a class="reference internal" href="#tiptap">tiptap</a></li>
 <li><a class="reference internal" href="#tr">tr</a></li>
 <li><a class="reference internal" href="#url">url</a></li>
+<li><a class="reference internal" href="#wysihtml5">wysihtml5</a></li>
 </ul>
 
     </nav>
@@ -10794,7 +11301,7 @@ given.</p>
           &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
-        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+        Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.1.
       </div>
   </footer>
 </div>

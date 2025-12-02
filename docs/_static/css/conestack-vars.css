@@ -1,5 +1,5 @@
 :root {
-    --cs-color: #FFFFFF;
+    --cs-color: var(--bs-white);
     --cs-bg-color: var(--bs-gray-900);
     --cs-highlight-color: ;
 
