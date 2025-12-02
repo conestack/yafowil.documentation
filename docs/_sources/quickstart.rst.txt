@@ -19,7 +19,6 @@ For framework integration, install the appropriate package:
 .. code-block:: bash
 
     pip install yafowil.webob      # Pyramid, WebOb-based frameworks
-    pip install yafowil.werkzeug   # Flask, Werkzeug-based frameworks
     pip install yafowil.plone      # Plone/Zope 2
     pip install yafowil.bootstrap  # Bootstrap styling
 

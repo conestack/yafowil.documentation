@@ -37,17 +37,6 @@ Install via ``portal_setup`` or in site-setup add-ons.
     pip install yafowil.plone
 
 
-Werkzeug-based Frameworks
--------------------------
-
-The package ``yafowil.werkzeug`` provides bindings for Werkzeug-based
-frameworks like Flask.
-
-.. code-block:: bash
-
-    pip install yafowil.werkzeug
-
-
 Bootstrap Styling
 -----------------
 

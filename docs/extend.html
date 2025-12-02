@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="_static/css/conestack.css?v=53c11f18" />
     <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
     <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
-    <script src="_static/documentation_options.js?v=f4302432"></script>
+    <script src="_static/documentation_options.js?v=3304f9e4"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="icon" href="_static/favicon.ico"/>
@@ -112,10 +112,8 @@
 <li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Extending YAFOWIL - Custom Blueprints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plans.html">Reference: Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 
 </nav>
@@ -214,12 +212,10 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="plans.html">Reference: Macros</a></li>
 <li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#basics">Basics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#webob-based-frameworks">WebOb-based Frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#zope-2-plone">Zope 2 / Plone</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integrations.html#werkzeug-based-frameworks">Werkzeug-based Frameworks</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#bootstrap-styling">Bootstrap Styling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="integrations.html#treibstoff">Treibstoff</a></li>
 </ul>
@@ -231,12 +227,6 @@
 <li class="toctree-l2"><a class="reference internal" href="yaml.html#create-message-factory">Create Message Factory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="yaml.html#creating-yafowil-forms-form-yaml-files">Creating YAFOWIL-Forms form YAML-Files</a></li>
 <li class="toctree-l2"><a class="reference internal" href="yaml.html#manage-translations-of-yaml-forms">Manage translations of YAML forms</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="resources.html#yafowilresources-helper">YafowilResources Helper</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resources.html#skipping-resources">Skipping Resources</a></li>
-<li class="toctree-l2"><a class="reference internal" href="resources.html#pyramid-example">Pyramid Example</a></li>
 </ul>
 </li>
 </ul>
@@ -590,42 +580,51 @@ enabling the documentation system to show which functions use each property.</p>
 </div>
 <section id="entry-point-registration">
 <h3>Entry Point Registration<a class="headerlink" href="#entry-point-registration" title="Link to this heading">#</a></h3>
-<p>In <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>:</p>
+<p>In <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, register the entry point:</p>
 <div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project.entry-points.</span><span class="s2">&quot;yafowil.plugin&quot;</span><span class="k">]</span>
 <span class="s2">&quot;yafowil.widget.rating&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;yafowil.widget.rating:register&quot;</span>
 </pre></div>
 </div>
-<p>In <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">():</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.widget.rating</span><span class="w"> </span><span class="kn">import</span> <span class="n">widget</span>  <span class="c1"># noqa: F401</span>
+<p>In <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>, define the register function with the <code class="docutils literal notranslate"><span class="pre">&#64;entry_point</span></code>
+decorator. This function registers both blueprints and resources:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">webresource</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">factory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">entry_point</span>
+
+<span class="n">resources_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;resources&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define resources (optional - only if widget needs JS/CSS)</span>
+<span class="n">resources</span> <span class="o">=</span> <span class="n">wr</span><span class="o">.</span><span class="n">ResourceGroup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;yafowil.widget.rating&#39;</span><span class="p">,</span>
+    <span class="n">directory</span><span class="o">=</span><span class="n">resources_dir</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="s1">&#39;yafowil-rating&#39;</span>
+<span class="p">)</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wr</span><span class="o">.</span><span class="n">ScriptResource</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;yafowil-rating-js&#39;</span><span class="p">,</span>
+    <span class="n">directory</span><span class="o">=</span><span class="n">resources_dir</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="s1">&#39;yafowil-rating&#39;</span><span class="p">,</span>
+    <span class="n">resource</span><span class="o">=</span><span class="s1">&#39;widget.js&#39;</span><span class="p">,</span>
+    <span class="n">compressed</span><span class="o">=</span><span class="s1">&#39;widget.min.js&#39;</span>
+<span class="p">))</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wr</span><span class="o">.</span><span class="n">StyleResource</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;yafowil-rating-css&#39;</span><span class="p">,</span>
+    <span class="n">directory</span><span class="o">=</span><span class="n">resources_dir</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="s1">&#39;yafowil-rating&#39;</span><span class="p">,</span>
+    <span class="n">resource</span><span class="o">=</span><span class="s1">&#39;widget.css&#39;</span><span class="p">,</span>
+    <span class="n">compressed</span><span class="o">=</span><span class="s1">&#39;widget.min.css&#39;</span>
+<span class="p">))</span>
+
+<span class="nd">@entry_point</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">():</span>
+    <span class="c1"># Import triggers blueprint registration in widget.py</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.widget.rating</span><span class="w"> </span><span class="kn">import</span> <span class="n">widget</span>  <span class="c1"># noqa</span>
+
+    <span class="c1"># Register resources for default theme (optional)</span>
+    <span class="n">factory</span><span class="o">.</span><span class="n">register_resources</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;yafowil.widget.rating&#39;</span><span class="p">,</span> <span class="n">resources</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This ensures your blueprint is registered when <code class="docutils literal notranslate"><span class="pre">yafowil.loader</span></code> is imported.</p>
-</section>
-<section id="resources-optional">
-<h3>Resources (Optional)<a class="headerlink" href="#resources-optional" title="Link to this heading">#</a></h3>
-<p>If your widget needs JavaScript or CSS:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">factory</span>
-
-<span class="c1"># Path to resources directory</span>
-<span class="n">resources_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;resources&#39;</span><span class="p">)</span>
-
-<span class="c1"># Register resources</span>
-<span class="n">factory</span><span class="o">.</span><span class="n">register_entry_point</span><span class="p">(</span>
-    <span class="s1">&#39;yafowil.widget.rating&#39;</span><span class="p">,</span>
-    <span class="n">resources_dir</span><span class="p">,</span>
-    <span class="n">js</span><span class="o">=</span><span class="p">[{</span>
-        <span class="s1">&#39;resource&#39;</span><span class="p">:</span> <span class="s1">&#39;rating.js&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="p">}],</span>
-    <span class="n">css</span><span class="o">=</span><span class="p">[{</span>
-        <span class="s1">&#39;resource&#39;</span><span class="p">:</span> <span class="s1">&#39;rating.css&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;order&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>
-    <span class="p">}],</span>
-<span class="p">)</span>
-</pre></div>
-</div>
 </section>
 </section>
 </section>
@@ -656,7 +655,6 @@ enabling the documentation system to show which functions use each property.</p>
 </li>
 <li><a class="reference internal" href="#packaging-for-distribution">Packaging for Distribution</a><ul>
 <li><a class="reference internal" href="#entry-point-registration">Entry Point Registration</a></li>
-<li><a class="reference internal" href="#resources-optional">Resources (Optional)</a></li>
 </ul>
 </li>
 </ul>
@@ -679,7 +677,7 @@ enabling the documentation system to show which functions use each property.</p>
   </li>
 </ul>
       <div class="container text-center text-muted pt-2 pb-2">
-          &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
+          &#169; Copyright 2010-2025, Yafowil Contributors.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
         Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.1.
