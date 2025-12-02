@@ -27,7 +27,5 @@ Contents
    usage
    extend
    blueprints
-   plans
    integrations
    yaml
-   resources

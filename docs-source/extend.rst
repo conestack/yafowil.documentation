@@ -377,46 +377,52 @@ Structure your package in the ``yafowil.widget.*`` namespace:
 Entry Point Registration
 ------------------------
 
-In ``pyproject.toml``:
+In ``pyproject.toml``, register the entry point:
 
 .. code-block:: toml
 
     [project.entry-points."yafowil.plugin"]
     "yafowil.widget.rating" = "yafowil.widget.rating:register"
 
-In ``__init__.py``:
-
-.. code-block:: python
-
-    def register():
-        from yafowil.widget.rating import widget  # noqa: F401
-
-This ensures your blueprint is registered when ``yafowil.loader`` is imported.
-
-
-Resources (Optional)
---------------------
-
-If your widget needs JavaScript or CSS:
+In ``__init__.py``, define the register function with the ``@entry_point``
+decorator. This function registers both blueprints and resources:
 
 .. code-block:: python
 
     import os
+    import webresource as wr
     from yafowil.base import factory
+    from yafowil.utils import entry_point
 
-    # Path to resources directory
     resources_dir = os.path.join(os.path.dirname(__file__), 'resources')
 
-    # Register resources
-    factory.register_entry_point(
-        'yafowil.widget.rating',
-        resources_dir,
-        js=[{
-            'resource': 'rating.js',
-            'order': 20,
-        }],
-        css=[{
-            'resource': 'rating.css',
-            'order': 20,
-        }],
+    # Define resources (optional - only if widget needs JS/CSS)
+    resources = wr.ResourceGroup(
+        name='yafowil.widget.rating',
+        directory=resources_dir,
+        path='yafowil-rating'
     )
+    resources.add(wr.ScriptResource(
+        name='yafowil-rating-js',
+        directory=resources_dir,
+        path='yafowil-rating',
+        resource='widget.js',
+        compressed='widget.min.js'
+    ))
+    resources.add(wr.StyleResource(
+        name='yafowil-rating-css',
+        directory=resources_dir,
+        path='yafowil-rating',
+        resource='widget.css',
+        compressed='widget.min.css'
+    ))
+
+    @entry_point(order=10)
+    def register():
+        # Import triggers blueprint registration in widget.py
+        from yafowil.widget.rating import widget  # noqa
+
+        # Register resources for default theme (optional)
+        factory.register_resources('default', 'yafowil.widget.rating', resources)
+
+This ensures your blueprint is registered when ``yafowil.loader`` is imported.

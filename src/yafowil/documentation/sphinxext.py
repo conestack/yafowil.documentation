@@ -175,7 +175,7 @@ class WidgetDoc(YDirective):
             print("YAFOWIL property '%s' is not handled by managed props!" % wpname)
 
         if len(ul):
-            row[2].append(nodes.field_name(text="Used by:"))
+            row[2].append(nodes.field_name(text="Used by"))
             row[2].append(ul)
 
         return row
