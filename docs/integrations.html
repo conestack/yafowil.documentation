@@ -17,8 +17,8 @@
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Reference: Blueprints" href="blueprints.html" />
-    <link rel="prev" title="Describe YAFOWIL forms with YAML" href="yaml.html" />
+    <link rel="next" title="Describe YAFOWIL forms with YAML" href="yaml.html" />
+    <link rel="prev" title="Reference: Macros" href="plans.html" />
 <link rel="stylesheet" type="text/css" src="_static/bootstrap/bootstrap.css" />
 <script src="_static/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="_static/js/conestack.js"></script>
@@ -107,12 +107,15 @@
 
       <div class="collapse container-fluid m-0 p-3" id="cs-mobile-menu"><nav class="cs-mobile-toc">
   <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="helloworld.html">Hello world example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Elements Explained</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extend.html">Extending YAFOWIL - Custom Blueprints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plans.html">Reference: Macros</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a></li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
 </ul>
 
 </nav>
@@ -125,50 +128,42 @@
     
   <aside id="cs-sidebar" class="ms-4 sphinxsidebar"><nav class="cs-nav-toc">
   <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#motivation">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#dependencies">Dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#integrations">Integrations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#example">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#creating-a-widget">Creating a widget</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#widget-trees">Widget trees</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#rendering-mode">Rendering Mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#data-extraction">Data extraction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#validation">Validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#persistence">Persistence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#providing-blueprints">Providing blueprints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#adding-custom-behaviour">Adding custom behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#delivering-resources">Delivering resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-form-example">Basic Form Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#processing-form-submissions">Processing Form Submissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#adding-validation">Adding Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#minimal-wsgi-application">Minimal WSGI Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="helloworld.html">Hello world example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Elements Explained</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#base-principles">Base principles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#callables-everywhere">Callables everywhere</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#widget">Widget</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#runtime-data">Runtime data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#controller">Controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#validation">Validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#factory">Factory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#blueprints">Blueprints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#widget">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#runtimedata">RuntimeData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#controller">Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#factory">Factory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#chains">Chains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#rendering-modes">Rendering Modes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#create-file-containing-form-description">Create file containing form description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#computed-values">Computed values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#define-rendering-context">Define rendering context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#create-message-factory">Create Message Factory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#creating-yafowil-forms-form-yaml-files">Creating YAFOWIL-Forms form YAML-Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#manage-translations-of-yaml-forms">Manage translations of YAML forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#widget-trees">Widget Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#data-extraction">Data Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#persistence">Persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#form-actions">Form Actions</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Integrations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#webob-based-frameworks">WebOb-based frameworks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#zope-2-plone-based-usage">Zope 2 / Plone based usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#werkzeug-based-frameworks">Werkzeug based frameworks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bootstrap-styles">Bootstrap Styles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#treibstoff">Treibstoff</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extend.html">Extending YAFOWIL - Custom Blueprints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="extend.html#blueprint-anatomy">Blueprint Anatomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extend.html#writing-extractors">Writing Extractors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extend.html#writing-renderers">Writing Renderers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extend.html#the-managedprops-decorator">The &#64;managedprops Decorator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extend.html#documenting-properties">Documenting Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extend.html#registering-blueprints">Registering Blueprints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extend.html#complete-example-rating-widget">Complete Example: Rating Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extend.html#packaging-for-distribution">Packaging for Distribution</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a><ul>
@@ -219,6 +214,31 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="plans.html">Reference: Macros</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Integrations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#webob-based-frameworks">WebOb-based Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#zope-2-plone">Zope 2 / Plone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#werkzeug-based-frameworks">Werkzeug-based Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bootstrap-styling">Bootstrap Styling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#treibstoff">Treibstoff</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#create-file-containing-form-description">Create file containing form description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#computed-values">Computed values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#define-rendering-context">Define rendering context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#create-message-factory">Create Message Factory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#creating-yafowil-forms-form-yaml-files">Creating YAFOWIL-Forms form YAML-Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#manage-translations-of-yaml-forms">Manage translations of YAML forms</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#yafowilresources-helper">YafowilResources Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#skipping-resources">Skipping Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html#pyramid-example">Pyramid Example</a></li>
+</ul>
+</li>
 </ul>
 
 </nav>
@@ -235,47 +255,53 @@
 <h1>Integrations<a class="headerlink" href="#integrations" title="Link to this heading">#</a></h1>
 <section id="basics">
 <h2>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h2>
-<p>By importing <code class="docutils literal notranslate"><span class="pre">yafowil.loader</span></code> all registrations are done using the
-entry-points provided by add-on widgets and integration packages.</p>
-<p>CSS and JavaScript resources needed by the add-on widgets are available through
-<code class="docutils literal notranslate"><span class="pre">entry_point</span></code> registration. For convenience, <code class="docutils literal notranslate"><span class="pre">yafowil.utils</span></code> offers functions
-to access the relevant information.</p>
-<p>Framework integration is about plugging in methods for request information and
-i18n bindings to YAFOWIL. It’s usually done by registering a global preprocessor
-to the factory.</p>
-<p>Setting a dependency to the integration package in code, e.g. in the custom eggs
-<code class="docutils literal notranslate"><span class="pre">setup.py</span></code> or in <code class="docutils literal notranslate"><span class="pre">buildout.cfg</span></code> - whatever is chosen -, is needed.</p>
+<p>Import <code class="docutils literal notranslate"><span class="pre">yafowil.loader</span></code> to register all blueprints via entry-points:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">yafowil.loader</span>
+</pre></div>
+</div>
+<p>Framework integration binds request handling and i18n to YAFOWIL, typically
+via global preprocessors registered with the factory.</p>
 </section>
 <section id="webob-based-frameworks">
-<h2>WebOb-based frameworks<a class="headerlink" href="#webob-based-frameworks" title="Link to this heading">#</a></h2>
-<p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.webob</span></code> provides binding to <code class="docutils literal notranslate"><span class="pre">WebOb</span></code> based frameworks,
-such as <code class="docutils literal notranslate"><span class="pre">Pyramid</span></code>, <code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Appengine</span></code> and others.</p>
+<h2>WebOb-based Frameworks<a class="headerlink" href="#webob-based-frameworks" title="Link to this heading">#</a></h2>
+<p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.webob</span></code> provides bindings for WebOb-based frameworks
+like Pyramid and Google App Engine.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>yafowil.webob
+</pre></div>
+</div>
 </section>
-<section id="zope-2-plone-based-usage">
-<h2>Zope 2 / Plone based usage<a class="headerlink" href="#zope-2-plone-based-usage" title="Link to this heading">#</a></h2>
+<section id="zope-2-plone">
+<h2>Zope 2 / Plone<a class="headerlink" href="#zope-2-plone" title="Link to this heading">#</a></h2>
 <p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.plone</span></code> handles integration for Zope 2 and Plone.
-Install YAFOWIL in <code class="docutils literal notranslate"><span class="pre">portal_setup</span></code> or in site-setup <code class="docutils literal notranslate"><span class="pre">add-ons</span></code>.</p>
-<p>The example
-<a class="reference external" href="http://plone.org/documentation/kb/build-a-custom-search-form-with-yafowil">YAFOWIL tutorial at plone.org</a>
-explains how to build a custom search form using YAFOWIL.</p>
+Install via <code class="docutils literal notranslate"><span class="pre">portal_setup</span></code> or in site-setup add-ons.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>yafowil.plone
+</pre></div>
+</div>
 </section>
 <section id="werkzeug-based-frameworks">
-<h2>Werkzeug based frameworks<a class="headerlink" href="#werkzeug-based-frameworks" title="Link to this heading">#</a></h2>
-<p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.werkzeug</span></code> provides bindings to <code class="docutils literal notranslate"><span class="pre">Werkzeug</span></code>-based
-frameworks, such as <code class="docutils literal notranslate"><span class="pre">Flask</span></code> or <code class="docutils literal notranslate"><span class="pre">tipfy</span></code>.</p>
+<h2>Werkzeug-based Frameworks<a class="headerlink" href="#werkzeug-based-frameworks" title="Link to this heading">#</a></h2>
+<p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.werkzeug</span></code> provides bindings for Werkzeug-based
+frameworks like Flask.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>yafowil.werkzeug
+</pre></div>
+</div>
 </section>
-<section id="bootstrap-styles">
-<h2>Bootstrap Styles<a class="headerlink" href="#bootstrap-styles" title="Link to this heading">#</a></h2>
-<p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.bootstrap</span></code> ships with twitter bootstrap resources and
-provides common widget configuration to provide a pretty look and feel and
-responsive layout.</p>
+<section id="bootstrap-styling">
+<h2>Bootstrap Styling<a class="headerlink" href="#bootstrap-styling" title="Link to this heading">#</a></h2>
+<p>The package <code class="docutils literal notranslate"><span class="pre">yafowil.bootstrap</span></code> provides Twitter Bootstrap resources
+and widget configuration for responsive layouts.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>yafowil.bootstrap
+</pre></div>
+</div>
 </section>
 <section id="treibstoff">
 <h2>Treibstoff<a class="headerlink" href="#treibstoff" title="Link to this heading">#</a></h2>
-<p>The package <code class="docutils literal notranslate"><span class="pre">treibstoff</span></code> extends widget functionality with special handling, e.g.
-for ts.ajax environments.
-When treibstoff is present, widgets are automatically registered and gain
-additional behaviors.</p>
+<p>The package <code class="docutils literal notranslate"><span class="pre">treibstoff</span></code> extends widget functionality with special handling
+for AJAX environments. When present, widgets automatically gain additional
+behaviors.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>treibstoff
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -288,10 +314,10 @@ additional behaviors.</p>
     <nav id="TableOfContents">
       <ul>
 <li><a class="reference internal" href="#basics">Basics</a></li>
-<li><a class="reference internal" href="#webob-based-frameworks">WebOb-based frameworks</a></li>
-<li><a class="reference internal" href="#zope-2-plone-based-usage">Zope 2 / Plone based usage</a></li>
-<li><a class="reference internal" href="#werkzeug-based-frameworks">Werkzeug based frameworks</a></li>
-<li><a class="reference internal" href="#bootstrap-styles">Bootstrap Styles</a></li>
+<li><a class="reference internal" href="#webob-based-frameworks">WebOb-based Frameworks</a></li>
+<li><a class="reference internal" href="#zope-2-plone">Zope 2 / Plone</a></li>
+<li><a class="reference internal" href="#werkzeug-based-frameworks">Werkzeug-based Frameworks</a></li>
+<li><a class="reference internal" href="#bootstrap-styling">Bootstrap Styling</a></li>
 <li><a class="reference internal" href="#treibstoff">Treibstoff</a></li>
 </ul>
 
@@ -302,14 +328,14 @@ additional behaviors.</p>
   </div><div class="container footer" role="contentinfo">
   <footer class="d-flex flex-wrap justify-content-between align-items-center pt-2 my-4 border-top"><ul class="pb-2 mb-3 nav container border-bottom">
   <li class="nav-item col-md-6 col">
-    <a href="yaml.html"
+    <a href="plans.html"
        title="previous chapter"
-       class="nav-link px-2 text-muted previous-chapter">Describe YAFOWIL forms with YAML</a>
+       class="nav-link px-2 text-muted previous-chapter">Reference: Macros</a>
   </li>
   <li class="nav-item col-md-6 col text-end">
-    <a href="blueprints.html"
+    <a href="yaml.html"
        title="next chapter"
-       class="nav-link px-2 text-muted next-chapter">Reference: Blueprints</a>
+       class="nav-link px-2 text-muted next-chapter">Describe YAFOWIL forms with YAML</a>
   </li>
 </ul>
       <div class="container text-center text-muted pt-2 pb-2">
