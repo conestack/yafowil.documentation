@@ -5,18 +5,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Extend YAFOWIL - DYI Widgets &#8212; YAFOWIL - Yet Another Form Widget Library</title>
+    <title>Extending YAFOWIL - Custom Blueprints &#8212; YAFOWIL - Yet Another Form Widget Library</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a075eb5b" />
     <link id="pygments_dark_css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css" href="_static/pygments_dark.css?v=20074c1a" />
     <link rel="stylesheet" type="text/css" href="_static/css/conestack.css?v=53c11f18" />
     <link rel="stylesheet" type="text/css" href="_static/style.css?v=77473a58" />
     <link rel="stylesheet" type="text/css" href="_static/1942.ttf?v=957afb88" />
-    <script src="_static/documentation_options.js?v=f4302432"></script>
+    <script src="_static/documentation_options.js?v=3304f9e4"></script>
     <script src="_static/doctools.js?v=fd6eb6e6"></script>
     <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <link rel="icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Reference: Blueprints" href="blueprints.html" />
+    <link rel="prev" title="Usage" href="usage.html" />
 <link rel="stylesheet" type="text/css" src="_static/bootstrap/bootstrap.css" />
 <script src="_static/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="_static/js/conestack.js"></script>
@@ -104,13 +106,14 @@
       </button>
 
       <div class="collapse container-fluid m-0 p-3" id="cs-mobile-menu"><nav class="cs-mobile-toc">
-  <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="helloworld.html">Hello world example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Elements Explained</a></li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a></li>
-<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Extending YAFOWIL - Custom Blueprints</a></li>
 <li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a></li>
 </ul>
 
 </nav>
@@ -122,51 +125,43 @@
   <div class="container-xxl my-md-4" id="cs-layout">
     
   <aside id="cs-sidebar" class="ms-4 sphinxsidebar"><nav class="cs-nav-toc">
-  <ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#motivation">Motivation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#dependencies">Dependencies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#integrations">Integrations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#example">Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#creating-a-widget">Creating a widget</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#widget-trees">Widget trees</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#rendering-mode">Rendering Mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#data-extraction">Data extraction</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#validation">Validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#persistence">Persistence</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#providing-blueprints">Providing blueprints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#adding-custom-behaviour">Adding custom behaviour</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#delivering-resources">Delivering resources</a></li>
+  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-form-example">Basic Form Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#processing-form-submissions">Processing Form Submissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#adding-validation">Adding Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#minimal-wsgi-application">Minimal WSGI Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#next-steps">Next Steps</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="helloworld.html">Hello world example</a></li>
-<li class="toctree-l1"><a class="reference internal" href="architecture.html">Elements Explained</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#base-principles">Base principles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#callables-everywhere">Callables everywhere</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#widget">Widget</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#runtime-data">Runtime data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#controller">Controller</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#validation">Validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#factory">Factory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="architecture.html#blueprints">Blueprints</a></li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Core Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#widget">Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#runtimedata">RuntimeData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#controller">Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#factory">Factory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#chains">Chains</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#rendering-modes">Rendering Modes</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#create-file-containing-form-description">Create file containing form description</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#computed-values">Computed values</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#define-rendering-context">Define rendering context</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#create-message-factory">Create Message Factory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#creating-yafowil-forms-form-yaml-files">Creating YAFOWIL-Forms form YAML-Files</a></li>
-<li class="toctree-l2"><a class="reference internal" href="yaml.html#manage-translations-of-yaml-forms">Manage translations of YAML forms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#widget-trees">Widget Trees</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#data-extraction">Data Extraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#validation">Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#persistence">Persistence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage.html#form-actions">Form Actions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="integrations.html#basics">Basics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integrations.html#webob-based-frameworks">WebOb-based frameworks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integrations.html#zope-2-plone-based-usage">Zope 2 / Plone based usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integrations.html#werkzeug-based-frameworks">Werkzeug based frameworks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integrations.html#bootstrap-styles">Bootstrap Styles</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integrations.html#treibstoff">Treibstoff</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Extending YAFOWIL - Custom Blueprints</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#blueprint-anatomy">Blueprint Anatomy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-extractors">Writing Extractors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#writing-renderers">Writing Renderers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-managedprops-decorator">The &#64;managedprops Decorator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#documenting-properties">Documenting Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#registering-blueprints">Registering Blueprints</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-example-rating-widget">Complete Example: Rating Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#packaging-for-distribution">Packaging for Distribution</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="blueprints.html">Reference: Blueprints</a><ul>
@@ -217,6 +212,23 @@
 <li class="toctree-l2"><a class="reference internal" href="blueprints.html#wysihtml5">wysihtml5</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="integrations.html">Integrations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#basics">Basics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#webob-based-frameworks">WebOb-based Frameworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#zope-2-plone">Zope 2 / Plone</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#bootstrap-styling">Bootstrap Styling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integrations.html#treibstoff">Treibstoff</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="yaml.html">Describe YAFOWIL forms with YAML</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#create-file-containing-form-description">Create file containing form description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#computed-values">Computed values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#define-rendering-context">Define rendering context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#create-message-factory">Create Message Factory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#creating-yafowil-forms-form-yaml-files">Creating YAFOWIL-Forms form YAML-Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="yaml.html#manage-translations-of-yaml-forms">Manage translations of YAML forms</a></li>
+</ul>
+</li>
 </ul>
 
 </nav>
@@ -229,26 +241,443 @@
     
       <div class="ps-lg-4 mt-3 cs-content">
         
-  <section id="extend-yafowil-dyi-widgets">
-<h1>Extend YAFOWIL - DYI Widgets<a class="headerlink" href="#extend-yafowil-dyi-widgets" title="Link to this heading">#</a></h1>
-<p>Write Me</p>
+  <section id="extending-yafowil-custom-blueprints">
+<h1>Extending YAFOWIL - Custom Blueprints<a class="headerlink" href="#extending-yafowil-custom-blueprints" title="Link to this heading">#</a></h1>
+<p>This chapter explains how to create custom blueprints for YAFOWIL.</p>
+<section id="blueprint-anatomy">
+<h2>Blueprint Anatomy<a class="headerlink" href="#blueprint-anatomy" title="Link to this heading">#</a></h2>
+<p>A blueprint is a collection of callables organized in five chains:</p>
+<dl class="simple">
+<dt><strong>extractors</strong></dt><dd><p>Get, convert, and validate data from the request.</p>
+</dd>
+<dt><strong>edit_renderers</strong></dt><dd><p>Generate HTML for edit mode.</p>
+</dd>
+<dt><strong>display_renderers</strong></dt><dd><p>Generate HTML for display/read-only mode.</p>
+</dd>
+<dt><strong>preprocessors</strong></dt><dd><p>Prepare runtime data before extraction/rendering. Rarely needed.</p>
+</dd>
+<dt><strong>builders</strong></dt><dd><p>Modify widget after creation. Rarely needed.</p>
+</dd>
+</dl>
+<p>Most custom blueprints only need extractors and renderers. Across 63 blueprint
+registrations in the YAFOWIL ecosystem, only 2 use builders and none use
+custom preprocessors.</p>
+<p>Chains execute in specific orders:</p>
+<ul class="simple">
+<li><p>Extractors: right-to-left (innermost first)</p></li>
+<li><p>Renderers: left-to-right (outermost first)</p></li>
+<li><p>Preprocessors: left-to-right</p></li>
+</ul>
+</section>
+<section id="writing-extractors">
+<h2>Writing Extractors<a class="headerlink" href="#writing-extractors" title="Link to this heading">#</a></h2>
+<p>An extractor validates and transforms data from the request.</p>
+<p>Signature:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">my_extractor</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Access previous extractor&#39;s result</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span>
+
+    <span class="c1"># Access request data</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">widget</span><span class="o">.</span><span class="n">dottedpath</span><span class="p">)</span>
+
+    <span class="c1"># Validate and transform</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">valid</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">ExtractionError</span><span class="p">(</span><span class="s1">&#39;Invalid value&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">transformed_value</span>
+</pre></div>
+</div>
+<p>Key points:</p>
+<ul class="simple">
+<li><p>Return the extracted/transformed value</p></li>
+<li><p>Access previous result via <code class="docutils literal notranslate"><span class="pre">data.extracted</span></code></p></li>
+<li><p>Raise <code class="docutils literal notranslate"><span class="pre">ExtractionError</span></code> for validation failures</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">abort=True</span></code> to stop the chain, <code class="docutils literal notranslate"><span class="pre">abort=False</span></code> to continue</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtractionError</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_positive</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ExtractionError</span><span class="p">(</span><span class="s1">&#39;Must be positive&#39;</span><span class="p">,</span> <span class="n">abort</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+</pre></div>
+</div>
+</section>
+<section id="writing-renderers">
+<h2>Writing Renderers<a class="headerlink" href="#writing-renderers" title="Link to this heading">#</a></h2>
+<p>Renderers generate HTML output.</p>
+<p>Signature:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">my_renderer</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="c1"># Access HTML tag helper</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tag</span>
+
+    <span class="c1"># Access previous renderer&#39;s output</span>
+    <span class="n">inner</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">rendered</span>
+
+    <span class="c1"># Build HTML</span>
+    <span class="k">return</span> <span class="n">tag</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="n">inner</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;wrapper&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="edit-vs-display-renderers">
+<h3>Edit vs Display Renderers<a class="headerlink" href="#edit-vs-display-renderers" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>edit_renderers</strong>: Generate form inputs for editing</p></li>
+<li><p><strong>display_renderers</strong>: Generate read-only display markup</p></li>
+</ul>
+<p>Both have the same signature but different purposes.</p>
+</section>
+<section id="utility-functions">
+<h3>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">attr_value</span><span class="p">,</span>    <span class="c1"># Get widget attribute, call if callable</span>
+    <span class="n">cssid</span><span class="p">,</span>         <span class="c1"># Generate CSS ID</span>
+    <span class="n">cssclasses</span><span class="p">,</span>    <span class="c1"># Build CSS class string</span>
+<span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">my_renderer</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tag</span>
+    <span class="n">max_val</span> <span class="o">=</span> <span class="n">attr_value</span><span class="p">(</span><span class="s1">&#39;max_value&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tag</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;number&#39;</span><span class="p">,</span>
+        <span class="nb">max</span><span class="o">=</span><span class="n">max_val</span><span class="p">,</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">cssid</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="s1">&#39;input&#39;</span><span class="p">),</span>
+        <span class="n">class_</span><span class="o">=</span><span class="n">cssclasses</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">),</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="the-managedprops-decorator">
+<h2>The &#64;managedprops Decorator<a class="headerlink" href="#the-managedprops-decorator" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;managedprops</span></code> decorator declares which properties a callable uses.
+This enables automatic documentation generation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">managedprops</span>
+
+<span class="nd">@managedprops</span><span class="p">(</span><span class="s1">&#39;max_value&#39;</span><span class="p">,</span> <span class="s1">&#39;min_value&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">range_extractor</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span>
+    <span class="n">max_val</span> <span class="o">=</span> <span class="n">attr_value</span><span class="p">(</span><span class="s1">&#39;max_value&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+    <span class="n">min_val</span> <span class="o">=</span> <span class="n">attr_value</span><span class="p">(</span><span class="s1">&#39;min_value&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="n">min_val</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="n">max_val</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ExtractionError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Value must be between </span><span class="si">{</span><span class="n">min_val</span><span class="si">}</span><span class="s1"> and </span><span class="si">{</span><span class="n">max_val</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p>Apply to both extractors and renderers that use widget properties.</p>
+</section>
+<section id="documenting-properties">
+<h2>Documenting Properties<a class="headerlink" href="#documenting-properties" title="Link to this heading">#</a></h2>
+<p>Register documentation for auto-generated reference:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">factory</span>
+
+<span class="c1"># Blueprint description</span>
+<span class="n">factory</span><span class="o">.</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;blueprint&#39;</span><span class="p">][</span><span class="s1">&#39;mywidget&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Custom widget for special input.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Property descriptions</span>
+<span class="n">factory</span><span class="o">.</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;props&#39;</span><span class="p">][</span><span class="s1">&#39;mywidget.max_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Maximum allowed value.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="c1"># Default values</span>
+<span class="n">factory</span><span class="o">.</span><span class="n">defaults</span><span class="p">[</span><span class="s1">&#39;mywidget.max_value&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">&#64;managedprops</span></code> decorator links properties to their callables,
+enabling the documentation system to show which functions use each property.</p>
+</section>
+<section id="registering-blueprints">
+<h2>Registering Blueprints<a class="headerlink" href="#registering-blueprints" title="Link to this heading">#</a></h2>
+<p>Register with the factory:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">factory</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+    <span class="s1">&#39;mywidget&#39;</span><span class="p">,</span>
+    <span class="n">extractors</span><span class="o">=</span><span class="p">[</span><span class="n">my_extractor</span><span class="p">],</span>
+    <span class="n">edit_renderers</span><span class="o">=</span><span class="p">[</span><span class="n">my_edit_renderer</span><span class="p">],</span>
+    <span class="n">display_renderers</span><span class="o">=</span><span class="p">[</span><span class="n">my_display_renderer</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Name restrictions: Blueprint names cannot contain <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">:</span></code>, or <code class="docutils literal notranslate"><span class="pre">#</span></code>.</p>
+</section>
+<section id="complete-example-rating-widget">
+<h2>Complete Example: Rating Widget<a class="headerlink" href="#complete-example-rating-widget" title="Link to this heading">#</a></h2>
+<p>A practical example implementing a star-rating input.</p>
+<section id="specification">
+<h3>Specification<a class="headerlink" href="#specification" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Renders 1-5 radio buttons as stars for edit mode</p></li>
+<li><p>Displays filled/empty stars for display mode</p></li>
+<li><p>Extracts integer 1-5 from request</p></li>
+<li><p>Validates value is in valid range</p></li>
+</ul>
+</section>
+<section id="implementation">
+<h3>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExtractionError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">factory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">generic_extractor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">attr_value</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">cssclasses</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">cssid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">managedprops</span>
+
+
+<span class="nd">@managedprops</span><span class="p">(</span><span class="s1">&#39;max_stars&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rating_extractor</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate rating is within allowed range.&quot;&quot;&quot;</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">extracted</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">ExtractionError</span><span class="p">(</span><span class="s1">&#39;Invalid rating value&#39;</span><span class="p">)</span>
+    <span class="n">max_stars</span> <span class="o">=</span> <span class="n">attr_value</span><span class="p">(</span><span class="s1">&#39;max_stars&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="n">max_stars</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ExtractionError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Rating must be between 1 and </span><span class="si">{</span><span class="n">max_stars</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span>
+
+
+<span class="nd">@managedprops</span><span class="p">(</span><span class="s1">&#39;max_stars&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rating_edit_renderer</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Render rating as radio button group.&quot;&quot;&quot;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tag</span>
+    <span class="n">max_stars</span> <span class="o">=</span> <span class="n">attr_value</span><span class="p">(</span><span class="s1">&#39;max_stars&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">dottedpath</span>
+
+    <span class="n">inputs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_stars</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">checked</span> <span class="o">=</span> <span class="s1">&#39;checked&#39;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">current</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="n">tag</span><span class="p">(</span><span class="s1">&#39;input&#39;</span><span class="p">,</span>
+            <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;radio&#39;</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">value</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+            <span class="n">checked</span><span class="o">=</span><span class="n">checked</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">tag</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39; </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1"> star</span><span class="si">{</span><span class="s2">&quot;s&quot;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s2">&quot;&quot;</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">inputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tag</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">inputs</span><span class="p">),</span>
+        <span class="nb">id</span><span class="o">=</span><span class="n">cssid</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="s1">&#39;rating&#39;</span><span class="p">),</span>
+        <span class="n">class_</span><span class="o">=</span><span class="n">cssclasses</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">),</span>
+    <span class="p">)</span>
+
+
+<span class="nd">@managedprops</span><span class="p">(</span><span class="s1">&#39;max_stars&#39;</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">rating_display_renderer</span><span class="p">(</span><span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Render rating as filled/empty stars.&quot;&quot;&quot;</span>
+    <span class="n">tag</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">tag</span>
+    <span class="n">max_stars</span> <span class="o">=</span> <span class="n">attr_value</span><span class="p">(</span><span class="s1">&#39;max_stars&#39;</span><span class="p">,</span> <span class="n">widget</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">value</span> <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">0</span>
+
+    <span class="n">stars</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_stars</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">star</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\u2605</span><span class="s1">&#39;</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">value</span> <span class="k">else</span> <span class="s1">&#39;</span><span class="se">\u2606</span><span class="s1">&#39;</span>  <span class="c1"># ★ or ☆</span>
+        <span class="n">stars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">star</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">tag</span><span class="p">(</span><span class="s1">&#39;span&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">stars</span><span class="p">),</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;rating-display&#39;</span><span class="p">)</span>
+
+
+<span class="c1"># Register the blueprint</span>
+<span class="n">factory</span><span class="o">.</span><span class="n">register</span><span class="p">(</span>
+    <span class="s1">&#39;rating&#39;</span><span class="p">,</span>
+    <span class="n">extractors</span><span class="o">=</span><span class="p">[</span><span class="n">generic_extractor</span><span class="p">,</span> <span class="n">rating_extractor</span><span class="p">],</span>
+    <span class="n">edit_renderers</span><span class="o">=</span><span class="p">[</span><span class="n">rating_edit_renderer</span><span class="p">],</span>
+    <span class="n">display_renderers</span><span class="o">=</span><span class="p">[</span><span class="n">rating_display_renderer</span><span class="p">],</span>
+<span class="p">)</span>
+
+<span class="c1"># Document the blueprint</span>
+<span class="n">factory</span><span class="o">.</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;blueprint&#39;</span><span class="p">][</span><span class="s1">&#39;rating&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Star rating input widget. Renders radio buttons for selection</span>
+<span class="s2">and displays filled/empty stars in display mode.</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">factory</span><span class="o">.</span><span class="n">defaults</span><span class="p">[</span><span class="s1">&#39;rating.max_stars&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">factory</span><span class="o">.</span><span class="n">doc</span><span class="p">[</span><span class="s1">&#39;props&#39;</span><span class="p">][</span><span class="s1">&#39;rating.max_stars&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span><span class="se">\</span>
+<span class="s2">Maximum number of stars (default 5).</span>
+<span class="s2">&quot;&quot;&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="tests">
+<h3>Tests<a class="headerlink" href="#tests" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">factory</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TestRatingBlueprint</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_edit_renderer_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">widget</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;id=&quot;rating-score&quot;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;type=&quot;radio&quot;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;name=&quot;score&quot;&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+        <span class="c1"># No radio should be checked</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertNotIn</span><span class="p">(</span><span class="s1">&#39;checked&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_edit_renderer_with_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">widget</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;value=&quot;3&quot; checked&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_display_renderer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span>
+            <span class="s1">&#39;mode&#39;</span><span class="p">:</span> <span class="s1">&#39;display&#39;</span><span class="p">,</span>
+        <span class="p">})</span>
+        <span class="n">html</span> <span class="o">=</span> <span class="n">widget</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\u2605\u2605\u2605\u2606\u2606</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">html</span><span class="p">)</span>  <span class="c1"># ★★★☆☆</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_extractor_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">extract</span><span class="p">({</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">extracted</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_extractor_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">extract</span><span class="p">({</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIsNone</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">extracted</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_extractor_invalid_type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">extract</span><span class="p">({</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="s1">&#39;abc&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;Invalid rating&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">errors</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_extractor_out_of_range</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">extract</span><span class="p">({</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="s1">&#39;10&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertIn</span><span class="p">(</span><span class="s1">&#39;must be between&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">errors</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">test_custom_max_stars</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">widget</span> <span class="o">=</span> <span class="n">factory</span><span class="p">(</span><span class="s1">&#39;rating&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;score&#39;</span><span class="p">,</span> <span class="n">props</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;max_stars&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">widget</span><span class="o">.</span><span class="n">extract</span><span class="p">({</span><span class="s1">&#39;score&#39;</span><span class="p">:</span> <span class="s1">&#39;8&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">extracted</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertFalse</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">errors</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="packaging-for-distribution">
+<h2>Packaging for Distribution<a class="headerlink" href="#packaging-for-distribution" title="Link to this heading">#</a></h2>
+<p>Structure your package in the <code class="docutils literal notranslate"><span class="pre">yafowil.widget.*</span></code> namespace:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>yafowil.widget.rating/
+├── pyproject.toml
+└── src/
+    └── yafowil/
+        └── widget/
+            └── rating/
+                ├── __init__.py
+                └── widget.py
+</pre></div>
+</div>
+<section id="entry-point-registration">
+<h3>Entry Point Registration<a class="headerlink" href="#entry-point-registration" title="Link to this heading">#</a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>, register the entry point:</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[project.entry-points.</span><span class="s2">&quot;yafowil.plugin&quot;</span><span class="k">]</span>
+<span class="s2">&quot;yafowil.widget.rating&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;yafowil.widget.rating:register&quot;</span>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>, define the register function with the <code class="docutils literal notranslate"><span class="pre">&#64;entry_point</span></code>
+decorator. This function registers both blueprints and resources:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">webresource</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">wr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">factory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">entry_point</span>
+
+<span class="n">resources_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">&#39;resources&#39;</span><span class="p">)</span>
+
+<span class="c1"># Define resources (optional - only if widget needs JS/CSS)</span>
+<span class="n">resources</span> <span class="o">=</span> <span class="n">wr</span><span class="o">.</span><span class="n">ResourceGroup</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;yafowil.widget.rating&#39;</span><span class="p">,</span>
+    <span class="n">directory</span><span class="o">=</span><span class="n">resources_dir</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="s1">&#39;yafowil-rating&#39;</span>
+<span class="p">)</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wr</span><span class="o">.</span><span class="n">ScriptResource</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;yafowil-rating-js&#39;</span><span class="p">,</span>
+    <span class="n">directory</span><span class="o">=</span><span class="n">resources_dir</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="s1">&#39;yafowil-rating&#39;</span><span class="p">,</span>
+    <span class="n">resource</span><span class="o">=</span><span class="s1">&#39;widget.js&#39;</span><span class="p">,</span>
+    <span class="n">compressed</span><span class="o">=</span><span class="s1">&#39;widget.min.js&#39;</span>
+<span class="p">))</span>
+<span class="n">resources</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wr</span><span class="o">.</span><span class="n">StyleResource</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;yafowil-rating-css&#39;</span><span class="p">,</span>
+    <span class="n">directory</span><span class="o">=</span><span class="n">resources_dir</span><span class="p">,</span>
+    <span class="n">path</span><span class="o">=</span><span class="s1">&#39;yafowil-rating&#39;</span><span class="p">,</span>
+    <span class="n">resource</span><span class="o">=</span><span class="s1">&#39;widget.css&#39;</span><span class="p">,</span>
+    <span class="n">compressed</span><span class="o">=</span><span class="s1">&#39;widget.min.css&#39;</span>
+<span class="p">))</span>
+
+<span class="nd">@entry_point</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">register</span><span class="p">():</span>
+    <span class="c1"># Import triggers blueprint registration in widget.py</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">yafowil.widget.rating</span><span class="w"> </span><span class="kn">import</span> <span class="n">widget</span>  <span class="c1"># noqa</span>
+
+    <span class="c1"># Register resources for default theme (optional)</span>
+    <span class="n">factory</span><span class="o">.</span><span class="n">register_resources</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">,</span> <span class="s1">&#39;yafowil.widget.rating&#39;</span><span class="p">,</span> <span class="n">resources</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This ensures your blueprint is registered when <code class="docutils literal notranslate"><span class="pre">yafowil.loader</span></code> is imported.</p>
+</section>
+</section>
 </section>
 
 
       </div>
 
     
+  <div class="cs-local-toc mx-4 mt-4 mb-5 my-md-0 ps-xl-3 mb-lg-5 text-muted">
+    <strong class="d-block h6 mb-2 pb-2 border-bottom">On this page</strong>
+    <nav id="TableOfContents">
+      <ul>
+<li><a class="reference internal" href="#blueprint-anatomy">Blueprint Anatomy</a></li>
+<li><a class="reference internal" href="#writing-extractors">Writing Extractors</a></li>
+<li><a class="reference internal" href="#writing-renderers">Writing Renderers</a><ul>
+<li><a class="reference internal" href="#edit-vs-display-renderers">Edit vs Display Renderers</a></li>
+<li><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-managedprops-decorator">The &#64;managedprops Decorator</a></li>
+<li><a class="reference internal" href="#documenting-properties">Documenting Properties</a></li>
+<li><a class="reference internal" href="#registering-blueprints">Registering Blueprints</a></li>
+<li><a class="reference internal" href="#complete-example-rating-widget">Complete Example: Rating Widget</a><ul>
+<li><a class="reference internal" href="#specification">Specification</a></li>
+<li><a class="reference internal" href="#implementation">Implementation</a></li>
+<li><a class="reference internal" href="#tests">Tests</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#packaging-for-distribution">Packaging for Distribution</a><ul>
+<li><a class="reference internal" href="#entry-point-registration">Entry Point Registration</a></li>
+</ul>
+</li>
+</ul>
+
+    </nav>
+  </div>
     
     </main>
   </div><div class="container footer" role="contentinfo">
   <footer class="d-flex flex-wrap justify-content-between align-items-center pt-2 my-4 border-top"><ul class="pb-2 mb-3 nav container border-bottom">
   <li class="nav-item col-md-6 col">
+    <a href="usage.html"
+       title="previous chapter"
+       class="nav-link px-2 text-muted previous-chapter">Usage</a>
   </li>
   <li class="nav-item col-md-6 col text-end">
+    <a href="blueprints.html"
+       title="next chapter"
+       class="nav-link px-2 text-muted next-chapter">Reference: Blueprints</a>
   </li>
 </ul>
       <div class="container text-center text-muted pt-2 pb-2">
-          &#169; Copyright 2018-2020, Robert Niederreiter, Jens Klein, et al.
+          &#169; Copyright 2010-2025, Yafowil Contributors.
       </div>
       <div class="container text-center text-muted pt-2 pb-2">
         Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.1.

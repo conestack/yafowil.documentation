@@ -38,16 +38,16 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'YAFOWIL Documentation'
-copyright = u'2018-2020, Robert Niederreiter, Jens Klein, et al'
+copyright = u'2010-2025, Yafowil Contributors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = '2.3.3'
+version = '4.0'
 # The full version, including alpha/beta/rc tags.
-release = '2.3.3'
+release = '4.0.0'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -119,7 +119,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'YAFOWILDocumentation.tex', u'YAFOWIL Documentation',
-   u'Robert Niederreiter, Jens Klein, et al', 'manual'),
+   u'Yafowil Contributors', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -149,7 +149,7 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'yafowildocumentation', u'YAFOWIL Documentation',
-     [u'Robert Niederreiter, Jens Klein, et al'], 1)
+     [u'Yafowil Contributors'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -163,7 +163,7 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'YAFOWILDocumentation', u'YAFOWIL Documentation',
-   u'Robert Niederreiter, Jens Klein, et al', 'YAFOWILDocumentation', 'One line description of project.',
+   u'Yafowil Contributors', 'YAFOWILDocumentation', 'One line description of project.',
    'Miscellaneous'),
 ]
 
