@@ -1,4 +1,5 @@
 from docutils.writers.html4css1 import HTMLTranslator
+from yafowil.documentation.sphinxext import IncludeDoc
 from yafowil.documentation.sphinxext import PlanDoc
 from yafowil.documentation.sphinxext import WidgetDoc
 
@@ -14,5 +15,6 @@ HTMLTranslator.visit_container = visit_container
 
 
 def setup(app):
+    app.add_directive('includedoc', IncludeDoc)
     app.add_directive('yafowilwidgets', WidgetDoc)
     app.add_directive('yafowilplans', PlanDoc)

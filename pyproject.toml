@@ -24,7 +24,6 @@ classifiers = [
     "Topic :: Software Development",
 ]
 dependencies = [
-    "collective.sphinx.includedoc",
     "pillow>=10.0.0",
     "sphinx",
     "sphinx_conestack_theme",

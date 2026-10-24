@@ -5,6 +5,7 @@ from sphinx.util.docstrings import prepare_docstring
 from sphinx.util.nodes import nested_parse_with_titles
 from yafowil.base import factory
 from yafowil.utils import UNSET
+import importlib.resources
 import inspect
 import yafowil.loader  # noqa
 
@@ -21,6 +22,21 @@ class YDirective(Directive):
             node = container()
         nested_parse_with_titles(self.state, vl, node)
         return node
+
+
+class IncludeDoc(YDirective):
+    """Include a reStructuredText document shipped with a Python package.
+
+    The argument is ``package:/path/in/package.rst``, e.g.
+    ``.. includedoc:: yafowil.yaml:/sphinx.rst``.
+    """
+
+    required_arguments = 1
+
+    def run(self):
+        package, path = self.arguments[0].split(':', 1)
+        resource = importlib.resources.files(package).joinpath(path.lstrip('/'))
+        return self._rest2node(resource.read_text(), container=nodes.section).children
 
 
 class WidgetDoc(YDirective):

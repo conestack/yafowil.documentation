@@ -25,7 +25,6 @@ import os
 # ones.
 extensions = [
     'yafowil.documentation',
-    'collective.sphinx.includedoc',
     'sphinx.ext.todo',
     'sphinx.ext.githubpages'
 ]
