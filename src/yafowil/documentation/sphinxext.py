@@ -1,4 +1,3 @@
-import yafowil.loader
 from docutils import nodes
 from docutils.parsers.rst import Directive
 from docutils.statemachine import ViewList
@@ -7,6 +6,7 @@ from sphinx.util.nodes import nested_parse_with_titles
 from yafowil.base import factory
 from yafowil.utils import UNSET
 import inspect
+import yafowil.loader  # noqa
 
 
 _marker = list()
@@ -27,36 +27,34 @@ class WidgetDoc(YDirective):
     def run(self):
         result = []
         for key in sorted(factory._blueprints.keys()):
-            if factory.doc["blueprint"].get(key, None) is UNSET:
+            if factory.doc['blueprint'].get(key, None) is UNSET:
                 continue
             result.append(self._doc_widget(key))
         return result
 
     def _managed_props_of(self, widgetname):
-        props = set(
-            [_ for _ in factory.doc["props"] if _.startswith("%s." % widgetname)]
-        )
+        props = set([_ for _ in factory.doc['props'] if _.startswith('%s.' % widgetname)])
         for chainidx in range(0, 5):
             chain = factory._blueprints[widgetname][chainidx]
             for func in chain:
-                mprops = getattr(func, "__yafowil_managed_props__", [])
-                props.update(["%s.%s" % (widgetname, _) for _ in mprops])
+                mprops = getattr(func, '__yafowil_managed_props__', [])
+                props.update(['%s.%s' % (widgetname, _) for _ in mprops])
         return sorted(props)
 
     def _doc_widget(self, widgetname):
         sec = nodes.section()
-        sec["ids"].append(widgetname)
+        sec['ids'].append(widgetname)
         # set a title:
         sec.append(nodes.title(text=widgetname))
         # fetch main documentation
-        maindoc = factory.doc["blueprint"].get(widgetname, None)
+        maindoc = factory.doc['blueprint'].get(widgetname, None)
         if maindoc is not None:
             sec.append(self._rest2node(maindoc))
         else:
-            sec.append(nodes.paragraph(text="This widget is currently undocumented."))
+            sec.append(nodes.paragraph(text='This widget is currently undocumented.'))
 
         # document properties
-        rub = nodes.subtitle(text="Properties")
+        rub = nodes.subtitle(text='Properties')
         sec.append(rub)
         table = """
         +----------+---------+-------------+
@@ -72,7 +70,7 @@ class WidgetDoc(YDirective):
             table.children[0].children[0].children[4].append(self._doc_property(prop))
 
         # build table of callables used
-        rub = nodes.subtitle(text="Chains")
+        rub = nodes.subtitle(text='Chains')
         sec.append(rub)
         table = """\
         +------------+----------------+-------------------+---------------+----------+
@@ -103,10 +101,10 @@ class WidgetDoc(YDirective):
             ol.append(li)
         if exist:
             return ol
-        return nodes.paragraph(text="-/-")
+        return nodes.paragraph(text='-/-')
 
     def _doc_property(self, wpname):
-        blueprint_name, prop = wpname.split(".")
+        blueprint_name, prop = wpname.split('.')
         table = """
         +----------+---------+-------------+
         | name     | default | description |
@@ -129,15 +127,15 @@ class WidgetDoc(YDirective):
             default = factory.defaults.get(prop, _marker)
             if default is not _marker:
                 row[1].append(nodes.literal(text=repr(default)))
-                row[1].append(nodes.emphasis(text=" global"))
+                row[1].append(nodes.emphasis(text=' global'))
             else:
-                row[1].append(nodes.emphasis(text="required/ not set"))
+                row[1].append(nodes.emphasis(text='required/ not set'))
 
-        doc = factory.doc["props"].get(wpname, factory.doc["props"].get(prop, _marker))
+        doc = factory.doc['props'].get(wpname, factory.doc['props'].get(prop, _marker))
         if doc is not _marker:
             row[2].append(self._rest2node(doc))
         else:
-            row[2].append(nodes.paragraph("(not documented)"))
+            row[2].append(nodes.paragraph('(not documented)'))
             # this does not log. bullshit. no idea how to make sphinx log
             print("YAFOWIL property '%s' is not documented!" % wpname)
 
@@ -146,7 +144,7 @@ class WidgetDoc(YDirective):
 
         def add_chain_for_property(chain):
             for el in chain:
-                if prop not in getattr(el, "__yafowil_managed_props__", []):
+                if prop not in getattr(el, '__yafowil_managed_props__', []):
                     # if getattr(el, '__yafowil_managed_props__', True):
                     # print ('YAFOWIL callable %s has no ' % el,
                     #       'managed props decorator!')
@@ -171,7 +169,7 @@ class WidgetDoc(YDirective):
             print("YAFOWIL property '%s' is not handled by managed props!" % wpname)
 
         if len(ul):
-            row[2].append(nodes.field_name(text="Used by:"))
+            row[2].append(nodes.field_name(text='Used by:'))
             row[2].append(ul)
 
         return row
@@ -198,5 +196,5 @@ class PlanDoc(YDirective):
 
         for macro, blueprints in sorted(factory._macros.items()):
             rows[0].append(nodes.paragraph(text=macro))
-            rows[1].append(nodes.paragraph(text=":".join(blueprints)))
+            rows[1].append(nodes.paragraph(text=':'.join(blueprints)))
         return table
