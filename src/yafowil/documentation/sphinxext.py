@@ -1,16 +1,12 @@
 import yafowil.loader
 from docutils import nodes
+from docutils.parsers.rst import Directive
 from docutils.statemachine import ViewList
 from sphinx.util.docstrings import prepare_docstring
 from sphinx.util.nodes import nested_parse_with_titles
 from yafowil.base import factory
 from yafowil.utils import UNSET
 import inspect
-
-try:
-    from sphinx.util.compat import Directive
-except ImportError:
-    from docutils.parsers.rst import Directive
 
 
 _marker = list()
