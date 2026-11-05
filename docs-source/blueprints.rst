@@ -15,7 +15,7 @@ following packages:
 
 * yafowil.widget.autocomplete
 
-* yafowil.widget.chosen
+* yafowil.widget.chosen (deprecated)
 
 * yafowil.widget.cron
 
@@ -23,23 +23,23 @@ following packages:
 
 * yafowil.widget.dict
 
-* yafowil.widget.dynatree
+* yafowil.widget.dynatree (deprecated)
 
 * yafowil.widget.image
 
 * yafowil.widget.location
 
-* yafowil.widget.multiselect
+* yafowil.widget.multiselect (deprecated)
 
 * yafowil.widget.recaptcha
 
-* yafowil.widget.richtext
+* yafowil.widget.richtext (deprecated)
 
 * yafowil.widget.select2
 
 * yafowil.widget.slider
 
-* yafowil.widget.wysihtml5
+* yafowil.widget.wysihtml5 (deprecated)
 
 
 .. yafowilwidgets::
