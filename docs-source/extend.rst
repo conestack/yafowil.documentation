@@ -95,6 +95,8 @@ Signature:
         # Build HTML
         return tag('div', inner, class_='wrapper')
 
+Values need to be encoded by the renderer, see :doc:`encoding`.
+
 Edit vs Display Renderers
 -------------------------
 

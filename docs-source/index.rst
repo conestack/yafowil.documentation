@@ -26,6 +26,7 @@ Contents
    concepts
    usage
    extend
+   encoding
    blueprints
    integrations
    yaml
